@@ -1,0 +1,5 @@
+how to build DB?
+
+1. mysql, run create database begreen;
+2. config env
+3. run create_DDL.py
