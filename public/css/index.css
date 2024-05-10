@@ -1,0 +1,303 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-shrink: 0;
+}
+
+#main_div{
+  width: 100vw;
+  min-height: max(900px, 115vh);
+  background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/assets/main_bg_ver1.png');
+  background-size: cover;
+  overflow: hidden;
+}
+
+#navigator{
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+#logo{
+  width: 50px;
+  height: 50px;
+}
+#t1{
+  color: white;
+  font-family: "Raleway";
+  font-size: 30px;
+}
+#t2{
+  color: #79D96A;
+  font-family: "Raleway";
+  font-size: 30px;
+}
+
+#content_wrapper{
+  width: 90%;
+  height: 50vh;
+  margin-left: 5%;
+  /* background-color: green; */
+  display: flex;
+  margin-bottom: 80px;
+}
+#t3{
+  color: white;
+  font-size: 50px;
+}
+#t4{
+  margin-top: 10px;
+  color: gray;
+  font-size: 20px;
+}
+
+/* main text, buttons */
+#main_1{
+  margin-top: 100px;
+  width: 550px;
+}
+#main_bar{
+  width: 10px;
+  height: 200px;
+  background-color: #79D96A;
+  margin-top: 100px;
+  margin-right: 30px;
+}
+#buttons{
+  display: flex;
+  flex-direction: column;
+}
+/* button */
+#b1, #b2, #signup_button, #login_button, 
+#back_button_signup, #back_button_login, #back_button_signup_sucess{
+  color: white;
+  border: 0px solid;
+  border-radius: 20px 0 20px 0;
+  padding: 0;
+  width: 250px;
+  height: 45px;
+  margin-top: 25px;
+  cursor: pointer;
+  background-color: #79D96A;
+  font-size: 18px;
+  font-family: "Raleway";
+  transition: 0.5s;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+#b1:hover, #b2:hover, #signup_button:hover, #login_button:hover, 
+#back_button_signup:hover, #back_button_login:hover, #back_button_signup_sucess:hover{
+  color: #79D96A;
+}
+#b1::before, #b2::before, #signup_button::before, #login_button::before, 
+#back_button_signup::before, #back_button_login::before, #back_button_signup_sucess::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  z-index: -1;
+  background: rgba(0,0,0,0.4);
+  transition: 0.8s;
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+#b1:hover::before, #b2:hover::before, #signup_button:hover::before, 
+#login_button:hover::before, #back_button_signup:hover::before, 
+#back_button_login:hover::before, #back_button_signup_sucess:hover::before{
+  height: 190%;
+}
+
+#login_div{
+  display: none;
+  width: 590px;
+  margin-top: 100px;
+  flex-direction: column;
+  align-items: center;
+}
+#signup_div{
+  display: none;
+  width: 590px;
+  height: 80vh;
+  margin-top: 100px;
+  flex-direction: column;
+  align-items: center;
+}
+#signup_sucess_div{
+  display: none;
+  width: 590px;
+  height: 80vh;
+  margin-top: 100px;
+  flex-direction: column;
+  align-items: center;
+}
+
+input:focus{
+  background-color: #79D96A35 !important;
+  outline: none;
+}
+#signup_text1, #login_text1, #signup_sucess_text1{
+  color: white;
+  font-size: 30px;
+  font-family: "Raleway";
+}
+#signup_sucess_text2, #signup_sucess_text3, #signup_sucess_text4{
+  margin-top: 20px;
+  color: white;
+  font-size: 20px;
+  font-family: "Raleway";
+}
+
+#signup_bar1, #login_bar1, #signup_sucess_bar1{
+  width: 140px;
+  height: 5px; 
+  background-color: #79D96A;
+  margin: 15px 0 15px 0;
+}
+#signup_icon1, #signup_icon2, #signup_icon3, #signup_icon4,
+#login_icon1, #login_icon2, #login_icon3, #login_icon4{
+  position: absolute;
+  left: 7px; 
+  top: 28px;
+  transform: translateY(-50%);
+  color: #aaa; 
+}
+
+/* input tags */
+#signup_username, #signup_email, #signup_pw, #signup_cpw,
+#login_username, #login_email, #login_pw, #login_cpw{
+  margin-top: 8px;
+  margin-bottom: 8px;
+  height: 40px;
+  width: 400px;
+  padding-left: 30px;
+  border: solid #f4f4f4 0px;
+  border-bottom: solid #79D96A 2px;
+  background-color: rgba(0,0,0,0.25);
+  color: #f4f4f4;
+}
+
+/* texts */
+#signup_text_username, #signup_text_email, 
+#signup_text_pw, #signup_text_cpw,
+#login_text_username, #login_text_pw{
+  color: rgba(255, 0, 0, 0.702);
+  font-size: 15px;
+  width: 420px;
+  visibility: hidden;
+}
+
+
+#imgs_ver1{
+  border: #79D96A 5px solid;
+  border-radius: 15px;
+  margin-top: 100px;
+  margin-left: 40px;
+  width: calc(90vw - 630px);
+  height: max(60vh,500px);
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/assets/eximg1.png');
+  background-size: cover;
+  background-position: center;
+}
+#imgs_buttons_v1{
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  width: calc(90vw - 620px);
+  margin-top: 10px;
+}
+#prev1, #next1{
+  color:#79D96A;
+  font-size: 40px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#prev1:hover, #prev2:hover, #next1:hover, #next2:hover{
+  color: #79D96A7c
+}
+
+#imgs_ver2{
+  display: none;
+  border: #79D96A 5px solid;
+  border-radius: 15px;
+  margin-left: calc(5vw - 5px);
+  width: 90vw;
+  height: 50vh;
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/assets/eximg1.png');
+  background-size: cover;
+  background-position: center;
+}
+#imgs_buttons_v2{
+  display: flex;
+  justify-content: center;
+  margin-left: 5vw;
+  width: calc(90vw + 10px);
+  margin-bottom: 10px;
+}
+#prev2, #next2{
+  display: none;
+  color:#79D96A;
+  font-size: 40px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1100px) {
+  #main_div {
+    width: 100vw;
+    height: 160vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/assets/main_bg_ver2.png');
+    background-position: center;
+    background-size: cover;
+  }
+  #imgs_ver1{
+    display: none;
+  }
+  #imgs_ver2{
+    display: block;
+  }
+  #prev1, #next1{
+    display: none;
+  }
+  #prev2, #next2{
+    display: block;
+  }
+  #signup_div, #login_div, #signup_sucess_div{ 
+    margin-left: calc(45vw - 295px);
+  }
+
+  @media (max-height: 800px) {
+    #imgs_ver2{
+      display: none;
+    }
+    #prev2, #next2{
+      display: none;
+    }
+    #main_div{
+      height: 100vh;
+    }
+    
+  }
+
+}
+
+/* width < 650 */
+@media (max-width: 650px) {
+  #imgs_ver2{
+    display: none;
+  }
+  #prev2, #next2{
+    display: none;
+  }
+  #main_div{
+    height: 115vh;
+  }
+}

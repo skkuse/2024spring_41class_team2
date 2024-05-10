@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java 파일 업로드</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" accept=".txt">
+<button onclick="uploadFile()">업로드</button>
+
+<script>
+function uploadFile() {
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert('파일을 선택해주세요.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  fetch('/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('업로드에 실패했습니다.');
+    }
+    return response.text();
+  })
+  .then(data => {
+    alert('업로드 완료!');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('오류가 발생했습니다.');
+  });
+}
+</script>
+
+</body>
+</html>

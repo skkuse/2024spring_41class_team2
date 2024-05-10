@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitDaily</title>
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    
+    <div id="main_div">
+        <div id="navigator">
+            <div style="display:flex; align-items: center;">
+                <img src="/assets/logo.png" id="logo">
+                <div id="t1">&nbsp;Fit</div>
+                <div id="t2">Daily</div>
+            </div>
+            
+            <div id="nav1">
+                <div id="nav1_1">Welcome Back!</div>
+                <div id="nav1_2"></div>
+            </div>
+        </div>
+        <div style="margin:auto; width: 90%; height:3px; background-color: #79D96A;"></div>
+        <div id="main_wrapper">
+            <div id="left_bar">
+                <div style="height: 30px;"></div>
+                <div id="btn_ov">
+                    &nbsp;&nbsp;Overview
+                </div>
+                <div id="btn_pi">
+                    &nbsp;&nbsp;Personal Info
+                </div>
+                <div id="btn_ic">
+                    &nbsp;&nbsp;Input Code
+                </div>
+                <div id="btn_cal">
+                    &nbsp;&nbsp;Callendar
+                </div>
+                <div id="btn_st">
+                    &nbsp;&nbsp;Statistics
+                </div>
+                <div id="btn_co">
+                    &nbsp;&nbsp;Contact
+                </div>
+            </div>
+            <div id="contents">
+                <div style="height: 30px;"></div>
+
+                <!-- 1. overview -->
+                <div id="ov_wpr">
+                    <!-- overview contents -->
+                    <div id="ov1">
+                        <div id="ov1_t1">Welcome to BeGreen!</div>
+                        Embrace eco-friendly practices to protect our environment!
+                    </div>
+                    <div id="ov2">
+                        <div id="ov2_0" class="ov2_title">Overview of this Week</div>
+                        <div class="ov_stat_cont">
+                            <div id="ov2_1" class="ov_stat">
+                                <div id="ov2_1_t1" class="ov_thumbnail">This week's Green Commitment</div>
+                                <div id="ov_2_1_donut"class="donut-container">
+                                    <div class="donut" id="ov_donut_1"> 
+                                        <img src="/assets/ov_img2.svg" alt="Donut Image">
+                                    </div>
+                                </div>
+                                <!-- <img src="assets\overview_img_1.png" alt="exercise stat"> -->
+                                <div id="ov2_1_t2_wpr" class="ov_content_wpr">
+                                    <div id="ov2_1_t2_a" class="ov_content">0</div>
+                                    <div id="ov2_1_t2_default" class="ov_content"> / 7</div>
+                                </div>
+                            </div>
+                            <div id="ov2_2" class="ov_stat">
+                                <div id="ov2_2_t1" class="ov_thumbnail">This week's CO2 Reduction</div>
+                                <div id="ov2_2_t2_wpr" class="ov_content_wpr">
+                                    <div id="ov2_2_t2_a" class="ov_content">
+                                        <!-- Target Weight -->
+                                        <div class="donut" id="ov_donut_2"> 
+                                            <img src="/assets/ov_img3.png" alt="Donut Image">
+                                        </div>
+                                        <div id="weight">1 kg left!</div>
+                                    </div>
+                                    <!-- <div id="ov2_2_t2_b" class="ov_content">Skeletal Muscle Mass
+                                        <div class="donut" id="ov_donut_3"> 
+                                            <img src="/assets/ov_img4.png" alt="Donut Image">
+                                        </div>
+                                        <div id="muscle">2 kg left!</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ov3">
+                        <div id="ov3_0" class="ov2_title">Why Reducing Carbon Emissions is Important?</div>
+                        <div id="ov3_stat_cont" class="ov_stat_cont">
+                            <div id="ov3_1">
+                                Reducing carbon emissions in programming isn't just about adhering to environmental ethics; it's a practical, beneficial approach that impacts operational costs, regulatory compliance, consumer perception, and the long-term viability of tech products.
+                            </div>
+                            <div style="margin: 3% 0px; width:100%;height:3px; background-color: #79D96A;"></div>
+                                <div id="ov3_1_t1">Tips for Reducing Carbon Emissions in programming</div>
+                                <div id="ov3_2" class="ov3_stat">
+                                    <div id="ov3_2_1" class="ov3_stat_1">
+                                        <div id="ov3_2_t1">Method Calls and Computational Overhead: </div> 
+                                        Minimize method calls and computational overhead to reduce energy use and increase efficiency.
+                                    </div>
+                                    <div id="ov3_2_2" class="ov3_stat_1"> <!--here-->
+                                        <div id="ov3_2_t2">Unnecessary Computations: </div>
+                                        Energy waste pattern from unnecessary computations performed through double or triple nested loops.
+                                    </div>
+                                    <div id="ov3_2_3" class="ov3_stat_1">
+                                        <div id="ov3_2_t3">Repeatedly Declaring Variables: </div>
+                                        Energy waste pattern from repeatedly declaring unnecessary variables inside loops.
+                                    </div>
+                                </div>
+                                <div id="ov3_1_t2">Tips for Reducing Carbon Emissions in programming</div>
+                                <div id="ov3_3" class="ov3_stat">
+                                    <div id="ov3_3_1" class="ov3_stat_1">
+                                        <div id="ov3_3_t1">Increased Calorie Intake: </div>
+                                        Consume more calories than your body burns. Choose nutrient-dense foods like nuts, dried fruits, whole-grain breads, and lean meats to increase your calorie intake healthily.
+                                    </div>
+                                    <div id="ov3_3_2" class="ov3_stat_1">
+                                        <div id="ov3_3_t2">Strength Training: </div>
+                                        Engage in resistance training to build muscle mass. Lifting weights helps increase muscle size, which can contribute to a healthy weight gain when combined with proper nutrition.
+                                    </div>
+                                    <div id="ov3_3_3" class="ov3_stat_1">
+                                        <div id="ov3_3_t3">Frequent Meals: </div>
+                                        Have smaller, more frequent meals throughout the day to continuously fuel your body. This helps in adding calories and nutrients to support weight gain without causing discomfort from large meals.
+                                    </div>
+                                </div>
+                            <div id="ov3_1_t3">Tips for Reducing Carbon Emissions in programming</div>
+                            <div id="ov3_4" class="ov3_stat">
+                                <div id="ov3_4_1" class="ov3_stat_1">
+                                    <div id="ov3_4_t1">Protein Intake: </div>
+                                    ddd
+                                </div>
+                                <div id="ov3_4_2" class="ov3_stat_1">
+                                    <div id="ov3_4_t2">Progressive Overload: </div>
+                                    Gradually increase the weight and intensity of your workouts. Progressive overload challenges your muscles, promoting growth and increasing muscle mass over time.
+                                </div>
+                                <div id="ov3_4_3" class="ov3_stat_1">
+                                    <div id="ov3_4_t3">Rest and Recovery: </div>
+                                    Allow time for muscles to recover with adequate rest between workout sessions. Recovery is when muscle repair and growth occur, so skipping rest can impede muscle mass gain.
+                                </div>
+                            </div>
+                            <div id="ov3_1_t4">Tips for Reducing Carbon Emissions in programming</div>
+                            <div id="ov3_5" class="ov3_stat">
+                                <div id="ov3_5_1" class="ov3_stat_1">
+                                    <div id="ov3_5_t1">Calorie Reduction with Nutrient Density: </div>
+                                    Decrease your calorie intake but ensure you still get plenty of vitamins and minerals. This helps in reducing muscle mass without compromising overall health.
+                                </div>
+                                <div id="ov3_5_2" class="ov3_stat_1">
+                                    <div id="ov3_5_t2">Cardiovascular Exercise: </div>
+                                    Incorporate more cardio into your routine. Activities like running, swimming, or cycling can reduce muscle mass, especially when not combined with strength training.
+                                </div>
+                                <div id="ov3_5_3" class="ov3_stat_1">
+                                    <div id="ov3_5_t3">Reduce Protein Intake: </div>
+                                    Lower your protein intake to just meet the daily recommended amount. Excess protein can lead to muscle mass maintenance, so reducing it can help in decreasing muscle mass. However, ensure it's done carefully to avoid muscle wasting.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 2. Personal Info -->
+                <div id="pi_wpr">
+                    <div id="pi1">
+                        <div id="pi1_t1">Personal Info</div>
+                        Set your workout goals, and achieve them!
+                    </div>
+                    <div class="pi-container" id="pi2">
+                        <div id="pi2_now" class="info_box">
+                            <div id="pi2_now_t1" class="pi2_info_text">Your Health Status</div>
+                            <img src="assets\pi_img1.png" alt="now">
+                            <div id="pi2_now_1" class="pi_text">
+                                <input type="text" id="now_weight" placeholder="Enter your current body weight (kg)">
+                                <input type="text" id="now_muscle" placeholder="Enter your current muscle amount (kg)">
+                                <button id="submitBtn_now" class="submitBtn">Submit</button>
+                            </div>
+                        </div>
+                        <div id="pi2_target" class="info_box">
+                            <div id="pi2_target_t1" class="pi2_info_text">Your Target Status</div>
+                            <img src="assets\pi_img2.png" alt="target">
+                            <div id="pi2_target_1" class="pi_text">
+                                <input type="text" id="target_weight" placeholder="Enter your target body weight (kg)">
+                                <input type="text" id="target_muscle" placeholder="Enter your target muscle amount (kg)">
+                                <button id="submitBtn_target" class="submitBtn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 3. Input Code -->
+                <div id="ic_wpr">
+                    <!-- input code contents -->
+                    <div id="ic1">
+                        <div id="ic1_t1">Search Workout</div>
+                        Choose the exercise that suits you.
+                    </div>
+                    <div id="ic2">
+                        <div id="ic2_0" class="ic2_title">Input your own java code</div>
+                        <form>
+                            <textarea id="ic_textarea" placeholder="Write your comment!"></textarea>
+                        </form>
+                        <!-- <div class="ic_textarea"></div> -->
+                            
+                            
+                    </div>
+
+
+                </div>
+
+                <!-- 4. callendar -->
+                <div id="ca_wpr">
+                    <!-- callendar contents -->
+                    <div id="ca">
+                        <div id="ca_banner">
+                            <div style="display: flex;">
+                                <div id="ca_mo" style="color: white">&nbsp;December</div>
+                                <div id="ca_yr" style="color: #79D96A">&nbsp;2023</div>
+                                <div id="ca_we" style="color: white">&nbsp;2nd</div>
+                            </div>
+                            <div id="ca_arrows" style="display: flex;">
+                                <button id="prev_w"><i class="fas fa-chevron-left"></i></button>
+                                <div style="width: 10px;"></div>
+                                <button id="next_w"><i class="fas fa-chevron-right"></i></button>
+                                <div style="width: 10px;"></div>
+                            </div>
+                           
+                        </div>
+
+                        <!-- wider each element -->
+                        <div id="ca_detail_wr">
+                            <!-- t means text div -->
+                            <div id="ca_detail_t1">
+                                Sun 12. 3 
+                            </div>
+
+                            <div id="detail_ED">
+                                <div style="width: 180px;">Excercise Duration : </div>
+                                <div style="display: flex; margin: -5px 0px 0px 5px;">
+                                    <div id="ED_1"><i class="fas fa-tired"></i></div>
+                                    <div id="ED_2"><i class="fas fa-frown"></i></div>
+                                    <div id="ED_3"><i class="fas fa-meh"></i></div>
+                                    <div id="ED_4"><i class="fas fa-smile"></i></div>
+                                    <div id="ED_5"><i class="fas fa-laugh-beam"></i></div>
+                                </div>                                
+                            </div>
+
+                            <div id="detail_EI">
+                                <div style="width: 180px;">Excercise Intensity : </div>
+                                <div style="display: flex; margin: -5px 0px 0px 5px;">
+                                    <div id="EI_1"><i class="fas fa-tired"></i></div>
+                                    <div id="EI_2"><i class="fas fa-frown"></i></div>
+                                    <div id="EI_3"><i class="fas fa-meh"></i></div>
+                                    <div id="EI_4"><i class="fas fa-smile"></i></div>
+                                    <div id="EI_5"><i class="fas fa-laugh-beam"></i></div>
+                                </div>                                
+                            </div>
+
+                            <div id="detail_PC">
+                                <div style="width: 180px;">Physical Condition : </div>
+                                <div style="display: flex; margin: -5px 0px 0px 5px;">
+                                    <div id="PC_1"><i class="fas fa-tired"></i></div>
+                                    <div id="PC_2"><i class="fas fa-frown"></i></div>
+                                    <div id="PC_3"><i class="fas fa-meh"></i></div>
+                                    <div id="PC_4"><i class="fas fa-smile"></i></div>
+                                    <div id="PC_5"><i class="fas fa-laugh-beam"></i></div>
+                                </div>                                
+                            </div>
+
+                            <div id="detail_MD">
+                                <div style="width: 180px;">Mood of the Day : </div>
+                                <div style="display: flex; margin: -5px 0px 0px 5px;">
+                                    <div id="MD_1"><i class="fas fa-tired"></i></div>
+                                    <div id="MD_2"><i class="fas fa-frown"></i></div>
+                                    <div id="MD_3"><i class="fas fa-meh"></i></div>
+                                    <div id="MD_4"><i class="fas fa-smile"></i></div>
+                                    <div id="MD_5"><i class="fas fa-laugh-beam"></i></div>
+                                </div>                                
+                            </div>
+
+                            <div id="detail_TC">
+                                Today's Comment
+                            </div>
+                            <form>
+                                <textarea id="TC_textarea" placeholder="Write your comment!"></textarea>
+                            </form>
+                            
+                            <div id="detail_SC">
+                                Schedule                            
+                            </div>
+                            <form>
+                                <textarea id="SC_textarea" placeholder="Write your schedule!"></textarea>
+                            </form>
+
+                            <div id="detail_btns">
+                                <button id="detail_cancel">
+                                    Cancel
+                                </button>
+                                <button id="detail_update">
+                                    Update
+                                </button>
+
+                            </div>
+
+
+                            
+                        </div>
+
+                        <!-- abstract -->
+                        <div id="ca_sun">
+                            <div id="ca_sun_t1">
+                                Sun 12. 3 
+                            </div>
+                            <!-- if data exists -->
+                            <div id="ca_sun_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "sun_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="sun_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "sun_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="sun_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "sun_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="sun_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "sun_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="sun_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="sun_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="sun_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="sun_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="sun_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="sun_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div id="ca_mon">
+                            <div id="ca_mon_t1">
+                                Mon 12. 4
+                            </div>
+                            <div id="ca_mon_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "mon_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="mon_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "mon_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="mon_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "mon_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="mon_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "mon_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="mon_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="mon_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="mon_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="mon_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="mon_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="mon_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ca_tue">
+                            <div id="ca_tue_t1">
+                                Tue 12. 5
+                            </div>
+                            <div id="ca_tue_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "tue_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="tue_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "tue_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="tue_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "tue_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="tue_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "tue_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="tue_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="tue_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="tue_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="tue_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="tue_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="tue_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ca_wed">
+                            <div id="ca_wed_t1">
+                                Wed 12. 6
+                            </div>
+                            <div id="ca_wed_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "wed_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="wed_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "wed_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="wed_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "wed_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="wed_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "wed_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="wed_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="wed_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="wed_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="wed_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="wed_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="wed_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ca_thu">
+                            <div id="ca_thu_t1">
+                                Thu 12. 7
+                            </div>
+                            <div id="ca_thu_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "thu_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="thu_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "thu_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="thu_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "thu_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="thu_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "thu_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="thu_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="thu_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="thu_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="thu_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="thu_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="thu_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ca_fri">
+                            <div id="ca_fri_t1">
+                                Fri 12. 8
+                            </div>
+                            <div id="ca_fri_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "fri_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="fri_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "fri_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="fri_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "fri_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="fri_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "fri_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="fri_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="fri_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="fri_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="fri_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="fri_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="fri_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div id="ca_sat">
+                            <div id="ca_sat_t1">
+                                Sat 12. 9
+                            </div>
+                            <div id="ca_sat_abbr">
+
+                                <!-- emotion: 1~5 -->
+                                <div style="width: calc(380px + 5vw);">
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">
+                                            <div id = "sat_t1" style="width: 145px;">Excercise Duration</div>                                        
+                                            :&nbsp;
+                                            <div id="sat_emo1"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">
+                                            <div id = "sat_t2" style="width: 145px;">Excercise Intensity</div>                                        
+                                            :&nbsp;
+                                            <div id="sat_emo2"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="display: flex;">                                        
+                                            <div id = "sat_t3" style="width: 145px;">Physical Condition</div>
+                                            :&nbsp;
+                                            <div id="sat_emo3"><i class="fas fa-smile"></i></div>
+                                        </div>
+
+                                        <div style="width:20px"></div>
+
+                                        <div style="display: flex;">                                        
+                                            <div id = "sat_t4" style="width: 145px;">Mood of the Day</div>                                        
+                                            :&nbsp;
+                                            <div id="sat_emo4"><i class="fas fa-smile"></i></div>                                            
+                                        </div>
+                                        <div style="width:20px"></div>
+
+                                    </div>
+                                </div>
+
+                                <!-- TC -->
+                                <div id="sat_cmm_wr" style="width: 400px;">
+                                    Today's Comment :
+                                    <div id="sat_cmm">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <!-- SC -->
+                                <div id="sat_sch_wr" style="width: 400px;">
+                                    Schedule :
+                                    <div id="sat_sch">Today was really great. oday was really great.</div>
+                                </div>
+
+                                <div style="width: calc(90% - 690px); height: 50px; display: flex; justify-content: end; align-items: end;">
+                                    <i id="sat_edit" class="fas fa-edit fa-lg"></i>
+                                </div>
+                                <div style="width: 20px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div style="height: 100px;"></div>
+                    </div>
+                </div>
+
+                <!-- 5. statistics -->
+                <div id="st_wpr">
+                    <!-- statistic contents -->
+                    <div id="st1">
+                        <div id="st1_t1">Statistics only for you</div>
+                        <div id="st1_t2">Get valuable insights based on your exercise records.</div>
+                    </div>
+                    <div id="st2">
+                        <div id="st1_t1">Exercise Statistics</div>
+                        <canvas id="chart1"></canvas>
+                    </div>
+                    
+                </div>
+
+                <!-- 6. contact -->
+                <div id="co_wpr">
+                    <!-- contact contents -->
+                    <div id="co1">
+                        <div id="co1_t1">Contact Us</div>
+                        <div id="co1_t2">If you have any questions or inconveniences using the service, please contact us at the address below.</div>
+                        <!-- <img src="assets\co_img1.png" alt="contact image"> -->
+                        
+                    </div>
+                    <div id="co2">
+                        <div id="co2_t1" class="personal_stat">
+                            <img src="/assets/co_img2.png" alt="Jinho Park">
+                            <br> Jinho Park <br>jinho142857@gmail.com
+                            <br> Suwon, Korea
+                            <div class="co2_bio"></div>
+                        </div>
+                        <div id="co2_t2" class="personal_stat">
+                            <img src="/assets/co_img3.png" alt="Jihwan Kim">
+                            <br> Jihwan Kim<br>navvh3@gmail.com
+                            <br> Suwon, Korea
+                            <div class="co2_bio"></div>
+                        </div>
+                    </div>
+                    <div id="detail_FB">
+                        Please tell us about your message
+                    </div>
+                    <form>
+                        <textarea id="FB_textarea" placeholder="Write your comment!"></textarea>
+                    </form>
+                    <div id="send_cont">
+                        <button id="send_feedback">
+                            Send
+                        </button>
+
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="margin:auto; width: 90%; height:3px; background-color: #79D96A;"></div>
+        <div id="footer">
+            <div style="color: #79D96A;">Need some help? Feel free to contact us!</div>
+            <div style="height: 5px;"></div>
+            <div>Copyright&nbsp;<i class="fas fa-copyright"></i>&nbsp;2023. <br>Jinho Park. jinho142857@gmail.com<br> Jihwan Kim. navvh3@gmail.com</div>
+        </div>
+    </div>
+    
+    <script>
+        
+
+        var users_data = {{ users_data | safe }};
+        var users = {{ users | safe }};
+        
+        
+        var userindex=0
+        
+    
+        url = String(window.location.href);
+        user = url.split("=")[1]
+
+        for(i=0;i<users.length;i++){
+            if(users[i]['username'] == user){
+                userindex=i
+            }
+        }
+        
+        userData = users_data[userindex]
+
+        $("#nav1_2").text(user)
+        //console.log(userindex)
+
+        //handle emo section
+        function checkWindowSize() {
+            var sun_t1 = document.getElementById("sun_t1");
+            var sun_t2 = document.getElementById("sun_t2");
+            var sun_t3 = document.getElementById("sun_t3");
+            var sun_t4 = document.getElementById("sun_t4");
+
+            var mon_t1 = document.getElementById("mon_t1");
+            var mon_t2 = document.getElementById("mon_t2");
+            var mon_t3 = document.getElementById("mon_t3");
+            var mon_t4 = document.getElementById("mon_t4");
+
+            var tue_t1 = document.getElementById("tue_t1");
+            var tue_t2 = document.getElementById("tue_t2");
+            var tue_t3 = document.getElementById("tue_t3");
+            var tue_t4 = document.getElementById("tue_t4");
+
+            var wed_t1 = document.getElementById("wed_t1");
+            var wed_t2 = document.getElementById("wed_t2");
+            var wed_t3 = document.getElementById("wed_t3");
+            var wed_t4 = document.getElementById("wed_t4");
+
+            var thu_t1 = document.getElementById("thu_t1");
+            var thu_t2 = document.getElementById("thu_t2");
+            var thu_t3 = document.getElementById("thu_t3");
+            var thu_t4 = document.getElementById("thu_t4");
+
+            var fri_t1 = document.getElementById("fri_t1");
+            var fri_t2 = document.getElementById("fri_t2");
+            var fri_t3 = document.getElementById("fri_t3");
+            var fri_t4 = document.getElementById("fri_t4");
+
+            var sat_t1 = document.getElementById("sat_t1");
+            var sat_t2 = document.getElementById("sat_t2");
+            var sat_t3 = document.getElementById("sat_t3");
+            var sat_t4 = document.getElementById("sat_t4");
+
+            var windowWidth = window.innerWidth;
+
+            if (windowWidth < 1310) {
+                sun_t1.innerHTML = "E.D";
+                sun_t1.style.width = "30px";
+                sun_t2.innerHTML = "E.I";
+                sun_t2.style.width = "30px";
+                sun_t3.innerHTML = "P.C";
+                sun_t3.style.width = "30px";
+                sun_t4.innerHTML = "M.D";
+                sun_t4.style.width = "30px";
+
+                mon_t1.innerHTML = "E.D";
+                mon_t1.style.width = "30px";
+                mon_t2.innerHTML = "E.I";
+                mon_t2.style.width = "30px";
+                mon_t3.innerHTML = "P.C";
+                mon_t3.style.width = "30px";
+                mon_t4.innerHTML = "M.D";
+                mon_t4.style.width = "30px";
+
+                tue_t1.innerHTML = "E.D";
+                tue_t1.style.width = "30px";
+                tue_t2.innerHTML = "E.I";
+                tue_t2.style.width = "30px";
+                tue_t3.innerHTML = "P.C";
+                tue_t3.style.width = "30px";
+                tue_t4.innerHTML = "M.D";
+                tue_t4.style.width = "30px";
+
+                wed_t1.innerHTML = "E.D";
+                wed_t1.style.width = "30px";
+                wed_t2.innerHTML = "E.I";
+                wed_t2.style.width = "30px";
+                wed_t3.innerHTML = "P.C";
+                wed_t3.style.width = "30px";
+                wed_t4.innerHTML = "M.D";
+                wed_t4.style.width = "30px";
+
+                thu_t1.innerHTML = "E.D";
+                thu_t1.style.width = "30px";
+                thu_t2.innerHTML = "E.I";
+                thu_t2.style.width = "30px";
+                thu_t3.innerHTML = "P.C";
+                thu_t3.style.width = "30px";
+                thu_t4.innerHTML = "M.D";
+                thu_t4.style.width = "30px";
+
+                fri_t1.innerHTML = "E.D";
+                fri_t1.style.width = "30px";
+                fri_t2.innerHTML = "E.I";
+                fri_t2.style.width = "30px";
+                fri_t3.innerHTML = "P.C";
+                fri_t3.style.width = "30px";
+                fri_t4.innerHTML = "M.D";
+                fri_t4.style.width = "30px";
+
+                sat_t1.innerHTML = "E.D";
+                sat_t1.style.width = "30px";
+                sat_t2.innerHTML = "E.I";
+                sat_t2.style.width = "30px";
+                sat_t3.innerHTML = "P.C";
+                sat_t3.style.width = "30px";
+                sat_t4.innerHTML = "M.D";
+                sat_t4.style.width = "30px";
+
+
+            } else {
+                sun_t1.innerHTML = "Excercise Duration";
+                sun_t1.style.width = "145px";
+                sun_t2.innerHTML = "Excercise Intensity";
+                sun_t2.style.width = "145px";
+                sun_t3.innerHTML = "Physical Condition";
+                sun_t3.style.width = "145px";
+                sun_t4.innerHTML = "Mood of the Day";
+                sun_t4.style.width = "145px";
+
+                mon_t1.innerHTML = "Excercise Duration";
+                mon_t1.style.width = "145px";
+                mon_t2.innerHTML = "Excercise Intensity";
+                mon_t2.style.width = "145px";
+                mon_t3.innerHTML = "Physical Condition";
+                mon_t3.style.width = "145px";
+                mon_t4.innerHTML = "Mood of the Day";
+                mon_t4.style.width = "145px";
+
+                tue_t1.innerHTML = "Excercise Duration";
+                tue_t1.style.width = "145px";
+                tue_t2.innerHTML = "Excercise Intensity";
+                tue_t2.style.width = "145px";
+                tue_t3.innerHTML = "Physical Condition";
+                tue_t3.style.width = "145px";
+                tue_t4.innerHTML = "Mood of the Day";
+                tue_t4.style.width = "145px";
+
+                wed_t1.innerHTML = "Excercise Duration";
+                wed_t1.style.width = "145px";
+                wed_t2.innerHTML = "Excercise Intensity";
+                wed_t2.style.width = "145px";
+                wed_t3.innerHTML = "Physical Condition";
+                wed_t3.style.width = "145px";
+                wed_t4.innerHTML = "Mood of the Day";
+                wed_t4.style.width = "145px";
+
+                thu_t1.innerHTML = "Excercise Duration";
+                thu_t1.style.width = "145px";
+                thu_t2.innerHTML = "Excercise Intensity";
+                thu_t2.style.width = "145px";
+                thu_t3.innerHTML = "Physical Condition";
+                thu_t3.style.width = "145px";
+                thu_t4.innerHTML = "Mood of the Day";
+                thu_t4.style.width = "145px";
+
+                fri_t1.innerHTML = "Excercise Duration";
+                fri_t1.style.width = "145px";
+                fri_t2.innerHTML = "Excercise Intensity";
+                fri_t2.style.width = "145px";
+                fri_t3.innerHTML = "Physical Condition";
+                fri_t3.style.width = "145px";
+                fri_t4.innerHTML = "Mood of the Day";
+                fri_t4.style.width = "145px";
+
+                sat_t1.innerHTML = "Excercise Duration";
+                sat_t1.style.width = "145px";
+                sat_t2.innerHTML = "Excercise Intensity";
+                sat_t2.style.width = "145px";
+                sat_t3.innerHTML = "Physical Condition";
+                sat_t3.style.width = "145px";
+                sat_t4.innerHTML = "Mood of the Day";
+                sat_t4.style.width = "145px";
+            }
+        }
+
+        dateList = [['231203','231204','231205','231206','231207','231208','231209'],
+                    ['231210','231211','231212','231213','231214','231215','231216'],
+                    ['231217','231218','231219','231220','231221','231222','231223'],
+                    ['231224','231225','231226','231227','231228','231229','231230'],
+                    ['231231','240101','240102','240103','240104','240105','240106'],
+                    ['240107','240108','240109','240110','240111','240112','240113'],
+                    ['240114','240115','240116','240117','240118','240119','240120'],
+                    ['240121','240122','240123','240124','240125','240126','240127'],
+                    ['240128','240129','240130','240131','240201','240202','240203']]
+
+        ED=2
+        EI=2
+        PC=2
+        MD=2
+        DAY=0
+
+        //update with DB
+        function updateDiary(week_num){
+            
+            
+            fetch('/getData')
+            .then(response => response.json())
+            .then(data => {
+                
+                userData = JSON.parse(data)[userindex]
+            
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+
+            emoList = ['<i class="fas fa-tired"></i>',
+                       '<i class="fas fa-frown"></i>',
+                       '<i class="fas fa-meh"></i>',
+                       '<i class="fas fa-smile"></i>',
+                       '<i class="fas fa-laugh-beam"></i>']
+
+            weekdata = dateList[week_num]
+            
+            
+            //Sunday 
+            if(userData[weekdata[0]]!=null){
+                $('#ca_sun').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[0]]
+                var stringArray = inputString.split('\\n');
+
+                $('#sun_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#sun_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#sun_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#sun_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#sun_cmm').text(stringArray[4]);
+                $('#sun_sch').text(stringArray[5]);
+
+                
+                $('#ca_sun_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_sun').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_sun_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //Monday 
+            if(userData[weekdata[1]]!=null){
+                $('#ca_mon').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[1]]
+                var stringArray = inputString.split('\\n');
+
+                $('#mon_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#mon_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#mon_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#mon_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#mon_cmm').text(stringArray[4]);
+                $('#mon_sch').text(stringArray[5]);
+
+                
+                $('#ca_mon_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_mon').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_mon_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //Tueday 
+            if(userData[weekdata[2]]!=null){
+                
+                $('#ca_tue').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[2]]
+                var stringArray = inputString.split('\\n');
+
+                $('#tue_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#tue_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#tue_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#tue_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#tue_cmm').text(stringArray[4]);
+                $('#tue_sch').text(stringArray[5]);
+
+                
+                $('#ca_tue_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_tue').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_tue_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //wedday 
+            if(userData[weekdata[3]]!=null){
+                $('#ca_wed').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[3]]
+                var stringArray = inputString.split('\\n');
+                
+                $('#wed_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#wed_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#wed_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#wed_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#wed_cmm').text(stringArray[4]);
+                $('#wed_sch').text(stringArray[5]);
+
+                
+                $('#ca_wed_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_wed').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_wed_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //Thuday 
+            if(userData[weekdata[4]]!=null){
+                $('#ca_thu').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[4]]
+                var stringArray = inputString.split('\\n');
+
+                $('#thu_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#thu_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#thu_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#thu_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#thu_cmm').text(stringArray[4]);
+                $('#thu_sch').text(stringArray[5]);
+
+                
+                $('#ca_thu_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_thu').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_thu_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //friday 
+            if(userData[weekdata[5]]!=null){
+                $('#ca_fri').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[5]]
+                var stringArray = inputString.split('\\n');
+
+                $('#fri_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#fri_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#fri_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#fri_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#fri_cmm').text(stringArray[4]);
+                $('#fri_sch').text(stringArray[5]);
+
+                
+                $('#ca_fri_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_fri').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_fri_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+            //Satday 
+            if(userData[weekdata[6]]!=null){
+                $('#ca_sat').css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',                    
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[weekdata[6]]
+                var stringArray = inputString.split('\\n');
+
+                $('#sat_emo1').html(emoList[parseInt(stringArray[0])]);
+                $('#sat_emo2').html(emoList[parseInt(stringArray[1])]);
+                $('#sat_emo3').html(emoList[parseInt(stringArray[2])]);
+                $('#sat_emo4').html(emoList[parseInt(stringArray[3])]);
+                $('#sat_cmm').text(stringArray[4]);
+                $('#sat_sch').text(stringArray[5]);
+
+                
+                $('#ca_sat_abbr').css({
+                    'visibility': 'visible'
+                });
+            }
+            else{
+                $('#ca_sat').css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#ca_sat_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+            
+        
+        } 
+       
+        //DB insertion 
+        function insertUserDiary(week_num,Newdate){
+            console.log(ED,EI,PC,MD,$('#TC_textarea').val(),$('#SC_textarea').val())
+
+            date=String(Newdate.getYear()).slice(1,3) + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
+
+            
+            contents = String(ED+'\\n'+EI+'\\n'+PC+'\\n'+MD+'\\n'+$('#TC_textarea').val()+'\\n'+$('#SC_textarea').val())
+            console.log(date,String(Newdate.getDate()))
+            $.ajax({
+                type: 'POST',  
+                url: '/main',  
+                data: { userindex: userindex, date: date, contents: contents },
+                contentType: 'application/x-www-form-urlencoded', 
+                success: function(response) {
+                    //console.log('서버 응답:', response);
+                },
+                error: function(error) {
+                    //console.error('에러 발생:', error);
+                }
+            });
+
+            ED=2
+            EI=2
+            PC=2
+            MD=2
+            
+
+        }
+
+        //update donut chart
+        function updateProgress(week_num){
+            fetch('/getData')
+            .then(response => response.json())
+            .then(data => {
+                
+                userData = JSON.parse(data)[userindex]
+            
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+            weekdata = dateList[week_num]
+            var cnt = 0
+            for(i=0;i<7;i++){
+                if(userData[weekdata[i]]!=null){
+                    cnt+=1;
+                }
+            }
+            $('#ov2_1_t2_a').text(cnt)
+            donut1_progress = cnt*100/7; // Your progress value
+            // Create a dynamic style tag and append to the head
+            var style = `<style>
+                #ov_donut_1:before {
+                    background: conic-gradient(#79D96AA5 0% ${donut1_progress}%, white ${donut1_progress}% 100%);
+                }
+            </style>`;
+            $('head').append(style);
+
+            return cnt
+        }
+
+        //update target tracking
+        function updateProgress2(week_num){
+            var usr;
+            fetch('/getPData')
+            .then(response => response.json())
+            .then(data => {
+                
+                usr = JSON.parse(data)[userindex]
+                $('#weight').text(String(usr['curweight'] - usr['tarweight']) + 'kg left!') 
+                $('#muscle').text(String(usr['tarmus'] - usr['curmus']) + 'kg left!') 
+                
+            
+            })
+            .catch(error => console.error('Error fetching data:', error));
+              
+
+            return cnt
+        }
+
+        //Insertion Now
+        function insertNow(curweight, curmus){
+            $.ajax({
+                type: 'POST',  
+                url: '/insertnow',  
+                data: { userindex: userindex, curweight: curweight, curmus: curmus },
+                contentType: 'application/x-www-form-urlencoded', 
+                success: function(response) {
+                    console.log('서버 응답:', response);
+                },
+                error: function(error) {
+                    console.error('에러 발생:', error);
+                }
+            });
+        }
+        
+        //Insertion Tar
+        function insertTar(tarweight, tarmus){
+            $.ajax({
+                type: 'POST',  
+                url: '/inserttar',  
+                data: { userindex: userindex, tarweight: tarweight, tarmus: tarmus },
+                contentType: 'application/x-www-form-urlencoded', 
+                success: function(response) {
+                    console.log('서버 응답:', response);
+                },
+                error: function(error) {
+                    console.error('에러 발생:', error);
+                }
+            });
+        }
+
+       //update stat
+       function updateStat(week_num,STAT){
+            var usr;
+            fetch('/getData')
+            .then(response => response.json())
+            .then(data => {
+                
+                usr = JSON.parse(data)[userindex]
+                weekdata = dateList[week_num]
+                
+                usrDataList=[]
+                for(i=0;i<7;i++){
+                    if(usr[weekdata[i]]!=null){
+                        //console.log(usr[weekdata[i]])
+                        usrDataList.push(usr[weekdata[i]])
+                    }
+                    else{
+                        usrDataList.push('-1\\n-1\\n-1\\n-1\\nGood\\nGood')
+                    }
+                    
+                }
+                
+                //console.log(usrDataList)
+
+                 // from datapoint to dataset
+                var datasets = [];
+                for (var i = 0; i < 4; i++) {
+                    datasets.push(usrDataList.map(function(data) {
+                        return parseInt(data.split('\\n')[i], 10)+1;
+                    }));
+                }
+                //console.log(datasets)
+                var labelList = [
+                    'Exercise Duration',
+                    'Exercise Intensity',
+                    'Physical Condition',
+                    'Mood of the day'
+                ]
+
+                for(i=0;i<4;i++){
+                    STAT.data.datasets[i].data = datasets[i]
+                }
+                
+               
+            
+                STAT.update()
+            
+
+            })
+            
+            .catch(error => console.error('Error fetching data:', error));
+              
+
+            return STAT
+        }
+
+
+
+        window.onload = checkWindowSize;
+        window.onresize = checkWindowSize;
+
+        $(document).ready(function() {
+
+            //Initialization
+            cnt = updateProgress(2)
+            updateProgress2(2)
+            updateDiary(0)
+            
+            //Callendar part
+            updateDiary(0)
+            $('#sun_edit, #mon_edit, #tue_edit, #wed_edit, #thu_edit, #fri_edit, #sat_edit').click(function () {
+                canClickPrevNext = 0 
+                $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeOut(400, function(){
+                    $('#ca_detail_wr').fadeIn(400);
+                });
+                $('#TC_textarea').val('');
+                $('#SC_textarea').val('');
+                $("#ED_1").css("border", "3px solid white");
+                $("#ED_2").css("border", "3px solid white");
+                $("#ED_3").css("border", "3px solid white");
+                $("#ED_4").css("border", "3px solid white");
+                $("#ED_5").css("border", "3px solid white");
+                $("#EI_1").css("border", "3px solid white");
+                $("#EI_2").css("border", "3px solid white");
+                $("#EI_3").css("border", "3px solid white");
+                $("#EI_4").css("border", "3px solid white");
+                $("#EI_5").css("border", "3px solid white");
+                $("#PC_1").css("border", "3px solid white");
+                $("#PC_2").css("border", "3px solid white");
+                $("#PC_3").css("border", "3px solid white");
+                $("#PC_4").css("border", "3px solid white");
+                $("#PC_5").css("border", "3px solid white");
+                $("#MD_1").css("border", "3px solid white");
+                $("#MD_2").css("border", "3px solid white");
+                $("#MD_3").css("border", "3px solid white");
+                $("#MD_4").css("border", "3px solid white");
+                $("#MD_5").css("border", "3px solid white");
+
+            });
+
+            $('#sun_edit').click(function () {
+                DAY = 0
+                $('#ca_detail_t1').text('Sun ' + dateList[week_num][0].slice(2,4)+'. '+(parseInt(dateList[week_num][0][4])?dateList[week_num][0].slice(4,6):dateList[week_num][0].slice(5,6)));
+            });
+            $('#mon_edit').click(function () {
+                DAY = 1
+                $('#ca_detail_t1').text('Mon ' + dateList[week_num][1].slice(2,4)+'. '+(parseInt(dateList[week_num][1][4])?dateList[week_num][1].slice(4,6):dateList[week_num][1].slice(5,6)));
+            });
+            $('#tue_edit').click(function () {
+                DAY = 2
+                $('#ca_detail_t1').text('Tue ' + dateList[week_num][2].slice(2,4)+'. '+(parseInt(dateList[week_num][2][4])?dateList[week_num][2].slice(4,6):dateList[week_num][2].slice(5,6)));
+            });
+            $('#wed_edit').click(function () {
+                DAY = 3
+                $('#ca_detail_t1').text('Wed ' + dateList[week_num][3].slice(2,4)+'. '+(parseInt(dateList[week_num][3][4])?dateList[week_num][3].slice(4,6):dateList[week_num][3].slice(5,6)));
+            });
+            $('#thu_edit').click(function () {
+                DAY = 4
+                $('#ca_detail_t1').text('Thu ' + dateList[week_num][4].slice(2,4)+'. '+(parseInt(dateList[week_num][4][4])?dateList[week_num][4].slice(4,6):dateList[week_num][4].slice(5,6)));
+            });
+            $('#fri_edit').click(function () {
+                DAY = 5
+                $('#ca_detail_t1').text('Fri ' + dateList[week_num][5].slice(2,4)+'. '+(parseInt(dateList[week_num][5][4])?dateList[week_num][5].slice(4,6):dateList[week_num][5].slice(5,6)));
+            });
+            $('#sat_edit').click(function () {
+                DAY = 6
+                $('#ca_detail_t1').text('Sat ' + dateList[week_num][6].slice(2,4)+'. '+(parseInt(dateList[week_num][6][4])?dateList[week_num][6].slice(4,6):dateList[week_num][6].slice(5,6)));
+            });
+
+            $('#detail_cancel').click(function () {
+                canClickPrevNext = 1
+                $('#ca_detail_wr').fadeOut(400, function(){
+                    $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(400);
+                });
+            });
+
+            $('#detail_update').click(function () {
+
+                //DB insertion
+                var day = $('#ca_detail_t1').text()
+                insertUserDiary(week_num, Newdate)
+
+                canClickPrevNext = 1
+                
+                updateDiary(week_num)
+
+                
+                $('#ca_detail_wr').fadeOut(400, function(){
+                    updateDiary(week_num)
+                    $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(400);
+                });
+            });
+
+            //choose emo, input comment
+            $('#ED_1').click(function () {
+                ED=0
+                $("#ED_1").css("border", "3px solid #79D96A");
+                $("#ED_2").css("border", "3px solid white");
+                $("#ED_3").css("border", "3px solid white");
+                $("#ED_4").css("border", "3px solid white");
+                $("#ED_5").css("border", "3px solid white");
+            });
+            $('#ED_2').click(function () {
+                ED=1
+                $("#ED_2").css("border", "3px solid #79D96A");
+                $("#ED_1").css("border", "3px solid white");
+                $("#ED_3").css("border", "3px solid white");
+                $("#ED_4").css("border", "3px solid white");
+                $("#ED_5").css("border", "3px solid white");
+            });
+            $('#ED_3').click(function () {
+                ED=2
+                $("#ED_3").css("border", "3px solid #79D96A");
+                $("#ED_2").css("border", "3px solid white");
+                $("#ED_1").css("border", "3px solid white");
+                $("#ED_4").css("border", "3px solid white");
+                $("#ED_5").css("border", "3px solid white");
+            });
+            $('#ED_4').click(function () {
+                ED=3
+                $("#ED_4").css("border", "3px solid #79D96A");
+                $("#ED_1").css("border", "3px solid white");
+                $("#ED_3").css("border", "3px solid white");
+                $("#ED_2").css("border", "3px solid white");
+                $("#ED_5").css("border", "3px solid white");
+            });
+            $('#ED_5').click(function () {
+                ED=4
+                $("#ED_5").css("border", "3px solid #79D96A");
+                $("#ED_1").css("border", "3px solid white");
+                $("#ED_3").css("border", "3px solid white");
+                $("#ED_2").css("border", "3px solid white");
+                $("#ED_4").css("border", "3px solid white");
+            });
+
+            $('#EI_1').click(function () {
+                EI=0
+                $("#EI_1").css("border", "3px solid #79D96A");
+                $("#EI_2").css("border", "3px solid white");
+                $("#EI_3").css("border", "3px solid white");
+                $("#EI_4").css("border", "3px solid white");
+                $("#EI_5").css("border", "3px solid white");
+            });
+            $('#EI_2').click(function () {
+                EI=1
+                $("#EI_2").css("border", "3px solid #79D96A");
+                $("#EI_1").css("border", "3px solid white");
+                $("#EI_3").css("border", "3px solid white");
+                $("#EI_4").css("border", "3px solid white");
+                $("#EI_5").css("border", "3px solid white");
+            });
+            $('#EI_3').click(function () {
+                EI=2
+                $("#EI_3").css("border", "3px solid #79D96A");
+                $("#EI_2").css("border", "3px solid white");
+                $("#EI_1").css("border", "3px solid white");
+                $("#EI_4").css("border", "3px solid white");
+                $("#EI_5").css("border", "3px solid white");
+            });
+            $('#EI_4').click(function () {
+                EI=3
+                $("#EI_4").css("border", "3px solid #79D96A");
+                $("#EI_1").css("border", "3px solid white");
+                $("#EI_3").css("border", "3px solid white");
+                $("#EI_2").css("border", "3px solid white");
+                $("#EI_5").css("border", "3px solid white");
+            });
+            $('#EI_5').click(function () {
+                EI=4
+                $("#EI_5").css("border", "3px solid #79D96A");
+                $("#EI_1").css("border", "3px solid white");
+                $("#EI_3").css("border", "3px solid white");
+                $("#EI_2").css("border", "3px solid white");
+                $("#EI_4").css("border", "3px solid white");
+            });
+
+            $('#PC_1').click(function () {
+                PC=0
+                $("#PC_1").css("border", "3px solid #79D96A");
+                $("#PC_2").css("border", "3px solid white");
+                $("#PC_3").css("border", "3px solid white");
+                $("#PC_4").css("border", "3px solid white");
+                $("#PC_5").css("border", "3px solid white");
+            });
+            $('#PC_2').click(function () {
+                PC=1
+                $("#PC_2").css("border", "3px solid #79D96A");
+                $("#PC_1").css("border", "3px solid white");
+                $("#PC_3").css("border", "3px solid white");
+                $("#PC_4").css("border", "3px solid white");
+                $("#PC_5").css("border", "3px solid white");
+            });
+            $('#PC_3').click(function () {
+                PC=2
+                $("#PC_3").css("border", "3px solid #79D96A");
+                $("#PC_2").css("border", "3px solid white");
+                $("#PC_1").css("border", "3px solid white");
+                $("#PC_4").css("border", "3px solid white");
+                $("#PC_5").css("border", "3px solid white");
+            });
+            $('#PC_4').click(function () {
+                PC=3
+                $("#PC_4").css("border", "3px solid #79D96A");
+                $("#PC_1").css("border", "3px solid white");
+                $("#PC_3").css("border", "3px solid white");
+                $("#PC_2").css("border", "3px solid white");
+                $("#PC_5").css("border", "3px solid white");
+            });
+            $('#PC_5').click(function () {
+                PC=4
+                $("#PC_5").css("border", "3px solid #79D96A");
+                $("#PC_1").css("border", "3px solid white");
+                $("#PC_3").css("border", "3px solid white");
+                $("#PC_2").css("border", "3px solid white");
+                $("#PC_4").css("border", "3px solid white");
+            });
+
+            $('#MD_1').click(function () {
+                MD=0
+                $("#MD_1").css("border", "3px solid #79D96A");
+                $("#MD_2").css("border", "3px solid white");
+                $("#MD_3").css("border", "3px solid white");
+                $("#MD_4").css("border", "3px solid white");
+                $("#MD_5").css("border", "3px solid white");
+            });
+            $('#MD_2').click(function () {
+                MD=1
+                $("#MD_2").css("border", "3px solid #79D96A");
+                $("#MD_1").css("border", "3px solid white");
+                $("#MD_3").css("border", "3px solid white");
+                $("#MD_4").css("border", "3px solid white");
+                $("#MD_5").css("border", "3px solid white");
+            });
+            $('#MD_3').click(function () {
+                MD=2
+                $("#MD_3").css("border", "3px solid #79D96A");
+                $("#MD_2").css("border", "3px solid white");
+                $("#MD_1").css("border", "3px solid white");
+                $("#MD_4").css("border", "3px solid white");
+                $("#MD_5").css("border", "3px solid white");
+            });
+            $('#MD_4').click(function () {
+                MD=3
+                $("#MD_4").css("border", "3px solid #79D96A");
+                $("#MD_1").css("border", "3px solid white");
+                $("#MD_3").css("border", "3px solid white");
+                $("#MD_2").css("border", "3px solid white");
+                $("#MD_5").css("border", "3px solid white");
+            });
+            $('#MD_5').click(function () {
+                MD=4
+                $("#MD_5").css("border", "3px solid #79D96A");
+                $("#MD_1").css("border", "3px solid white");
+                $("#MD_3").css("border", "3px solid white");
+                $("#MD_2").css("border", "3px solid white");
+                $("#MD_4").css("border", "3px solid white");
+            });
+
+
+            //we made Dec 2nd ~ Feb 1st (9weeks, 63days)
+            var canClickPrevNext = 1
+            var week_num = 0
+            var Newdate = new Date('2023-12-02');
+
+            var Dateinfo = [['December','2023','2nd'],
+                            ['December','2023','3rd'],
+                            ['December','2023','4th'],
+                            ['December','2023','5th'],
+                            ['January','2024','1st'],
+                            ['January','2024','2nd'],
+                            ['January','2024','3rd'],
+                            ['January','2024','4th'],
+                            ['Feburary','2024','1st']]
+
+            $('#prev_w').click(function (){
+                if(!canClickPrevNext){
+                    return
+                }
+                if(week_num == 0){
+                    return
+                }
+
+                $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeOut(1, function(){
+                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%31+1));
+                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%31+1));
+                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%31+1));
+                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%31+1));
+                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%31+1));
+                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%31+1));
+                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%31+1));
+                    $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
+                });
+
+                week_num -= 1;
+
+                $('#ca_mo').html('&nbsp;'+Dateinfo[week_num][0]);
+                $('#ca_yr').html('&nbsp;'+Dateinfo[week_num][1]);
+                $('#ca_we').html('&nbsp;'+Dateinfo[week_num][2]);
+
+                
+                Newdate.setDate(Newdate.getDate() - 7);
+                
+                
+                updateDiary(week_num)
+                
+
+            });
+
+            $('#next_w').click(function (){
+                if(!canClickPrevNext){
+                    return
+                }
+                if(week_num == 8){
+                    return
+                }
+
+                $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeOut(1, function(){
+                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%31+1));
+                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%31+1));
+                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%31+1));
+                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%31+1));
+                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%31+1));
+                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%31+1));
+                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%31+1));
+                    $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
+                });
+
+                week_num += 1;
+
+                $('#ca_mo').html('&nbsp;'+Dateinfo[week_num][0]);
+                $('#ca_yr').html('&nbsp;'+Dateinfo[week_num][1]);
+                $('#ca_we').html('&nbsp;'+Dateinfo[week_num][2]);
+
+              
+                Newdate.setDate(Newdate.getDate() + 7);
+
+                updateDiary(week_num)
+                
+                
+            });
+
+
+            $("#ov_wpr").css("display", "block");
+            $("#ca_wpr").css("display", "none");
+            $("#ic_wpr").css("display", "none");
+            $("#st_wpr").css("display", "none");
+            $("#co_wpr").css("display", "none");
+            $("#pi_wpr").css("display", "none");
+            $("#btn_ov").css("background-color",'#79D96A35');
+
+
+            
+            $("#btn_ov").click(function() {
+                $("#ov_wpr").css("display", "block");
+                $("#ca_wpr").css("display", "none");
+                $("#ic_wpr").css("display", "none");
+                $("#st_wpr").css("display", "none");
+                $("#co_wpr").css("display", "none");
+                $("#pi_wpr").css("display", "none");
+                $(this).css("background-color",'#79D96A35');
+                $("#btn_cal").css("background-color",'');
+                $("#btn_ic").css("background-color",'');
+                $("#btn_st").css("background-color",'');
+                $("#btn_co").css("background-color",'');
+                $("#btn_pi").css("background-color",'');
+
+                cnt = updateProgress(2)
+                updateProgress2(2)
+            });
+            $("#btn_cal").click(function() {
+                $("#ov_wpr").css("display", "none");
+                $("#ca_wpr").css("display", "block");
+                $("#ic_wpr").css("display", "none");
+                $("#st_wpr").css("display", "none");
+                $("#co_wpr").css("display", "none");
+                $("#pi_wpr").css("display", "none");
+                $("#btn_ov").css("background-color",'');
+                $(this).css("background-color",'#79D96A35');
+                $("#btn_ic").css("background-color",'');
+                $("#btn_st").css("background-color",'');
+                $("#btn_co").css("background-color",'');
+                $("#btn_pi").css("background-color",'');
+            });
+            $("#btn_ic").click(function() {
+                $("#ov_wpr").css("display", "none");
+                $("#ca_wpr").css("display", "none");
+                $("#ic_wpr").css("display", "block");
+                $("#st_wpr").css("display", "none");
+                $("#co_wpr").css("display", "none");
+                $("#pi_wpr").css("display", "none");
+                $("#btn_ov").css("background-color",'');
+                $("#btn_cal").css("background-color",'');
+                $("#btn_ic").css("background-color",'#79D96A35');
+                $("#btn_st").css("background-color",'');
+                $("#btn_co").css("background-color",'');
+                $("#btn_pi").css("background-color",'');
+            });
+            $("#btn_st").click(function() {
+                $("#ov_wpr").css("display", "none");
+                $("#ca_wpr").css("display", "none");
+                $("#ic_wpr").css("display", "none");
+                $("#st_wpr").css("display", "block");
+                $("#co_wpr").css("display", "none");
+                $("#pi_wpr").css("display", "none");
+                $("#btn_ov").css("background-color",'');
+                $("#btn_cal").css("background-color",'');
+                $("#btn_ic").css("background-color",'');
+                $("#btn_st").css("background-color",'#79D96A35');
+                $("#btn_co").css("background-color",'');
+                $("#btn_pi").css("background-color",'');
+
+                updateStat(2,STAT)
+            });
+            $("#btn_co").click(function() {
+                $("#ov_wpr").css("display", "none");
+                $("#ca_wpr").css("display", "none");
+                $("#ic_wpr").css("display", "none");
+                $("#st_wpr").css("display", "none");
+                $("#co_wpr").css("display", "block");
+                $("#pi_wpr").css("display", "none");
+                $("#btn_ov").css("background-color",'');
+                $("#btn_cal").css("background-color",'');
+                $("#btn_ic").css("background-color",'');
+                $("#btn_st").css("background-color",'');
+                $("#btn_co").css("background-color",'#79D96A35');
+                $("#btn_pi").css("background-color",'');
+            });
+            $("#btn_pi").click(function() {
+                $("#ov_wpr").css("display", "none");
+                $("#ca_wpr").css("display", "none");
+                $("#ic_wpr").css("display", "none");
+                $("#st_wpr").css("display", "none");
+                $("#co_wpr").css("display", "none");
+                $("#pi_wpr").css("display", "block");
+                $("#btn_ov").css("background-color",'');
+                $("#btn_cal").css("background-color",'');
+                $("#btn_ic").css("background-color",'');
+                $("#btn_st").css("background-color",'');
+                $("#btn_co").css("background-color",'');
+                $("#btn_pi").css("background-color",'#79D96A35');
+            });
+
+        
+
+            // let donutAnimation = startDonutAnimation();
+            var donut1_progress = cnt*100/7; // Your progress value
+            // Create a dynamic style tag and append to the head
+            var style = `<style>
+                #ov_donut_1:before {
+                    background: conic-gradient(#79D96AA5 0% ${donut1_progress}%, white ${donut1_progress}% 100%);
+                }
+            </style>`;
+
+            $('head').append(style);
+
+            $('.ov3_stat').hide();
+            $('#ov3_1_t1').hide();
+            $('#ov3_1_t2').hide();
+            $('#ov3_1_t3').hide();
+            $('#ov3_1_t4').hide();
+
+            var title_elements = ['#ov3_1_t1', '#ov3_1_t2','#ov3_1_t3','#ov3_1_t4'];
+            var elements = ['#ov3_2', '#ov3_3','#ov3_4','#ov3_5'];
+            var randomIndex = Math.floor(Math.random() * 4);
+            $(title_elements[randomIndex]).show();
+            $(elements[randomIndex]).show();
+
+
+            //NOTE : code below must be changed into INPUT CODE section!!
+
+            // Workout scripts
+            // function updateVisibility() {
+            //     $('.wo_container').hide(); // Hide all containers
+            //     $('#wo_container_' + currentIndex).show(); // Show current container
+            // }
+            
+            // // Global Variable
+            // var currentIndex = 1;
+            // var allExercises = $('.wo_each');
+            // var allExercises_length = allExercises.length; // Set initial workout length
+
+            // // Initialize containers
+            // function initContainers() {
+            //     $('.wo_container').empty();
+            //     allExercises.each(function(index, element) {
+            //         $('#wo_container_' + (Math.floor(index / 4) + 1)).append(element);
+            //     });
+            //     $('.wo_container').hide();
+            //     $('#wo_container_1').show();
+            //     allExercises_length = allExercises.length; 
+            // }
+            // // distribute searched exercise
+            // function distributeExercises(matchedExercises) {
+            //     $('.wo_container').empty(); // empty all containers
+            //     matchedExercises.each(function(index, element) {
+            //         $('#wo_container_' + (Math.floor(index / 4) + 1)).append(element);
+            //     });
+            //     $('.wo_container').hide();
+            //     $('#wo_container_1').show(); 
+            // }
+
+            // // event for searched exercise
+            // $('#search-btn').click(function() {
+            //     currentIndex = 1;
+            //     var searchTerm = $('#search-box').val().toLowerCase();
+
+            //     if (searchTerm === '') {
+            //         initContainers();
+            //     } else {
+            //         var matchedExercises = allExercises.filter(function() {
+            //             return $(this).find('.wo_title').text().toLowerCase().includes(searchTerm);
+            //         });
+            //         distributeExercises(matchedExercises);
+            //         allExercises_length = matchedExercises.length; 
+            //     }
+            // });
+
+            // // event for arrow clicked event
+            // $('#left-arrow').click(function() {
+            //     if (currentIndex > 1) {
+            //         currentIndex--;
+            //         updateVisibility();
+            //     }
+            // });
+
+            // $('#right-arrow').click(function() {
+            //     if (currentIndex < Math.ceil(allExercises_length / 4)) {
+            //         currentIndex++;
+            //         updateVisibility();
+            //     }
+            // });
+
+            // // Update visibility
+            // function updateVisibility() {
+            //     $('.wo_container').hide();
+            //     $('#wo_container_' + currentIndex).show();
+            // }
+
+            // // Initialize containers
+            // initContainers();
+
+            
+            
+
+            // statistics part
+            
+            // exampledata
+            var usrDataList = [
+                '1\n2\n3\n4\nGood\nGood',
+                '2\n3\n4\n5\nGood\nGood',
+                '3\n4\n5\n2\nGood\nGood',
+                '1\n2\n3\n4\nGood\nGood',
+                '2\n3\n4\n5\nGood\nGood',
+                '3\n4\n5\n2\nGood\nGood',
+                '1\n2\n3\n4\nGood\nGood'
+            ];
+
+            // from datapoint to dataset
+            var datasets = [];
+            for (var i = 0; i < 4; i++) {
+                datasets.push(usrDataList.map(function(data) {
+                    return parseInt(data.split('\n')[i], 10);
+                }));
+            }
+            var labelList = [
+                'Exercise Duration',
+                'Exercise Intensity',
+                'Physical Condition',
+                'Mood of the day'
+            ]
+            // Make Chart
+            // for (var j = 0; j < datasets.length; j++) {
+            STAT = new Chart($('#chart1'), {
+                type: 'line',
+                data: {
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+                    datasets: [{
+                        label: labelList[0],
+                        data: datasets[0],
+                        backgroundColor: 'rgba(250, 169, 55, 0.2)',
+                        borderColor: 'rgba(250, 169, 55, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: labelList[1],
+                        data: datasets[1],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: labelList[2],
+                        data: datasets[2],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: labelList[3],
+                        data: datasets[3],
+                        backgroundColor: 'rgba(0, 255, 127, 0.2)',
+                        borderColor: 'rgba(0, 255, 127, 1)',
+                        borderWidth: 1
+                    },
+                ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins:{
+                        legend: {
+                            position:'bottom',
+                            labels: {
+                                padding: 20, // control padding between legends
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            bottom:20
+                        }
+                    }
+                }
+            });
+            
+            updateStat(2,STAT)
+
+            //contact part
+
+            $('#send_feedback').click(function() {
+                // Get the value from the textarea
+                var comment = $('#FB_textarea').val();
+
+                // Print the comment to the console
+                console.log(comment);
+
+                $.ajax({
+                    type: 'POST',  
+                    url: '/suggestion',  
+                    data: { userindex : userindex, suggestions : comment },
+                    contentType: 'application/x-www-form-urlencoded', 
+                    success: function(response) {
+                        console.log('서버 응답:', response);
+                    },
+                    error: function(error) {
+                        console.error('에러 발생:', error);
+                    }
+                });
+
+                // Clear the textarea
+                $('#FB_textarea').val('');
+
+                alert("Thank you for your valuable comments.")
+            });
+
+            //PI
+
+            $('#submitBtn_now').click(function() {
+                // Get the values from the text inputs
+                var value1 = $('#now_weight').val();
+                var value2 = $('#now_muscle').val();
+
+                // Log the values to the console
+                console.log('Input 1:', value1);
+                console.log('Input 2:', value2);
+
+                // Update the placeholders with the entered values
+                $('#now_weight').attr('placeholder', value1+'kg');
+                $('#now_muscle').attr('placeholder', value2+'kg');
+
+                // Clear the text inputs
+                $('#now_weight').val('');
+                $('#now_muscle').val('');
+
+                insertNow(value1, value2)
+                
+            });
+
+            $('#submitBtn_target').click(function() {
+                // Get the values from the text inputs
+                var value1 = $('#target_weight').val();
+                var value2 = $('#target_muscle').val();
+
+                // Log the values to the console
+                console.log('Input 1:', value1);
+                console.log('Input 2:', value2);
+
+                // Update the placeholders with the entered values
+                $('#target_weight').attr('placeholder', value1+'kg');
+                $('#target_muscle').attr('placeholder', value2+'kg');
+
+                // Clear the text inputs
+                $('#target_weight').val('');
+                $('#target_muscle').val('');
+
+                insertTar(value1, value2)
+            });
+
+        });
+
+
+    </script>
+
+</body>
+</html>
+        
