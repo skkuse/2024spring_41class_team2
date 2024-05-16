@@ -89,8 +89,7 @@ router.post('/', (req, res) => {
     const created_at = new Date();
     console.log(id,username,email,password,created_at)
 
-    const dataToInsert = { id: id, username: username, email: email, password: password, 
-      curweight: 60, tarweight: 60, curmus: 30, tarmus: 30, created_at: created_at };
+    const dataToInsert = { id: id, username: username, email: email, password: password, created_at: created_at };
     const user_query = 'INSERT INTO users SET ?';
     
     connection.query(user_query, dataToInsert, (error, results, fields) => {
