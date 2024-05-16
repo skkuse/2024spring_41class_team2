@@ -377,6 +377,7 @@
 
 
 
+
 /* input code */
 #ic_wpr{
     display: none;
@@ -387,7 +388,7 @@
     border-radius: 30px;
     padding: 20px;
     margin: 0px 0px 0px 20px;
-    background-image: linear-gradient(to right, #79D96Aaa,rgba(0, 0, 0, 0.95)),url('/assets/wo_img2.jpg');
+    background-image: linear-gradient(to right, #faa937aa,rgba(0, 0, 0, 0.95)),url('/assets/wo_img2.jpg');
     background-size: cover;
     overflow: hidden;
     background-position: center;
@@ -407,10 +408,19 @@
     flex-direction:column;
 }
 
-.ic2_title{
+.ic2_title_1{
     height: 40px;
     padding: 0px;
     margin: 20px 0px 0px 20px;
+    font-family: "Raleway";
+    font-size: 150%;
+    color: white;
+    text-align: left;
+}
+.ic2_title_2{
+    height: 40px;
+    padding: 0px;
+    margin: 0px 0px 0px 20px;
     font-family: "Raleway";
     font-size: 150%;
     color: white;
@@ -422,6 +432,68 @@
 .ic_container{
     display:flex;
     flex-direction: column;
+}
+
+#IC_textarea{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: calc(100% - 42px);
+    height: 70px;
+    font-size: 18px;
+    background-color: #FFFFFF60;
+    resize: none;
+    color: white;
+    border: 3px solid white;
+    padding: 8px;
+    border-radius: 10px;
+    font-family: "Raleway";
+    outline: none;
+
+
+}
+#IC_textarea:focus{
+    border: 3px solid #79D96A;
+}
+#IC_textarea::placeholder{
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#ic_input{
+    display: none;
+}
+.ic_upload_div{
+    margin-left: 10px;
+}
+.ic_upload{
+    color: white;
+    border: 0px solid;
+    border-radius: 13px 0 13px 0;
+    padding: 0;
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #FFFFFF60;
+    font-size: 16px;
+    font-family: "Raleway";
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+.ic_upload:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    z-index: -1;
+    background: #79D96A;
+    transition: 0.8s;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+.ic_upload:hover::before{
+    height: 190%;
 }
 
 
