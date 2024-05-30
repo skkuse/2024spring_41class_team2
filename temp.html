@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor with Line Numbers and Tabs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <style>
+        .CodeMirror {
+            height: auto;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="code" name="code"></textarea>
+
+    <script>
+        // CodeMirror 인스턴스 생성
+        var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            lineNumbers: true,      // 라인 넘버 표시
+            mode: "javascript",     // 구문 강조 모드 (여기서는 JavaScript로 설정)
+            tabSize: 4,             // 탭 크기
+            indentWithTabs: true    // 탭을 사용하여 들여쓰기
+        });
+    </script>
+</body>
+</html>

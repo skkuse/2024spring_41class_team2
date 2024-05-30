@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/ambiance.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/clike/clike.min.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -216,18 +222,21 @@
                             </div>
                             <div class="ic_upload_div">
                                 <label for="file">
-                                    <div class="ic_upload"><div style="margin: 7px 0px 0px 23px;">Upload</div></div>
+                                    <div class="ic_upload"><div style="margin: 7px 0px 0px 24px;">Upload</div></div>
                                 </label>
-                                <input type="file" id="ic_input" accept=".java,.txt"> 
+                                
+                                <input type="file" name="file" id="file" accept=".java, .txt">                    
                             </div>
-                            
                         </div>
                         <form>
                             <textarea id="IC_textarea" placeholder="Input your own java code!"></textarea>
                         </form>
-
-                            
-                            
+      
+                    </div>
+                    <div id="ic3">
+                        <button class="ic3_btn">
+                            Make it GREEN!
+                        </button>
                     </div>
 
 
@@ -1479,6 +1488,56 @@
 
         window.onload = checkWindowSize;
         window.onresize = checkWindowSize;
+
+        //input_code
+        document.getElementById('file').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && (file.type === "text/plain" || file.name.endsWith(".java"))) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    editor.setValue(e.target.result);
+                    updateCodeMirrorStyle();
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Please upload a valid .java or .txt file.");
+            }
+        });
+
+         // CodeMirror 인스턴스 생성
+         var editor = CodeMirror.fromTextArea(document.getElementById('IC_textarea'), {
+            lineNumbers: true,      // 라인 넘버 표시
+            mode: "text/x-java",     
+            tabSize: 4,             // 탭 크기
+            indentWithTabs: true,   // 탭을 사용하여 들여쓰기
+        });
+
+        var check_10lines = 0;
+        // div 개수에 따른 CSS 변경
+        function updateCodeMirrorStyle() {
+            const codeDivs = editor.getWrapperElement().querySelectorAll('.CodeMirror-code > div');
+            const codeMirrorCode = editor.getWrapperElement().querySelector('.CodeMirror-code');
+            // console.log(codeDivs.length)
+            if (codeDivs.length < 10) {
+                if(check_10lines==0){
+                    codeMirrorCode.classList.add('few-lines');
+                }
+            } else {
+                check_10lines=1;
+                codeMirrorCode.classList.remove('few-lines');
+            }
+        }
+
+        editor.on('change', function() {
+            updateCodeMirrorStyle();
+            // console.log(check_10lines);
+            setTimeout(() => {
+                updateCodeMirrorStyle();
+            }, 1); 
+        });
+
+        updateCodeMirrorStyle();
+
 
         $(document).ready(function() {
 
