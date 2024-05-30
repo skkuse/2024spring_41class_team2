@@ -180,7 +180,7 @@
 }
 .wave {
     position: absolute;
-    top: 3%;
+    top: 15%;
     left: 50%;
     background: white;
     width: 500px;
@@ -188,7 +188,7 @@
     margin-left: -250px;
     margin-top: -450px;
     transform-origin: 50% 48%;
-    border-radius: 43%;
+    border-radius: 47%;
     animation: drift 5000ms infinite linear;
     z-index: 2;
 }
