@@ -69,9 +69,9 @@
                                 <div id="ov2_1_t2_wpr" class="ov_content_wpr">
                                     <div id="ov2_2_t2_a" class="ov_content">
                                         <div class="donut" id="ov_donut_1" style="margin-top: 20px;">
-                                            <div class='wave -three'></div>
-                                            <div class='wave -two'></div>
-                                            <div class='wave'></div>
+                                            <div class='wave -three' id="ov_wave_1"></div>
+                                            <div class='wave -two' id="ov_wave_1"></div>
+                                            <div class='wave' id="ov_wave_1"></div>
                                             <img src="/assets/ov_img2.svg" alt="Donut Image">
                                         </div>
                                         <div style="display: inline-block; margin-top:5px;">
@@ -88,11 +88,20 @@
                                     <div id="ov2_2_t2_a" class="ov_content">
                                         <!-- Target Weight -->
                                         <div class="donut" id="ov_donut_2">
-                                            <div class='wave -two'></div>
-                                            <div class='wave'></div>
-                                            <img src="/assets/ov_img3.png" alt="Donut Image">
+                                            
+                                            <div class='wave -two' id="ov_wave_2"></div>
+                                            <div class='wave' id="ov_wave_2"></div>
+                                            <!-- <img src="/assets/ov_img3.png" alt="Donut Image" class="ov_img_aaa"> -->
+                                            <div class="ov_img_aaa">
+                                                <img src="/assets/ov_img3.png" alt="Donut Image">
+                                                <span class="tooltiptext">Tooltip text</span>
+                                            </div>
+                                            <!-- <img src="/assets/ov_img3.png" alt="Donut Image"> -->
+                                            <!-- <span class="tooltiptext">Tooltip text</span> -->
+                                            
                                         </div>
-                                        <div id="weight" style="font-size: 155%; font-weight:bold">1 kg left!</div>
+                                        <!-- <span class="tooltiptext">Tooltip text</span> -->
+                                        <div id="weight" style="font-size: 155%; font-weight:bold">1 % decreased!</div>
                                     </div>
                                     <!-- <div id="ov2_2_t2_b" class="ov_content">Skeletal Muscle Mass
                                         <div class="donut" id="ov_donut_3"> 
@@ -1376,18 +1385,19 @@
                 }
             }
             $('#ov2_1_t2_a').text(cnt)
-            donut1_progress = cnt*100/7; // Your progress value
+            donut1_progress = cnt*130/7; // Your progress value
             // Create a dynamic style tag and append to the head
             TODO:
-            /*
+            
             var style = `<style>
-                #ov_donut_1:before {
-                    background: conic-gradient(#79D96AA5 0% ${donut1_progress}%, white ${donut1_progress}% 100%);
+                #ov_wave_1 {
+                    top: ${70 - donut1_progress}%;
                 }
             </style>`;
             $('head').append(style);
-            */
             
+        //    var style = '<style> #ov_wave_1 {top: ${70-donut1_progress}%;</style>';
+        //     $('head').append(style);
             return cnt
         }
 
@@ -1399,13 +1409,18 @@
             .then(data => {
                 
                 usr = JSON.parse(data)[userindex]
-                $('#weight').text(String(usr['curweight'] - usr['tarweight']) + 'kg left!') 
+                $('#weight').text(String(usr['curweight'] - usr['tarweight']) + 'kg decreased') 
                 $('#muscle').text(String(usr['tarmus'] - usr['curmus']) + 'kg left!') 
                 
             
             })
             .catch(error => console.error('Error fetching data:', error));
-              
+            // var style = `<style>
+            //     #ov_wave_2 {
+            //         top: ${70 - donut1_progress}%;
+            //     }
+            // </style>`;
+            // $('head').append(style);  
 
             return cnt
         }

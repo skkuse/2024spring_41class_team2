@@ -231,6 +231,44 @@
     margin-bottom: 3%;
 }
 
+.ov_img_aaa {
+    position: relative;
+    display: inline-block; 
+} 
+
+.ov_img_aaa .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 3;
+    bottom: 100%; /* Position above the element */
+    left: 50%;
+    margin-left: -60px;
+    margin-bottom: 10px; /* Space between the image and the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ov_img_aaa .tooltiptext::after {
+    content: "";
+    position: fixed;
+    top: 100%; /* Position the arrow at the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.ov_img_aaa:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 
 .ov_content_wpr{
     margin: 2px;

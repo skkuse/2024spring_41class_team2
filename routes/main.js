@@ -50,9 +50,10 @@ router.get('/', function(req, res, next) {
   
 });
 
-var parent = document.getElementById('ov2_2_t2_a');
+// var parent = document.getElementById('ov2_2_t2_a');
 
-var donut = document.getElementsByClassName("donut");
-  donut.addEventListener('mouseover',(event)=>{
-    parent.innerHTML += '<div style=""></div>';
-});
+// var donut = document.getElementsByClassName("donut");
+//   donut.addEventListener('mouseover',(event)=>{
+//     parent.innerHTML += '<div style=""></div>';
+// }
+// );
