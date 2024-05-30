@@ -14,7 +14,6 @@ CREATE TABLE `users` (
 
 CREATE TABLE `users_data` (
   `id` int NOT NULL,
-  `240601` text DEFAULT NULL,
   `240602` text DEFAULT NULL,
   `240603` text DEFAULT NULL,
   `240604` text DEFAULT NULL,
@@ -75,5 +74,8 @@ CREATE TABLE `users_data` (
   `240729` text DEFAULT NULL,
   `240730` text DEFAULT NULL,
   `240731` text DEFAULT NULL,
+  `240801` text DEFAULT NULL,
+  `240802` text DEFAULT NULL,
+  `240803` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
