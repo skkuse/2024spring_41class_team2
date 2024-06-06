@@ -231,44 +231,7 @@
     margin-bottom: 3%;
 }
 
-.ov_img_aaa {
-    position: relative;
-    display: inline-block; 
-} 
 
-.ov_img_aaa .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 3;
-    bottom: 100%; /* Position above the element */
-    left: 50%;
-    margin-left: -60px;
-    margin-bottom: 10px; /* Space between the image and the tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.ov_img_aaa .tooltiptext::after {
-    content: "";
-    position: fixed;
-    top: 100%; /* Position the arrow at the bottom of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.ov_img_aaa:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
 
 .ov_content_wpr{
     margin: 2px;
@@ -369,13 +332,77 @@
 }
 
 /* personal info */
-#pi_wpr{
+/* #pi_wpr{
     display:none;
     height: 1000px;
+} */
+
+
+/* #pi1_t1{
+    color: white;
+    font-size: 30px;
+    font-family: "Raleway";
+    font-weight: bold;
+} */
+
+/* .pi-container{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px 0px 20px;
+} */
+
+/* .info_box{
+    width: 100%;
+    min-height: max(150px, 25vh);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 0px 15px 0px 0px;
+    background-color: #79D96A7f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+/* .pi2_info_text{
+    color: white;
+    font-size: 120%;
+    font-family: "Raleway";
+} */
+
+/* .info_box img{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    width: max(80px, 2vw);
+    height: max(80px, 3vh);
+} */
+
+/* #now_weight, #now_muscle, #target_weight, #target_muscle {
+    padding: 8px;
+    margin: 10px 5px;
+    width: calc(100% - 30px); 
+    border: 3px solid white;
+    border-radius: 4px;
+    outline: none;
+} */
+
+/* #now_weight:focus, #now_muscle:focus, #target_weight:focus, #target_muscle:focus {
+    border: 3px solid #79D96A !important;
+} */
+
+/* .submitBtn{
+    margin-top: 5%;
+} */
+
+/* personal info */
+#pi_wpr {
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+    margin: 20px;
 }
 
 #pi1{
-    min-height: max(20vh,140px); /* to make reactive webpage */
+    min-height: max(20vh,140px);
     border-radius: 30px;
     padding: 20px;
     margin: 0px 0px 0px 20px;
@@ -395,38 +422,77 @@
     font-weight: bold;
 }
 
-.pi-container{
-    display: flex;
-    flex-direction: row;
-    margin: 20px 0px 0px 20px;
+#pi2 {
+    min-height: max(20vh, 140px); /* to make reactive webpage */
+    border-radius: 30px;
+    padding: 20px;
+    margin: 20px 0 20px 20px;
+    background-color: #79D96A7f;
+    background-size: cover;
+    overflow: hidden;
+    background-position: center;
+    font-family: "Raleway";
+    color: white;
+    text-align: left;
 }
 
-.info_box{
-    width: 100%;
+.pi-container {
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    /* margin: 20px 20px; */
+}
+
+#profile_picture_container {
+    display: flex;
+    flex: 4;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#profile_img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 3px solid white;
+}
+
+#account_info_container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+    font-size: 1.2em;
+}
+
+#person_name {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#tier_badge {
+    border: 2px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#pi3 {
+    /* width: 100%; */
     min-height: max(150px, 25vh);
-    border-radius: 20px;
-    padding: 10px;
-    margin: 0px 15px 0px 0px;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 20px 0 20px 20px;
     background-color: #79D96A7f;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.pi2_info_text{
-    color: white;
-    font-size: 120%;
-    font-family: "Raleway";
-}
-
-.info_box img{
-    margin-top: 3%;
-    margin-bottom: 3%;
-    width: max(80px, 2vw);
-    height: max(80px, 3vh);
-}
-
-#now_weight, #now_muscle, #target_weight, #target_muscle {
+#job, #age, #gender {
     padding: 8px;
     margin: 10px 5px;
     width: calc(100% - 30px); /* Adjust the width as needed */
@@ -435,13 +501,20 @@
     outline: none;
 }
 
-#now_weight:focus, #now_muscle:focus, #target_weight:focus, #target_muscle:focus {
+#job:focus, #age:focus, #gender:focus {
     border: 3px solid #79D96A !important;
 }
 
-.submitBtn{
+.submitBtn {
     margin-top: 5%;
+    padding: 10px 20px;
+    border: none;
+    background-color: white;
+    color: #79D96A;
+    border-radius: 5px;
+    cursor: pointer;
 }
+
 
 
 

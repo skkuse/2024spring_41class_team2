@@ -87,19 +87,21 @@
                                 <div id="ov2_2_t2_wpr" class="ov_content_wpr">
                                     <div id="ov2_2_t2_a" class="ov_content">
                                         <!-- Target Weight -->
-                                        <div class="donut" id="ov_donut_2">
+                                        <div class="ov_donut" id="over_donut">
+                                            <div class="donut" id="ov_donut_2">
                                             
-                                            <div class='wave -two' id="ov_wave_2"></div>
-                                            <div class='wave' id="ov_wave_2"></div>
-                                            <!-- <img src="/assets/ov_img3.png" alt="Donut Image" class="ov_img_aaa"> -->
-                                            <div class="ov_img_aaa">
-                                                <img src="/assets/ov_img3.png" alt="Donut Image">
-                                                <span class="tooltiptext">Tooltip text</span>
+                                                <div class='wave -two' id="ov_wave_2"></div>
+                                                <div class='wave' id="ov_wave_2"></div>
+                                                <!-- <img src="/assets/ov_img3.png" alt="Donut Image" class="ov_img_aaa"> -->
+                                                <div class="ov_img_aaa">
+                                                    <img src="/assets/ov_img3.png" alt="Donut Image">
+                                                </div>
+                                                <!-- <img src="/assets/ov_img3.png" alt="Donut Image"> -->
+                                                <!-- <span class="tooltiptext">Tooltip text</span> -->
+                                                
                                             </div>
-                                            <!-- <img src="/assets/ov_img3.png" alt="Donut Image"> -->
-                                            <!-- <span class="tooltiptext">Tooltip text</span> -->
-                                            
                                         </div>
+                                        
                                         <!-- <span class="tooltiptext">Tooltip text</span> -->
                                         <div id="weight" style="font-size: 155%; font-weight:bold">1 % decreased!</div>
                                     </div>
@@ -190,9 +192,32 @@
                 <div id="pi_wpr">
                     <div id="pi1">
                         <div id="pi1_t1">Personal Info</div>
-                        Set your workout goals, and achieve them!
+                        Let's get to know you better!
                     </div>
-                    <div class="pi-container" id="pi2">
+                    <div id="pi2">
+                        <div class="pi-container">
+                            <div id="profile_picture_container">
+                                <img src="assets/co_img2.png" alt="Person" id="profile_img">
+                            </div>
+                            <div id="account_info_container">
+                                <div id="person_name">사람 이름</div>
+                                <div id="tier_badge">티어/뱃지</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pi3" class="info_box">
+                        <div>
+                            <input type="text" id="job" placeholder="직업">
+                        </div>
+                        <div>
+                            <input type="text" id="age" placeholder="나이">
+                        </div>
+                        <div>
+                            <input type="text" id="gender" placeholder="성별">
+                        </div>
+                        <button id="submitBtn_now" class="submitBtn">Submit</button>
+                    </div>
+                    <!-- <div class="pi-container" id="pi2">
                         <div id="pi2_now" class="info_box">
                             <div id="pi2_now_t1" class="pi2_info_text">Your Health Status</div>
                             <img src="assets\pi_img1.png" alt="now">
@@ -211,7 +236,7 @@
                                 <button id="submitBtn_target" class="submitBtn">Submit</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -1426,11 +1451,11 @@
         }
 
         //Insertion Now
-        function insertNow(curweight, curmus){
+        function insertNow(curjob, curage, curgender){
             $.ajax({
                 type: 'POST',  
                 url: '/insertnow',  
-                data: { userindex: userindex, curweight: curweight, curmus: curmus },
+                data: { userindex: userindex, curjob: curjob, curage: curage, curgender: curgender},
                 contentType: 'application/x-www-form-urlencoded', 
                 success: function(response) {
                     console.log('서버 응답:', response);
@@ -2177,22 +2202,26 @@
 
             $('#submitBtn_now').click(function() {
                 // Get the values from the text inputs
-                var value1 = $('#now_weight').val();
-                var value2 = $('#now_muscle').val();
+                var value1 = $('#job').val();
+                var value2 = $('#age').val();
+                var value3 = $('#gender').val();
 
                 // Log the values to the console
                 console.log('Input 1:', value1);
                 console.log('Input 2:', value2);
+                console.log('Input 3:', value3);
 
                 // Update the placeholders with the entered values
-                $('#now_weight').attr('placeholder', value1+'kg');
-                $('#now_muscle').attr('placeholder', value2+'kg');
+                $('#job').attr('placeholder', value1);
+                $('#age').attr('placeholder', value2);
+                $('#gender').attr('placeholder', value3);
 
                 // Clear the text inputs
-                $('#now_weight').val('');
-                $('#now_muscle').val('');
+                $('#job').val('');
+                $('#age').val('');
+                $('#gender').val('');
 
-                insertNow(value1, value2)
+                insertNow(value1, value2,value3)
                 
             });
 
