@@ -258,7 +258,7 @@
                         <div style="margin:auto; width: 100%-20px; height:3px; background-color: #79D96A; margin-left: 20px;"></div>
                         <div id="ic_res_before">
                             <div id="ic_res_before_text1" class="ic_res_before_text1">Before</div>
-
+                            <div id="ic_res_before_CE" class="ic_res_before_CE">Carbon Emissions : </div>
                             <form>
                                 <textarea id="IC_textarea_before"></textarea>
                             </form>
@@ -266,11 +266,19 @@
                         </div>
                         <div id="ic_res_after">
                             <div id="ic_res_after_text1" class="ic_res_after_text1">After</div>
-
+                            <div id="ic_res_after_CE" class="ic_res_after_CE">Carbon Emissions : </div>
                             <form>
                                 <textarea id="IC_textarea_after"></textarea>
                             </form>
         
+                        </div>
+                        <div id="ic_res_buttons">
+                            <button id="ic_res_buttons_back">
+                                Back
+                            </button>
+                            <button id="ic_res_buttons_download">
+                                Download
+                            </button>
                         </div>
                     </div>
 
@@ -787,12 +795,15 @@
                 <div id="st_wpr">
                     <!-- statistic contents -->
                     <div id="st1">
-                        <div id="st1_t1">Statistics only for you</div>
-                        <div id="st1_t2">Get valuable insights based on your exercise records.</div>
+                        <div id="st1_t1">Statistics of all users</div>
+                        <div id="st1_t2">Get valuable insights based on your green commitments and user activities.</div>
                     </div>
                     <div id="st2">
                         <div id="st1_t1">Exercise Statistics</div>
-                        <canvas id="chart1"></canvas>
+                        <div style="display:flex; width:800px; height:500px;">
+                            <canvas id="chart1" style="flex-grow: 5; width:400px; height:500px;"></canvas>
+                            <canvas id="chart2" style="flex-grow: 5; width:400px; height:500px; margin-left:150px"></canvas>
+                        </div>
                     </div>
                     
                 </div>
@@ -849,11 +860,11 @@
     
     <script>
         
-
+        var code_data = {{ code_data | safe }};
         var users_data = {{ users_data | safe }};
         var users = {{ users | safe }};
         
-        
+        console.log(code_data)
         var userindex=0
         
     
@@ -1573,6 +1584,7 @@
             } else {
                 check_10lines=1;
                 codeMirrorCode.classList.remove('few-lines');
+
             }
         }
 
@@ -1586,25 +1598,627 @@
 
         updateCodeMirrorStyle();
 
-        function isvalid(){
-            //check code validity
-            console.log(editor.getValue())
-            const code = editor.getValue();
+        
+        function calc_CE(t, memory){
+            t = parseFloat(t)
+            memory = parseFloat(memory)
+            uc = 0.3
+            Pc = 50
+            Pm = 5
+            PUE = 1.1
+            cores = 4
+            E = t * (cores * Pc * uc + memory * Pm) * PUE * 0.001
+            E = parseFloat(E).toFixed(2);
+            return E
+        }
+
+        function set_before(){
+            var code = editor.getValue()
+            editor_before.setValue(code);
+            const codeDivs = editor.getWrapperElement().querySelectorAll('.CodeMirror-code > div');
 
 
+            if (codeDivs.length < 10) {
+                const spans = document.querySelectorAll('.CodeMirror-code div span[role="presentation"]');
+                spans.forEach(span => {
+                    span.style.marginLeft = '30px';
+                });
+            } 
 
-            const lines = code.split('\n');
+            const div = document.getElementById('ic_res_before_CE');
+                div.textContent += before_CE;
 
-
-            // what do we need for calculating CE? -> line #, time consumed, else?
-            return lines.length >= 0;
-
-            //should return everything with tuple
+            
         }
 
         function set_after(){
-            var code = editor.getValue()
+            var code = refactored
+
             editor_after.setValue(code);
+            
+            
+            const codeDivs = editor.getWrapperElement().querySelectorAll('.CodeMirror-code > div');
+
+
+            if (codeDivs.length < 10) {
+                const spans = document.querySelectorAll('.CodeMirror-code div span[role="presentation"]');
+                spans.forEach(span => {
+                    span.style.marginLeft = '30px';
+                });
+            } 
+            const div = document.getElementById('ic_res_after_CE');
+                div.textContent += after_CE;
+            
+        }
+        
+
+        class Refactor {
+            constructor(lines) {
+                this.lines = lines;
+            }
+
+            init() {
+                for(let i = 0; i < this.lines.length; i++) {
+                    let line = this.lines[i];
+                    if(line.includes("public class Buggy")) {
+                        this.classStartIndex = i;
+                        break;
+                    }
+                }
+
+                this.buggyLines = ""
+                this.fixedLines = ""
+                this.duplicateFucntionFound = false;
+                this.nestedIfFound = false;
+                this.duplicateObjectFound = false;
+                this.debuggingOutputFound = false;
+                this.useSwitchFound = false;
+
+            }
+
+            countLeadingSpaces(text) {
+                let count = 0;
+                for(let i = 0; i < text.length; i++) {
+                    if (text[i] == ' ') {
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+                return count;
+            }
+            
+            removeNewline(text) {
+                return text.substring(0, text.length-2);
+            }
+            
+            toCapitalize(str) {
+                return str.replace(/\b\w/g, (match) => match.toUpperCase());
+            }
+
+            duplicateFucntion(dataType, functionName, returnType) {
+                let lineSize = this.lines.length;
+                
+                let buggyLine;
+                let arrayListVariableName;
+            
+                let pattern = new RegExp("\\b" + dataType + "\\s*<[^>]*>\\s+([a-zA-Z0-9_]+)\\s*=");
+                
+                let found = false;
+                for(let i = this.classStartIndex + 1; i < lineSize; i++) {
+                    let line = this.lines[i];   
+                    if(pattern.test(line)) {
+                        arrayListVariableName = pattern.exec(line)[1];
+                        let methodPattern = new RegExp("\\b" + arrayListVariableName + "\\." + functionName + "\\(\\)");
+                        console.log(arrayListVariableName);
+                        for(let j = i; j < lineSize; j++) {
+                            let line2 = this.lines[j];
+                            if(methodPattern.test(line2)) {
+                                buggyLine = j;
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if(found) {
+                    console.log("duplicateFounctionFound");
+            
+                    let count = this.countLeadingSpaces(this.lines[buggyLine]);
+                    this.lines[this.classStartIndex] = "public class Fixed {\n";
+                    this.lines[buggyLine] = this.lines[buggyLine].replace(arrayListVariableName + "." + functionName + "()", arrayListVariableName + this.toCapitalize(functionName));
+            
+                    let builder = "";
+                    for(let i = 0; i < count; i++) {
+                        builder = builder + " ";
+                    }
+                    builder = builder + (returnType + " " + arrayListVariableName + this.toCapitalize(functionName) + " = " + arrayListVariableName + "." + functionName +"();\n");
+                    this.lines.splice(buggyLine, 0, builder);
+                    this.duplicateFucntionFound = true;
+                }
+            }
+
+            IfState = class {
+                constructor(startIfIndex, endIfIndex, condition, conditionBody) {
+                    this.startIfIndex = startIfIndex;
+                    this.endIfIndex = endIfIndex;
+                    this.condition = condition;
+                    this.conditionBody = conditionBody;
+                }
+            }
+
+            nestedIf() {
+                let firstStartIfIndex;
+                let firstEndIfIndex;
+                let thirdStartIfIndex;
+                let thirdEndIfIndex;
+                let firstCondition;
+                let secondCondition;
+                let thirdCondition;
+                
+                let pattern = new RegExp("\\((.*?)\\)");
+                let lineSize = this.lines.length;
+                let found = false;
+                for(let i = this.classStartIndex + 1; i < lineSize; i++) {
+                    let line = this.lines[i];
+            
+                    if(line.includes("if")) {
+                        firstStartIfIndex = i;
+            
+                        if(pattern.test(line)) {
+                            firstCondition = pattern.exec(line)[1];
+                        }
+                    
+            
+                        for (let j = i + 1; j < lineSize; j++) {
+                            let line2 = this.lines[j];
+            
+                            if(line2.includes("if(")) {
+                                if(pattern.test(line2)) {
+                                    secondCondition = pattern.exec(line2)[1];
+                                }
+            
+                                for(let k = j + 1; k < lineSize; k++) {
+                                    let line3 = this.lines[k];
+            
+                                    if(line3.includes("if(")) {
+                                        found = true;
+                                        thirdStartIfIndex = k;
+            
+                                        if(pattern.test(line3)) {
+                                            thirdCondition = pattern.exec(line3)[1];
+                                        }
+            
+                                        for(let l = k + 1; l < lineSize; l++) {
+                                            let line4 = this.lines[l];
+                                            if(line4.includes("}")) {
+                                                thirdEndIfIndex = l;
+                                                break;
+                                            }
+                                        }
+            
+                                        let count = 0;
+                                        for(let l = k + 1; l < lineSize; l++) {
+                                            let line4 = this.lines[l];
+            
+                                            if(line4.includes("}")) {
+                                                count++;
+                                                if(count == 3) {
+                                                    firstEndIfIndex = l;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(thirdEndIfIndex != 0) break;
+                                }
+                            }
+                            if(thirdEndIfIndex != 0) break;
+                        }
+                        // 중첩된 if 문이 발견되면 반복문 종료
+                        if (found) {
+                            break;
+                        }
+                    }
+                }
+                if(found) {
+                    this.lines[this.classStartIndex] = "public class Fixed {\n";
+                    
+                    let conditionBody = "";
+                    for(let i = thirdStartIfIndex + 1; i < thirdEndIfIndex; i++) {
+                        conditionBody = conditionBody + (this.lines[i] + "\n");
+                    }
+            
+                    let count = this.countLeadingSpaces(this.lines[firstEndIfIndex]);
+            
+                    console.log(firstStartIfIndex);
+                    for(let i = firstStartIfIndex; i <= firstEndIfIndex; i++) {
+                        this.lines.splice(firstStartIfIndex, 1);
+                    }
+            
+                    let builder = "";
+                    for(let i = 0; i < count; i++) {
+                        builder = builder + " ";
+                    }
+                    builder = builder + "if((" + firstCondition + " && " + secondCondition + ") && " + thirdCondition + ") {\n";
+                    this.lines.splice(firstStartIfIndex, 0, builder);
+                    if(this.countLeadingSpaces(conditionBody) >= 8) {
+                        conditionBody = conditionBody.substring(8);
+                    }
+                    this.lines.splice(firstStartIfIndex+1, 0, conditionBody);
+            
+                    builder = "";
+                    for(let i = 0; i < count; i++) {
+                        builder = builder + " ";
+                    }
+                    builder = builder + "}\n";
+                    this.lines.splice(firstStartIfIndex+2, 0, builder);
+                    this.nestedIfFound = true;
+                }
+            }
+
+            duplicateObject() {
+                let lineSize = this.lines.length;
+
+                let forPattern;
+                let objectPattern;
+                let loopCreationIndex;
+                let objectCreationIndex;
+                let fixedContent;
+                let count;
+            
+                let found = false;
+                // find for or while
+                for(let i = 0; i < lineSize; i++) {
+                    let line = this.lines[i];
+                    forPattern = new RegExp("\\b(?:for|while)\\s*\\(.*?\\)\\s*\\{");
+                    if (forPattern.test(line)) {
+                        console.log("loop detected: " + line);
+                        loopCreationIndex = i;
+                        break;
+                    }
+                }
+            
+                // find object creation
+                for(let i = loopCreationIndex; i < lineSize; i++) {
+                    let line = this.lines[i];
+            
+                    objectPattern = new RegExp("\\b[A-Z]\\w*\\s+[a-z]\\w*\\s*=\\s*new\\s+[A-Z]\\w*\\s*\\(\\s*\\)\\s*;");
+                    if (objectPattern.test(line)) {
+                        console.log("Object creation detected: " + line);
+                        objectCreationIndex = i;
+                        break;
+                    }
+                }
+            
+                if(loopCreationIndex != 0 && objectCreationIndex != 0 && loopCreationIndex < objectCreationIndex)
+                    found = true;
+            
+                // 수정
+                if(found) {
+                    this.lines[this.classStartIndex] = "public class Fixed {\n";
+                    fixedContent = this.lines[objectCreationIndex];
+                    count = this.countLeadingSpaces(fixedContent);
+                    console.log("Leading Space: " + count);
+                    if(count >= 4) {
+                        fixedContent = fixedContent.substring(4);
+                    }
+                    
+                    this.lines.splice(objectCreationIndex, 1);
+                    this.lines.splice(loopCreationIndex, 0, fixedContent);
+            
+                    for(let i = 0; i < this.lines.length; i++) {
+                        console.log(i + " : " + this.lines[i]);
+                    }
+                    this.duplicateObjectFound = true;
+                }
+            }
+
+            debuggingOutput() {
+                let buggyLines = [];
+                let lineSize = this.lines.length;
+                let debugOutputPattern;
+            
+                let found = false;
+            
+                for(let i = 0; i < lineSize; i++) {
+                    let line = this.lines[i];
+                    debugOutputPattern = new RegExp("\\bSystem.out.println\\(\"[^\"]*\"\\);");
+                    if (debugOutputPattern.test(line)) {
+                        console.log("Debug Output detected: " + line);
+                        buggyLines.push(i);
+                        found = true;
+                    }
+                }
+            
+                if(found) {
+                    for(let i = 0; i < buggyLines.length; i++) {
+                        let count = this.countLeadingSpaces(this.lines[buggyLines[i]]);
+                        this.lines[this.classStartIndex] = "public class Fixed {\n";
+                        this.lines[buggyLines[i]] = this.lines[buggyLines[i]].slice(0, count) + "//" + this.lines[buggyLines[i]].slice(count);
+                    }
+                    this.debuggingOutputFound = true;
+                }
+            }
+
+            findState(state, start) {
+                let line, startIfIndex = -1, endIfIndex, condition= "", conditionBody = "", tmp;
+                let lineSize = this.lines.length;
+                let pattern = new RegExp("\\((.*?)\\)");
+            
+                for(let i = start + 1; i < lineSize; i++) {
+                    line = this.lines[i];
+            
+                    if(line.includes(state)) {
+                        startIfIndex = i;
+            
+                        if(pattern.test(line)) {
+                            condition = pattern.exec(line)[1];
+                        }
+            
+                        for(let j = i + 1; j < lineSize; j++) {
+                            tmp = this.lines[j];
+                            if(tmp.includes("}")) {
+                                endIfIndex = j;
+                                break;
+                            }
+                            else {
+                                conditionBody = conditionBody + (this.lines[j] + "\n");
+                            }
+                        }
+                        break;
+                    }
+                }
+                let ifState = new this.IfState(startIfIndex, endIfIndex, condition, conditionBody);
+                return ifState;
+            }
+            
+            buildIndent(count) {
+                let builder = "";
+                for(let i = 0; i < count; i++) {
+                    builder = builder + " ";
+                }
+                return builder;
+            }
+            
+            useSwitch() {
+                let tmp;
+                let ifStates = []
+                let lineSize = this.lines.length;
+                let found = false;
+            
+                console.log("linesize: ", lineSize);
+            
+                tmp = this.findState("if", this.classStartIndex);
+                if(tmp.startIfIndex != -1) {
+                    ifStates.push(tmp);
+                    while(1) {
+                        tmp = this.findState("else", tmp.startIfIndex + 1);
+                        if(tmp.startIfIndex == -1) {
+                            break;
+                        }
+                        ifStates.push(tmp);
+                    }
+                }
+            
+                if(ifStates.length > 5) {
+                    found = true;
+                }
+            
+                if(found) {
+                    this.lines[this.classStartIndex] = "public class Fixed {\n";
+                    let firstStartIfIndex = ifStates[0].startIfIndex;
+                    let count = this.countLeadingSpaces(this.lines[firstStartIfIndex]);
+                    for(let i = firstStartIfIndex; i <= ifStates[ifStates.length - 1].endIfIndex; i++) {
+                        this.lines.splice(firstStartIfIndex, 1);
+                    }
+            
+                    let builder = this.buildIndent(count);
+            
+                    builder = builder + "switch(" + ifStates[0].condition.split(" ")[0] + ") {";
+                    this.lines.splice(firstStartIfIndex, 0, builder);
+            
+                    for(let i = 0; i < ifStates.length; i++) {
+                        if(i != ifStates.length - 1) {
+                            builder = this.buildIndent(count + 4);
+                            builder = builder + "case " + ifStates[i].condition.split(" ")[2] + ":";
+                            this.lines.splice(firstStartIfIndex + 1 + i * 3, 0, builder);
+                        }
+                        else {
+                            builder = this.buildIndent(count + 4);
+                            builder = builder + "default :";
+                            this.lines.splice(firstStartIfIndex + 1 + i * 3, 0, builder);
+                        }
+            
+                        let conditionBody = this.removeNewline(ifStates[i].conditionBody);
+                        builder = this.buildIndent(count + 8 - this.countLeadingSpaces(conditionBody));
+                        builder = builder + conditionBody + ";";
+                        this.lines.splice(firstStartIfIndex + 2 + i * 3, 0, builder);
+            
+                        builder = this.buildIndent(count + 8)
+                        builder = builder + "break;";
+                        this.lines.splice(firstStartIfIndex + 3 + i * 3, 0, builder);
+                    }
+            
+                    builder = this.buildIndent(count);
+                    builder = builder + "}\n";
+                    this.lines.splice(firstStartIfIndex + 1 + ifStates.length * 3, 0, builder);
+                }
+                this.useSwitchFound = true;
+            }
+        }
+
+        async function getOutput(code) {
+            const url = 'https://online-code-compiler.p.rapidapi.com/v1/';
+            const data = { 
+                language: 'java',
+                version: 'latest',
+                code: code,
+                input: null 
+            };
+
+            const response = await fetch(url, {
+                method: 'POST', // HTTP 메서드
+                headers: {
+                    'Content-Type' :'application/json',
+                    'x-rapidapi-key' : '388de00a88msh38d910d235013bfp1631b9jsn288db47d86d4',
+                    'x-rapidapi-host' : 'online-code-compiler.p.rapidapi.com',
+                },
+                body: JSON.stringify(data) // 데이터를 JSON 문자열로 변환하여 요청 본문에 포함
+            });
+
+            if (!response.ok) {
+                return null
+            }
+
+            const responseData = await response.json(); // JSON 응답을 파싱
+            return responseData; // 파싱된 데이터 반환
+
+            
+        }
+
+        function makeString(lines) {
+            str = "";
+            for(let i = 0; i < lines.length; i++) {
+                str = str + lines[i] + "\n";
+            }
+            return str;
+        }
+
+        refactored = ""
+        before_time = ""
+        before_mem = ""
+        after_time = ""
+        after_mem = ""
+        
+        before_CE = ""
+        after_CE = ""
+
+        async function isvalid() {
+            // return true
+            //check code validity
+            console.log(editor.getValue());
+            console.log("============================");
+
+            const inputCode = editor.getValue();
+            let originData = await getOutput(inputCode);
+
+            if(originData == null) {
+                console.log('false')
+                return false;
+                
+            }
+
+            const before_code = editor.getValue();
+            const before_code_time = originData.cpuTime
+            const before_code_cpu = null
+            const before_code_mem = originData.memory
+
+            //============================================
+
+            if(before_code_mem == null) {
+                console.log('false')
+                return false;
+                
+            }
+
+            const lines = inputCode.split('\n');
+            let refactor = new Refactor(lines);
+            refactor.init();
+            refactor.duplicateFucntion("ArrayList", "size", "int");
+            refactor.nestedIf();
+            refactor.duplicateObject();
+            refactor.debuggingOutput(); 
+            refactor.useSwitch();
+
+            const refactoredCode = makeString(refactor.lines);
+            // console.log('Refactor Code : ', refactor.lines);
+            
+            let refactorData = await getOutput(refactoredCode);
+            console.log("============================");
+
+            let dpf = refactor.duplicateFucntionFound;
+            let nif = refactor.nestedIfFound;
+            let dpo = refactor.duplicateObjectFound;
+            let dbo = refactor.debuggingOutputFound;
+            let ust = refactor.useSwitchFound;
+
+            // console.log("Origin", originData);
+            // console.log("============================");
+            // console.log("Refactor", refactorData);
+            // console.log("============================");
+
+            //we use 4 patterns -> 0000 ~ 1111
+            var pattern_num = {dpf, nif, dpo, ust}
+            var temp = ""
+            if(dpf){
+                temp+="1"
+            }
+            else{
+                temp+="0"
+            }
+            if(nif){
+                temp+="1"
+            }
+            else{
+                temp+="0"
+            }
+            if(dpo){
+                temp+="1"
+            }
+            else{
+                temp+="0"
+            }
+            if(ust){
+                temp+="1"
+            }
+            else{
+                temp+="0"
+            }
+            pattern_num = temp
+
+            
+            const after_code = refactoredCode
+            const after_code_time = refactorData.cpuTime
+            const after_code_cpu = null
+            const after_code_mem = refactorData.memory
+
+            refactored = refactoredCode
+            before_time = before_code_time
+            before_mem = before_code_mem
+            after_time = after_code_time
+            after_mem = after_code_mem
+
+
+            //return {inputCode, originData, refactoredCode, refactorData, dpf, nif, dpo, dbo, ust};
+            console.log(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem)
+            
+
+            
+
+            insertCode(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem)
+            
+            before_CE = calc_CE(before_time, before_mem)
+            after_CE = calc_CE(after_time, after_mem)
+            return true
+
+        }
+        //Insert code 
+        
+        function insertCode(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem){
+            $.ajax({
+                type: 'POST',  
+                url: '/insertcode',  
+                data: { user_id: userindex, pattern_num:pattern_num, before_code: before_code, before_code_time: before_code_time, before_code_cpu: before_code_cpu,before_code_mem: before_code_mem, after_code: after_code, after_code_time: after_code_time, after_code_cpu: after_code_cpu,after_code_mem: after_code_mem   },
+                contentType: 'application/x-www-form-urlencoded', 
+                success: function(response) {
+                    console.log('서버 응답:', response);
+                },
+                error: function(error) {
+                    console.error('에러 발생:', error);
+                }
+            });
         }
         
 
@@ -1616,33 +2230,59 @@
             updateDiary(0)
             
             //Input code
-            $('.ic3_btn').click(function () {
-                const v = isvalid()[0]
-                if(isvalid()){
-                    $('#ic_init').fadeOut(400, function(){
-                        $('#ic_loading').fadeIn(400);
-                        $("#ic_loading").css("display", "flex");
-                        
+            $('.ic3_btn').click(async function () {
+                let v = await isvalid()
+                if(v){
+                    
+                    if(v){
+                        setTimeout(function() {
 
-                    });
+                            $('#ic_init').fadeOut(400, function(){
+                                $("#ic_init").css("display", "none");
+                                $('#ic_res').fadeIn(400);
+                                set_before()
+                                set_after()
 
-                    setTimeout(function() {
-                        $('#ic_loading').fadeOut(400, function(){
-                            $("#ic_loading").css("display", "none");
-                            $('#ic_res').fadeIn(400);
-                            set_after()
-                        });
-                    }, 1000); //5000 = 5secs
+                                
+                            });
 
 
+
+                        }, 100); //5000 = 5secs
+                    }
+                
 
                 }
                 else{
-                    alert("Please input a valid code!");
+                    alert("Please input valid Java code!")
                 }
+                
                 
             });
             
+            $('#ic_res_buttons_back').click(function () {
+                $('#ic_res').fadeOut(400, function(){
+                    $('#ic_init').fadeIn(400);
+                });
+
+                editor.setValue(" ")
+
+
+            });
+
+            $('#ic_res_buttons_download').click(function () {
+                
+                code = refactored
+                const blob = new Blob([code], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'begreen.java';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
 
             //Callendar part
             updateDiary(0)
@@ -2174,28 +2814,43 @@
             // statistics part
             
             // exampledata
+            
+            // statistics part
+            
+            // exampledata
             var usrDataList = [
-                '1\n2\n3\n4\nGood\nGood',
-                '2\n3\n4\n5\nGood\nGood',
-                '3\n4\n5\n2\nGood\nGood',
-                '1\n2\n3\n4\nGood\nGood',
-                '2\n3\n4\n5\nGood\nGood',
-                '3\n4\n5\n2\nGood\nGood',
-                '1\n2\n3\n4\nGood\nGood'
+                '3\n4',
+                '4\n5',
+                '2\n5',
+                '3\n4',
+                '4\n5',
+                '2\n5',
+                '3\n4'
+            ];
+
+            var ptnDataList = [
+                '3\n4',
+                '4\n5',
+                '2\n5',
+                '3\n4',
             ];
 
             // from datapoint to dataset
             var datasets = [];
-            for (var i = 0; i < 4; i++) {
+            for (var i = 0; i < 2; i++) {
                 datasets.push(usrDataList.map(function(data) {
                     return parseInt(data.split('\n')[i], 10);
                 }));
             }
+            var datasets2 = [];
+            for (var i = 0; i < 2; i++) {
+                datasets2.push(ptnDataList.map(function(data) {
+                    return parseInt(data.split('\n')[i], 10);
+                }));
+            }
             var labelList = [
-                'Exercise Duration',
-                'Exercise Intensity',
-                'Physical Condition',
-                'Mood of the day'
+                'You',
+                'Entire Users'
             ]
             // Make Chart
             // for (var j = 0; j < datasets.length; j++) {
@@ -2206,8 +2861,8 @@
                     datasets: [{
                         label: labelList[0],
                         data: datasets[0],
-                        backgroundColor: 'rgba(250, 169, 55, 0.2)',
-                        borderColor: 'rgba(250, 169, 55, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
@@ -2217,26 +2872,14 @@
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
-                    {
-                        label: labelList[2],
-                        data: datasets[2],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: labelList[3],
-                        data: datasets[3],
-                        backgroundColor: 'rgba(0, 255, 127, 0.2)',
-                        borderColor: 'rgba(0, 255, 127, 1)',
-                        borderWidth: 1
-                    },
                 ]
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            grid:{
+                                color:'rgba(255,255,255,0.2)'
+                            }
                         }
                     },
                     plugins:{
@@ -2246,7 +2889,69 @@
                                 padding: 20, // control padding between legends
                                 font: {
                                     size: 14
-                                }
+                                },
+                                color:'rgba(255,255,255)'
+                            }
+                        },title: {
+                            display: true,
+                            text: 'Daily Green Commitments',
+                            color: 'rgba(255, 255, 255)',
+                            font:{
+                                size: 20
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            bottom:20
+                        }
+                    }
+                }
+            });
+            STAT2 = new Chart($('#chart2'), {
+                type: 'radar',
+                data: {
+                    labels: ['P1', 'P2', 'P3', 'P4'],
+                    datasets: [{
+                        label: labelList[0],
+                        data: datasets2[0],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: labelList[1],
+                        data: datasets2[1],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                ]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            grid:{
+                                color:'rgba(255,255,255,0.2)'
+                            }
+                        }
+                    },
+                    plugins:{
+                        legend: {
+                            position:'bottom',
+                            labels: {
+                                padding: 20, // control padding between legends
+                                font: {
+                                    size: 14
+                                },
+                                color:'rgba(255,255,255)'
+                            },title: {
+                                display: true,
+                                text: 'Commitments Per Patterns',
+                                color: 'rgba(255, 255, 255)',
+                                font:{
+                                    size: 20
+                                },
                             }
                         }
                     },
@@ -2258,8 +2963,7 @@
                 }
             });
             
-            updateStat(2,STAT)
-
+            //updateStat(2,STAT)
             //contact part
 
             $('#send_feedback').click(function() {
