@@ -46,7 +46,7 @@ router.get('/getData', function(req, res, next) {
       return;
     }
   
-  const resultsString = JSON.stringify(results);
+  const resultsString = JSON.stringify(results);;
 
   res.json(resultsString);
   //connection.end()
@@ -56,7 +56,7 @@ router.get('/getData', function(req, res, next) {
 
 router.get('/getCodeData', function(req, res, next) {
   const userindex = req.body.userindex;
-  const query = 'SELECT * FROM codedata where id = ?';
+  const query = 'SELECT * FROM code_data WHERE user_id = ?';
   const queryParams = [userindex];
   connection.query(query, queryParams, (queryErr, results) => {
     if (queryErr) {
@@ -135,17 +135,21 @@ router.post('/', (req, res) => {
 
 });
 
-router.post('/main', (req, res) => {
-  const userindex = req.body.userindex; 
+router.post('/date', (req, res) => {
+  
+  const userindex = req.body.userindex + 1; 
   const date = req.body.date; 
   const contents = req.body.contents; 
+  console.log(userindex,date,contents)
 
   const UpdateQuery = 'UPDATE users_data SET ?? = ? WHERE id = ?';
   const queryParams = [date, contents, userindex];
 
+  console.log(UpdateQuery, queryParams);
+
   connection.query(UpdateQuery, queryParams, (error, results, fields) => {
     if (error) {
-      
+      console.log('error');
       return;
     }
 

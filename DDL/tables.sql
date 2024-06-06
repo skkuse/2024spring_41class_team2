@@ -79,15 +79,19 @@ CREATE TABLE `users_data` (
   `240803` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*
-CREATE TABLE `codedata` (
-  `code_id` int NOT NULL,
+
+CREATE TABLE `code_data` (
   `id` int NOT NULL,
-  `code_before` text DEFAULT NULL,
-  `code_after` text DEFAULT NULL,
-  `carbon_emission_before` text DEFAULT NULL,
-  `carbon_emission_after` text DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `pattern_num` text DEFAULT NULL,
+  `before_code` text DEFAULT NULL,
+  `before_code_time` text DEFAULT NULL,
+  `before_code_cpu` text DEFAULT NULL,
+  `before_code_mem` text DEFAULT NULL,
+  `after_code` text DEFAULT NULL,
+  `after_code_time` text DEFAULT NULL,
+  `after_code_cpu` text DEFAULT NULL,
+  `after_code_mem` text DEFAULT NULL,
   `created_at` text DEFAULT NULL,
-  PRIMARY KEY (`code_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-*/

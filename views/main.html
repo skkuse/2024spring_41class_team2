@@ -41,7 +41,7 @@
                     &nbsp;&nbsp;Input Code
                 </div>
                 <div id="btn_cal">
-                    &nbsp;&nbsp;Callendar
+                    &nbsp;&nbsp;Calendar
                 </div>
                 <div id="btn_st">
                     &nbsp;&nbsp;Statistics
@@ -221,9 +221,9 @@
 
                 </div>
 
-                <!-- 4. callendar -->
+                <!-- 4. calendar -->
                 <div id="ca_wpr">
-                    <!-- callendar contents -->
+                    <!-- calendar contents -->
                     <div id="ca">
                         <div id="ca_banner">
                             <div style="display: flex;">
@@ -359,14 +359,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "mon_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                           
+                                            :&nbsp;
+                                            <div id="mon_caremi_before">None</div>                                           
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "mon_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="mon_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -404,14 +406,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "tue_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="tue_caremi_before">None</div>                                            
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "tue_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="tue_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -449,14 +453,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "wed_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="wed_caremi_before">None</div>                                            
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "wed_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="wed_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -494,14 +500,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "thu_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="thu_caremi_before">None</div>                                            
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "thu_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="thu_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -539,14 +547,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "fri_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="fri_caremi_before">None</div>                                            
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "fri_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="fri_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -584,14 +594,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "sat_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="sat_caremi_before">None</div>                                            
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "sat_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                            
+                                            :&nbsp;
+                                            <div id="sat_caremi_after">None</div>                                            
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -691,8 +703,11 @@
 
         var users_data = {{ users_data | safe }};
         var users = {{ users | safe }};
+        var code_data =  {{ code_data | safe }};
         
-        
+        console.log(users_data)
+        console.log(users)
+        console.log(code_data)
         var userindex=0
         
     
@@ -700,15 +715,129 @@
         user = url.split("=")[1]
 
         for(i=0;i<users.length;i++){
+            //console.log(users[i]);
+            //console.log(users[i]['username']);
             if(users[i]['username'] == user){
                 userindex=i
             }
         }
         
         userData = users_data[userindex]
-
         $("#nav1_2").text(user)
-        console.log(userindex)
+        //console.log(userindex)
+
+        function checkWindowSize() {
+            var sun_t1 = document.getElementById("sun_t1");
+            var sun_t2 = document.getElementById("sun_t2");
+            //var sun_caremi_before = document.getElementById("sun_caremi_before");
+            //var sun_caremi_after = document.getElementById("sun_caremi_after");
+
+            var mon_t1 = document.getElementById("mon_t1");
+            var mon_t2 = document.getElementById("mon_t2");
+            //var mon_caremi_before = document.getElementById("mon_caremi_before");
+            //var mon_caremi_after = document.getElementById("mon_caremi_after");
+
+            var tue_t1 = document.getElementById("tue_t1");
+            var tue_t2 = document.getElementById("tue_t2");
+            //var tue_caremi_before = document.getElementById("tue_caremi_before");
+            //var tue_caremi_after = document.getElementById("tue_caremi_after");
+
+            var wed_t1 = document.getElementById("wed_t1");
+            var wed_t2 = document.getElementById("wed_t2");
+            //var wed_caremi_before = document.getElementById("wed_caremi_before");
+            //var wed_caremi_after = document.getElementById("wed_caremi_after");
+
+            var thu_t1 = document.getElementById("thu_t1");
+            var thu_t2 = document.getElementById("thu_t2");
+            //var thu_caremi_before = document.getElementById("thu_caremi_before");
+            //var thu_caremi_after = document.getElementById("thu_caremi_after");
+
+            var fri_t1 = document.getElementById("fri_t1");
+            var fri_t2 = document.getElementById("fri_t2");
+            //var fri_caremi_before = document.getElementById("fri_caremi_before");
+            //var fri_caremi_after = document.getElementById("fri_caremi_after");
+
+            var sat_t1 = document.getElementById("sat_t1");
+            var sat_t2 = document.getElementById("sat_t2");
+            //var sat_caremi_before = document.getElementById("sat_caremi_before");
+            //var sat_caremi_after = document.getElementById("sat_caremi_after");
+
+            var windowWidth = window.innerWidth;
+
+            if (windowWidth < 1400) {
+                sun_t1.innerHTML = "Old";
+                sun_t1.style.width = "30px";
+                sun_t2.innerHTML = "New";
+                sun_t2.style.width = "30px";
+
+                mon_t1.innerHTML = "Old";
+                mon_t1.style.width = "30px";
+                mon_t2.innerHTML = "New";
+                mon_t2.style.width = "30px";
+
+                tue_t1.innerHTML = "Old";
+                tue_t1.style.width = "30px";
+                tue_t2.innerHTML = "New";
+                tue_t2.style.width = "30px";
+
+                wed_t1.innerHTML = "Old";
+                wed_t1.style.width = "30px";
+                wed_t2.innerHTML = "New";
+                wed_t2.style.width = "30px";
+
+                thu_t1.innerHTML = "Old";
+                thu_t1.style.width = "30px";
+                thu_t2.innerHTML = "New";
+                thu_t2.style.width = "30px";
+
+                fri_t1.innerHTML = "Old";
+                fri_t1.style.width = "30px";
+                fri_t2.innerHTML = "New";
+                fri_t2.style.width = "30px";
+
+                sat_t1.innerHTML = "Old";
+                sat_t1.style.width = "30px";
+                sat_t2.innerHTML = "New";
+                sat_t2.style.width = "30px";
+
+
+            } else {
+                sun_t1.innerHTML = "Original Carbon Emission";
+                sun_t1.style.width = "145px";
+                sun_t2.innerHTML = "Changed Carbon Emission";
+                sun_t2.style.width = "145px";
+
+                mon_t1.innerHTML = "Original Carbon Emission";
+                mon_t1.style.width = "145px";
+                mon_t2.innerHTML = "Changed Carbon Emission";
+                mon_t2.style.width = "145px";
+
+                tue_t1.innerHTML = "Original Carbon Emission";
+                tue_t1.style.width = "145px";
+                tue_t2.innerHTML = "Changed Carbon Emission";
+                tue_t2.style.width = "145px";
+
+                wed_t1.innerHTML = "Original Carbon Emission";
+                wed_t1.style.width = "145px";
+                wed_t2.innerHTML = "Changed Carbon Emission";
+                wed_t2.style.width = "145px";
+
+                thu_t1.innerHTML = "Original Carbon Emission";
+                thu_t1.style.width = "145px";
+                thu_t2.innerHTML = "Changed Carbon Emission";
+                thu_t2.style.width = "145px";
+
+                fri_t1.innerHTML = "Original Carbon Emission";
+                fri_t1.style.width = "145px";
+                fri_t2.innerHTML = "Changed Carbon Emission";
+                fri_t2.style.width = "145px";
+
+                sat_t1.innerHTML = "Original Carbon Emission";
+                sat_t1.style.width = "145px";
+                sat_t2.innerHTML = "Changed Carbon Emission";
+                sat_t2.style.width = "145px";
+            }
+        }
 
 
         dateList = [['240602','240603','240604','240605','240606','240607','240608'],
@@ -725,71 +854,108 @@
         
 
         function updateDiary(week_num) {
+            usersCode = new Array();
+            for (i = 0; i < code_data.length; i++) {
+                if (code_data[i]['user_id'] == userindex + 1) {
+                    usersCode.push(code_data[i]);
+                }
+            }
+            console.log(usersCode);
+
             const weekData = dateList[week_num];
-
+            console.log(weekData);
             fetch('/getData')
-                .then(response => response.json())
-                .then(data => {
-                    userData = JSON.parse(data)[userindex];
-
-                    updateDay('ca_sun', weekData[0], userData);
-                    updateDay('ca_mon', weekData[1], userData);
-                    updateDay('ca_tue', weekData[2], userData);
-                    updateDay('ca_wed', weekData[3], userData);
-                    updateDay('ca_thu', weekData[4], userData);
-                    updateDay('ca_fri', weekData[5], userData);
-                    updateDay('ca_sat', weekData[6], userData);
-                })
-                .catch(error => console.error('Error fetching data:', error));
+            .then(response => response.json())
+            .then(data => {
+                userData = JSON.parse(data)[userindex];
+            })
+            .catch(error => console.error('Error fetching data:', error));
+            updateDay('sun', weekData[0], userData, usersCode);
+            updateDay('mon', weekData[1], userData, usersCode);
+            updateDay('tue', weekData[2], userData, usersCode);
+            updateDay('wed', weekData[3], userData, usersCode);
+            updateDay('thu', weekData[4], userData, usersCode);
+            updateDay('fri', weekData[5], userData, usersCode);
+            updateDay('sat', weekData[6], userData, usersCode);
         }
                 
 
-        function updateDay(dayId, date, userData) {
+        function updateDay(dayId, date, userData, usersCode) {
+            modified = 0;
+            if (usersCode.length) {
+                temp = -1;
+                for (i = 0; i < usersCode.length; i++) {
+                    tempDate = String(usersCode[i]['created_at'].slice(2,4) + usersCode[i]['created_at'].slice(5, 7) + usersCode[i]['created_at'].slice(8, 10));
+                    if (date == tempDate) {
+                        temp = usersCode[i];
+                    }
+                }
+                if (temp != -1) {
+                    modified = 1;
+                    $('#ca_' + dayId).css({
+                        'background-color': '#79D96A75',
+                        'border': '#79D96A solid',
+                        'border-width': '5px 0px 0px 0px',
+                        'border-bottom-left-radius': '20px',
+                        'border-bottom-right-radius': '20px'
+                    });
+                    $('#' + dayId + '_caremi_before').text(temp['before_code_time']);
+                    $('#' + dayId + '_caremi_after').text(temp['after_code_time']);
+                    $('#ca_' + dayId + '_abbr').css({
+                        'visibility': 'visible'
+                    });
+                }
+            }
             if (userData[date] != null) {
-                $('#' + dayId).css({
+                $('#ca_' + dayId).css({
                     'background-color': '#79D96A75',
                     'border': '#79D96A solid',
                     'border-width': '5px 0px 0px 0px',
                     'border-bottom-left-radius': '20px',
                     'border-bottom-right-radius': '20px'
                 });
-
                 var inputString = userData[date];
                 var stringArray = inputString.split('\\n');
 
                 $('#' + dayId + '_cmm').text(stringArray[0]);
                 $('#' + dayId + '_sch').text(stringArray[1]);
 
-                $('#' + dayId + '_abbr').css({
+                $('#ca_' + dayId + '_abbr').css({
                     'visibility': 'visible'
                 });
             } else {
-                $('#' + dayId).css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#' + dayId + '_abbr').css({
-                    'visibility': 'hidden'
-                });
+                if (modified == 0) {
+                    $('#ca_' + dayId).css({
+                        'background-color': 'rgba(128, 128, 128, 0.7)',
+                        'border': '#79D96A75 solid',
+                        'border-width': '5px 0px 0px 0px',
+                        'border-bottom-left-radius': '20px',
+                        'border-bottom-right-radius': '20px'
+                    });
+                    $('#ca_' + dayId + '_abbr').css({
+                        'visibility': 'hidden'
+                    });
+                }
             }
         }
+
+        
         
        
         //DB insertion 
         function insertUserDiary(week_num,Newdate){
             console.log($('#TC_textarea').val(),$('#SC_textarea').val())
 
-            date=String(Newdate.getYear()).slice(1,3) + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
+            date=String(Newdate.getYear()).slice(1,3) + (String(parseInt(Newdate.getMonth())+1).length==1?'0':'') + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
 
             
             contents = String($('#TC_textarea').val()+'\\n'+$('#SC_textarea').val())
+            console.log(contents);
             console.log(date,String(Newdate.getDate()))
+
             $.ajax({
                 type: 'POST',  
-                url: '/main',  
+                url: '/date',  
                 data: { userindex: userindex, date: date, contents: contents },
                 contentType: 'application/x-www-form-urlencoded', 
                 success: function(response) {
@@ -941,10 +1107,8 @@
             return STAT
         }
 
-
-
-        //window.onload = checkWindowSize;
-        //window.onresize = checkWindowSize;
+        window.onload = checkWindowSize;
+        window.onresize = checkWindowSize;
 
         $(document).ready(function() {
 
@@ -953,7 +1117,7 @@
             updateProgress2(2)
             updateDiary(0)
             
-            //Callendar part
+            //Calendar part
             updateDiary(0)
             $('#ca_sun_t1, #ca_mon_t1, #ca_tue_t1, #ca_wed_t1, #ca_thu_t1, #ca_fri_t1, #ca_sat_t1').click(function () {
                 canClickPrevNext = 0 
@@ -980,6 +1144,38 @@
             $('#ca_thu_t1').click(function () {
                 DAY = 4
                 $('#ca_detail_caremi_t1').text('Thu ' + dateList[week_num][4].slice(2,4)+'. '+(parseInt(dateList[week_num][4][4])?dateList[week_num][4].slice(4,6):dateList[week_num][4].slice(5,6)));
+                /*usersCode = new Array();
+                for (i = 0; i < code_data.length; i++) {
+                    if (code_data[i]['user_id'] == userindex + 1) {
+                        usersCode.push(code_data[i]);
+                    }
+                }
+                console.log(usersCode);
+                if (usersCode.length) {
+                    temp = -1;
+                    for (i = 0; i < usersCode.length; i++) {
+                        tempDate = String(usersCode[i]['created_at'].slice(2,4) + usersCode[i]['created_at'].slice(5, 7) + usersCode[i]['created_at'].slice(8, 10));
+                        if (date == tempDate) {
+                           temp = usersCode[i];
+                        }
+                    }
+                    if (temp != -1) {
+                        modified = 1;
+                        $('#ca_' + dayId).css({
+                            'background-color': '#79D96A75',
+                            'border': '#79D96A solid',
+                            'border-width': '5px 0px 0px 0px',
+                            'border-bottom-left-radius': '20px',
+                            'border-bottom-right-radius': '20px'
+                        });
+                        $('#' + dayId + '_caremi_before').text(temp['before_code_time']);
+                        $('#' + dayId + '_caremi_after').text(temp['after_code_time']);
+                        $('#ca_' + dayId + '_abbr').css({
+                            'visibility': 'visible'
+                        });
+                    }
+                }
+                    */
             });
             $('#ca_fri_t1').click(function () {
                 DAY = 5
@@ -1083,14 +1279,15 @@
                     return
                 }
 
+                var days_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeOut(1, function(){
-                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%31+1));
-                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%31+1));
-                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%31+1));
-                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%31+1));
-                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%31+1));
-                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%31+1));
-                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%31+1));
+                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%days_month[parseInt(Newdate.getMonth())]+1));
                     $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
                 });
 
@@ -1116,15 +1313,15 @@
                 if(week_num == 8){
                     return
                 }
-
+                var days_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeOut(1, function(){
-                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%31+1));
-                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%31+1));
-                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%31+1));
-                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%31+1));
-                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%31+1));
-                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%31+1));
-                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=31 ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%31+1));
+                    $('#ca_sun_t1').html('Sun ' + (parseInt(Newdate.getDate()+0)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+0)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_mon_t1').html('Mon ' + (parseInt(Newdate.getDate()+1)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+1)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_tue_t1').html('Tue ' + (parseInt(Newdate.getDate()+2)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+2)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_wed_t1').html('Wed ' + (parseInt(Newdate.getDate()+3)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+3)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_thu_t1').html('Thu ' + (parseInt(Newdate.getDate()+4)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+4)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_fri_t1').html('Fri ' + (parseInt(Newdate.getDate()+5)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+5)%days_month[parseInt(Newdate.getMonth())]+1));
+                    $('#ca_sat_t1').html('Sat ' + (parseInt(Newdate.getDate()+6)>=days_month[parseInt(Newdate.getMonth())] ? (parseInt(Newdate.getMonth()) + 1)%12+1 : (parseInt(Newdate.getMonth()) + 0)%12+1) + '. ' + parseInt(parseInt(Newdate.getDate()+6)%days_month[parseInt(Newdate.getMonth())]+1));
                     $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
                 });
 

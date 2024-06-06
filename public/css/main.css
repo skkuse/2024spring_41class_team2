@@ -655,6 +655,7 @@
     margin-bottom: 3px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 
 }
 #ca_sun_abbr, #ca_mon_abbr, #ca_tue_abbr, #ca_wed_abbr, #ca_thu_abbr, #ca_fri_abbr, #ca_sat_abbr{
