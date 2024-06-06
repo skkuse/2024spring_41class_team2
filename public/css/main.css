@@ -469,7 +469,7 @@
     border-radius: 0 0 50% 50%;
 }
 .ic_upload:hover::before{
-    height: 180%;
+    height: 200%;
 }
 
 #ic3{
@@ -510,37 +510,13 @@
     height: 190%;
 }
 
-
-/* #IC_textarea{
-    margin-left: 20px;
-    margin-top: 10px;
-    width: calc(100% - 42px);
-    height: 400px;
-    font-size: 18px;
-    background-color: #FFFFFF60;
-    resize: none;
-    color: white;
-    border: 3px solid white;
-    padding: 8px;
-    border-radius: 10px;
-    font-family: "Raleway";
-    outline: none;
-
-}
-#IC_textarea:focus{
-    border: 3px solid #79D96A;
-}
-#IC_textarea::placeholder{
-    color: rgba(255, 255, 255, 0.3);
-} */
-
 .CodeMirror {
     margin-left: 20px;
     margin-top: 10px;
     width: calc(100% - 42px);
     height: 400px;
     font-size: 18px;
-    background-color: #ffffff79 !important;
+    background-color: #ffffffc8 !important;
     color: black !important; 
     border: 3px solid white;
     padding: 8px;
@@ -549,8 +525,12 @@
     outline: none;
 }
 
+
+.CodeMirror-code pre{
+    margin-left: -30px;
+} 
 .CodeMirror-code.few-lines div span{
-    margin-left: 30px;
+    margin-left: 15px;
 }
 .CodeMirror-code div span{
     margin-left: 0px;
@@ -561,9 +541,9 @@
     border: 3px solid #79D96A;
 }
 
-.CodeMirror-placeholder {
+/* .CodeMirror-placeholder {
     color: rgba(255, 255, 255, 0.3);
-}
+} */
 
 .CodeMirror-lines {
     padding: 30px;
@@ -575,22 +555,73 @@
     left: 0px !important; 
     width: 22px !important;
 }
-.CodeMirror-placeholder {
+.CodeMirror-gutters{
+    left: 0px !important; 
+}
+/* .CodeMirror-placeholder {
     color: rgba(255, 255, 255, 0.3);
     position: absolute;
     top: 0;
     left: 0;
     padding: 8px;
     pointer-events: none;
-}
-/* .CodeMirror-gutters {
-    background-color: rgba(255, 255, 255, 0.6) !important;
-    border-right: 3px solid white !important;
-    min-height: 100% !important;
 } */
 
+#ic_loading{
+    display: none;
+    background-color: #79D96A;
+    padding-top: 40px; 
+    justify-content: center;
+    /* height: 800px; */
+}
 
-/* callendar */
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* input code result css */
+
+#ic_res{
+    display: none;
+    padding-top: 20px;
+
+}
+
+#ic_res_before form .CodeMirror {
+    height: 200px !important;
+}
+#ic_res_after form .CodeMirror {
+    height: 200px !important;
+}
+
+#ic_res_textarea{
+    color: white;
+    font-size: 30px;
+    font-family: "Raleway";
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+#ic_res_before_text1, #ic_res_after_text1{
+    color: white;
+    font-size: 23px;
+    font-family: "Raleway";
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* calendar */
 #ca{
     margin: 0px 0px 0px 20px;
 }

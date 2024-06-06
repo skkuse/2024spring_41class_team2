@@ -210,35 +210,69 @@
                 <!-- 3. Input Code -->
                 <div id="ic_wpr">
                     <!-- input code contents -->
-                    <div id="ic1">
-                        <div id="ic1_t1">Search Workout</div>
-                        Choose the exercise that suits you.
-                    </div>
-                    <div id="ic2">
-                        <div id="ic2_0" class="ic2_title_1">Input your own java code!</div>
-                        <div id="ic2_1" class="ic2_title_2" style="display: flex; flex-direction: row;">
-                            <div>
-                                Upload your code ( .txt or .java ): 
+                    <div id="ic_init">
+                        <div id="ic1">
+                            <div id="ic1_t1">Search Workout</div>
+                            Choose the exercise that suits you.
+                        </div>
+                        <div id="ic2">
+                            <div id="ic2_0" class="ic2_title_1">Input your own java code!</div>
+                            <div id="ic2_1" class="ic2_title_2" style="display: flex; flex-direction: row;">
+                                <div>
+                                    Upload your code ( .txt or .java ): 
+                                </div>
+                                <div class="ic_upload_div">
+                                    <label for="file">
+                                        <div class="ic_upload"><div style="margin: 7px 0px 0px 24px;">Upload</div></div>
+                                    </label>
+                                    
+                                    <input type="file" name="file" id="file" accept=".java, .txt">                    
+                                </div>
                             </div>
-                            <div class="ic_upload_div">
-                                <label for="file">
-                                    <div class="ic_upload"><div style="margin: 7px 0px 0px 24px;">Upload</div></div>
-                                </label>
-                                
-                                <input type="file" name="file" id="file" accept=".java, .txt">                    
+                            <form>
+                                <textarea id="IC_textarea" placeholder="Input your own java code!"></textarea>
+                            </form>
+        
+                        </div>
+                        <div id="ic3">
+                            <button class="ic3_btn">
+                                Make it GREEN!
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ic_loading">
+                        
+                        <div style="display: block;">
+                            <div class="loader"></div>
+                            <div class="ic_loading_text">
+                                Wait a moment
                             </div>
                         </div>
-                        <form>
-                            <textarea id="IC_textarea" placeholder="Input your own java code!"></textarea>
-                        </form>
-      
+                        
                     </div>
-                    <div id="ic3">
-                        <button class="ic3_btn">
-                            Make it GREEN!
-                        </button>
-                    </div>
+                    <div id="ic_res">
+                        <div id="ic_res_textarea">
+                            Thanks for using our service.<br>
+                            Your consideration will save the Earth!
+                        </div>
+                        <div style="margin:auto; width: 100%-20px; height:3px; background-color: #79D96A; margin-left: 20px;"></div>
+                        <div id="ic_res_before">
+                            <div id="ic_res_before_text1" class="ic_res_before_text1">Before</div>
 
+                            <form>
+                                <textarea id="IC_textarea_before"></textarea>
+                            </form>
+        
+                        </div>
+                        <div id="ic_res_after">
+                            <div id="ic_res_after_text1" class="ic_res_after_text1">After</div>
+
+                            <form>
+                                <textarea id="IC_textarea_after"></textarea>
+                            </form>
+        
+                        </div>
+                    </div>
 
                 </div>
 
@@ -1504,16 +1538,30 @@
             }
         });
 
-         // CodeMirror 인스턴스 생성
-         var editor = CodeMirror.fromTextArea(document.getElementById('IC_textarea'), {
-            lineNumbers: true,      // 라인 넘버 표시
+        // CodeMirror 인스턴스 생성
+        var editor = CodeMirror.fromTextArea(document.getElementById('IC_textarea'), {
+            lineNumbers: true,     
             mode: "text/x-java",     
-            tabSize: 4,             // 탭 크기
-            indentWithTabs: true,   // 탭을 사용하여 들여쓰기
+            tabSize: 4,            
+            indentWithTabs: true,   
+        });
+        var editor_after = CodeMirror.fromTextArea(document.getElementById('IC_textarea_after'), {
+            lineNumbers: true,     
+            mode: "text/x-java",     
+            tabSize: 4,            
+            indentWithTabs: true,   
+            
+        });
+        var editor_before = CodeMirror.fromTextArea(document.getElementById('IC_textarea_before'), {
+            lineNumbers: true,     
+            mode: "text/x-java",     
+            tabSize: 4,            
+            indentWithTabs: true,   
         });
 
-        var check_10lines = 0;
+        
         // div 개수에 따른 CSS 변경
+        var check_10lines = 0;
         function updateCodeMirrorStyle() {
             const codeDivs = editor.getWrapperElement().querySelectorAll('.CodeMirror-code > div');
             const codeMirrorCode = editor.getWrapperElement().querySelector('.CodeMirror-code');
@@ -1538,6 +1586,27 @@
 
         updateCodeMirrorStyle();
 
+        function isvalid(){
+            //check code validity
+            console.log(editor.getValue())
+            const code = editor.getValue();
+
+
+
+            const lines = code.split('\n');
+
+
+            // what do we need for calculating CE? -> line #, time consumed, else?
+            return lines.length >= 0;
+
+            //should return everything with tuple
+        }
+
+        function set_after(){
+            var code = editor.getValue()
+            editor_after.setValue(code);
+        }
+        
 
         $(document).ready(function() {
 
@@ -1546,6 +1615,35 @@
             updateProgress2(2)
             updateDiary(0)
             
+            //Input code
+            $('.ic3_btn').click(function () {
+                const v = isvalid()[0]
+                if(isvalid()){
+                    $('#ic_init').fadeOut(400, function(){
+                        $('#ic_loading').fadeIn(400);
+                        $("#ic_loading").css("display", "flex");
+                        
+
+                    });
+
+                    setTimeout(function() {
+                        $('#ic_loading').fadeOut(400, function(){
+                            $("#ic_loading").css("display", "none");
+                            $('#ic_res').fadeIn(400);
+                            set_after()
+                        });
+                    }, 1000); //5000 = 5secs
+
+
+
+                }
+                else{
+                    alert("Please input a valid code!");
+                }
+                
+            });
+            
+
             //Callendar part
             updateDiary(0)
             $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').click(function () {
@@ -1998,7 +2096,6 @@
             $(elements[randomIndex]).show();
 
 
-            //NOTE : code below must be changed into INPUT CODE section!!
 
             // Workout scripts
             // function updateVisibility() {
