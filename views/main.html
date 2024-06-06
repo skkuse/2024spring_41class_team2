@@ -766,7 +766,10 @@
                     </div>
                     <div id="st2">
                         <div id="st1_t1">Exercise Statistics</div>
-                        <canvas id="chart1"></canvas>
+                        <div style="display:flex; width:45%;">
+                            <canvas id="chart1" style="flex-grow: 5;"></canvas>
+                            <canvas id="chart2" style="flex-grow: 5;"></canvas>
+                        </div>
                     </div>
                     
                 </div>
@@ -1938,7 +1941,7 @@
                 $("#btn_co").css("background-color",'');
                 $("#btn_pi").css("background-color",'');
 
-                updateStat(2,STAT)
+                //updateStat(2,STAT)
             });
             $("#btn_co").click(function() {
                 $("#ov_wpr").css("display", "none");
@@ -2078,13 +2081,13 @@
             
             // exampledata
             var usrDataList = [
-                '1\n2\n3\n4\nGood\nGood',
-                '2\n3\n4\n5\nGood\nGood',
-                '3\n4\n5\n2\nGood\nGood',
-                '1\n2\n3\n4\nGood\nGood',
-                '2\n3\n4\n5\nGood\nGood',
-                '3\n4\n5\n2\nGood\nGood',
-                '1\n2\n3\n4\nGood\nGood'
+                '3\n4',
+                '4\n5',
+                '2\n5',
+                '3\n4',
+                '4\n5',
+                '2\n5',
+                '3\n4'
             ];
 
             // from datapoint to dataset
@@ -2095,10 +2098,8 @@
                 }));
             }
             var labelList = [
-                'Exercise Duration',
-                'Exercise Intensity',
-                'Physical Condition',
-                'Mood of the day'
+                'You',
+                'Entire Users'
             ]
             // Make Chart
             // for (var j = 0; j < datasets.length; j++) {
@@ -2110,7 +2111,7 @@
                         label: labelList[0],
                         data: datasets[0],
                         backgroundColor: 'rgba(250, 169, 55, 0.2)',
-                        borderColor: 'rgba(250, 169, 55, 1)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
@@ -2120,18 +2121,48 @@
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
-                    {
-                        label: labelList[2],
-                        data: datasets[2],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins:{
+                        legend: {
+                            position:'bottom',
+                            labels: {
+                                padding: 20, // control padding between legends
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            bottom:20
+                        }
+                    }
+                }
+            });
+            STAT2 = new Chart($('#chart2'), {
+                type: 'radar',
+                data: {
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+                    datasets: [{
+                        label: labelList[0],
+                        data: datasets[0],
+                        backgroundColor: 'rgba(250, 169, 55, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: labelList[3],
-                        data: datasets[3],
-                        backgroundColor: 'rgba(0, 255, 127, 0.2)',
-                        borderColor: 'rgba(0, 255, 127, 1)',
+                        label: labelList[1],
+                        data: datasets[1],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                 ]
@@ -2161,7 +2192,7 @@
                 }
             });
             
-            updateStat(2,STAT)
+            //updateStat(2,STAT)
 
             //contact part
 
