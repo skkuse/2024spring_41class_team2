@@ -41,7 +41,7 @@
                     &nbsp;&nbsp;Input Code
                 </div>
                 <div id="btn_cal">
-                    &nbsp;&nbsp;Callendar
+                    &nbsp;&nbsp;Calendar
                 </div>
                 <div id="btn_st">
                     &nbsp;&nbsp;Statistics
@@ -202,16 +202,20 @@
                             <div id="account_info_container">
                                 <div id="person_name"></div>
                                 <!-- TODO: we have to get tier info from db or calculate the tier -->
-                                <div id="tier_badge"></div> 
+                                <div id="tier_badge">Bronze 3</div> 
+                                <div id="job">JOB</div>
+                                <div id="age">AGE</div>
+                                <div id="gender">GENDER</div>
+                                <button id="submitBtn_edit" class="submitBtn">Edit</button>
                             </div>
                         </div>
                     </div>
-                    <div class="pi-container-2">
-                        <div id="pi3" class="info_box">
+                    <div class="pi-container-2" style="display: none;">
+                        <!-- <div id="pi3" class="info_box">
                             <div id="job">JOB</div>
                             <div id="age">AGE</div>
                             <div id="gender">GENDER</div>
-                        </div>
+                        </div> -->
                         <div id="pi4" class="info_box">
                             <div>
                                 <input type="text" id="job2" placeholder="Write your JOB">
@@ -858,7 +862,7 @@
         var users = {{ users | safe }};
         
         
-        var userindex=0
+        var userindex=0;
         
     
         url = String(window.location.href);
@@ -876,7 +880,10 @@
         //console.log(userindex)
         $("#person_name").text(user)
         // TODO: get the tier info from db
+        $("#tier_badge").text("Bronze 3")
 
+        // Initially hide the pi-container-2
+        $('.pi-container-2').hide();
 
         //handle emo section
         function checkWindowSize() {
@@ -1430,6 +1437,7 @@
             .then(data => {
                 
                 usr = JSON.parse(data)[userindex]
+                // TODO: get the CO2 reduction from db
                 $('#weight').text(String(usr['curweight'] - usr['tarweight']) + 'kg decreased') 
                 $('#muscle').text(String(usr['tarmus'] - usr['curmus']) + 'kg left!') 
                 
@@ -2256,9 +2264,31 @@
             });
 
             //PI
+            $('#submitBtn_edit').click(function() {
+                $('.pi-container-2').show();
+
+            // // Get the values from the text inputs
+            // var value1 = $('#target_weight').val();
+            // var value2 = $('#target_muscle').val();
+
+            // // Log the values to the console
+            // console.log('Input 1:', value1);
+            // console.log('Input 2:', value2);
+
+            // // Update the placeholders with the entered values
+            // $('#target_weight').attr('placeholder', value1+'kg');
+            // $('#target_muscle').attr('placeholder', value2+'kg');
+
+            // // Clear the text inputs
+            // $('#target_weight').val('');
+            // $('#target_muscle').val('');
+
+            // insertTar(value1, value2)
+            });
 
             $('#submitBtn_now').click(function() {
                 // Get the values from the text inputs
+                $('.pi-container-2').hide();
                 var value1 = $('#job2').val();
                 var value2 = $('#age2').val();
                 var value3 = $('#gender2').val();
@@ -2282,25 +2312,7 @@
                 
             });
 
-            $('#submitBtn_target').click(function() {
-                // Get the values from the text inputs
-                var value1 = $('#target_weight').val();
-                var value2 = $('#target_muscle').val();
-
-                // Log the values to the console
-                console.log('Input 1:', value1);
-                console.log('Input 2:', value2);
-
-                // Update the placeholders with the entered values
-                $('#target_weight').attr('placeholder', value1+'kg');
-                $('#target_muscle').attr('placeholder', value2+'kg');
-
-                // Clear the text inputs
-                $('#target_weight').val('');
-                $('#target_muscle').val('');
-
-                insertTar(value1, value2)
-            });
+            
 
         });
 
