@@ -54,6 +54,24 @@ router.get('/getData', function(req, res, next) {
   
 });
 
+router.get('/getCodeData', function(req, res, next) {
+  const userindex = req.body.userindex;
+  const query = 'SELECT * FROM codedata where id = ?';
+  const queryParams = [userindex];
+  connection.query(query, queryParams, (queryErr, results) => {
+    if (queryErr) {
+      console.error('Error executing query:', queryErr);
+      return;
+    }
+  
+  const resultsString = JSON.stringify(results);
+
+  res.json(resultsString);
+  //connection.end()
+  });
+  
+});
+
 
 router.get('/getPData', function(req, res, next) {
   connection.query('SELECT * FROM users', (queryErr, results) => {

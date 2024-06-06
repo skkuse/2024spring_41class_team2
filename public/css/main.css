@@ -472,7 +472,31 @@
     font-weight: bold;
     font-size: 25px;
 }
-#detail_caremi{
+#detail_caremi_code_before{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 3px;
+    font-size: 20px;
+    color: white;
+}
+#detail_caremi_before{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 3px;
+    font-size: 20px;
+    color: white;
+}
+#detail_caremi_code_after{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 3px;
+    font-size: 20px;
+    color: white;
+}
+#detail_caremi_after{
     display: flex;
     margin-left: 10px;
     margin-top: 40px;

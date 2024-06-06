@@ -244,8 +244,17 @@
                             <div id="ca_detail_caremi_t1">
                                 Sun 06. 2 
                             </div>
-                            <div id="detail_caremi">
-                                This is for printing out carbon emmissions of the day.
+                            <div id="detail_caremi_code_before">
+                                This is for printing out before code. But no code input existed this day.
+                            </div>
+                            <div id="detail_caremi_before">
+                                This is for printing out carbon emmissions of before code.
+                            </div>
+                            <div id="detail_caremi_code_after">
+                                This is for printing out after code.
+                            </div>
+                            <div id="detail_caremi_after">
+                                This is for printing out carbon emmissions of after code.
                             </div>
                             <div id="detail_caremi_btn">
                                 <button id="detail_caremi_cancel">
@@ -302,14 +311,16 @@
                                     <div style="display: flex;">
                                         <div style="display: flex;">
                                             <div id = "sun_t1" style="width: 145px;">Original Carbon Emission</div>                                        
-                                            :&nbsp;                                         
+                                            :&nbsp;
+                                            <div id="sun_caremi_before">None</div>                                         
                                         </div>
 
                                         <div style="width:20px"></div>
 
                                         <div style="display: flex;">
                                             <div id = "sun_t2" style="width: 145px;">Changed Carbon Emission</div>                                        
-                                            :&nbsp;                                           
+                                            :&nbsp;
+                                            <div id="sun_caremi_after">None</div>                                           
                                         </div>
                                         <div style="width:20px"></div>
 
@@ -697,179 +708,8 @@
         userData = users_data[userindex]
 
         $("#nav1_2").text(user)
-        //console.log(userindex)
+        console.log(userindex)
 
-        //handle emo section
-        /*
-        function checkWindowSize() {
-            var sun_t1 = document.getElementById("sun_t1");
-            var sun_t2 = document.getElementById("sun_t2");
-            var sun_t3 = document.getElementById("sun_t3");
-            var sun_t4 = document.getElementById("sun_t4");
-
-            var mon_t1 = document.getElementById("mon_t1");
-            var mon_t2 = document.getElementById("mon_t2");
-            var mon_t3 = document.getElementById("mon_t3");
-            var mon_t4 = document.getElementById("mon_t4");
-
-            var tue_t1 = document.getElementById("tue_t1");
-            var tue_t2 = document.getElementById("tue_t2");
-            var tue_t3 = document.getElementById("tue_t3");
-            var tue_t4 = document.getElementById("tue_t4");
-
-            var wed_t1 = document.getElementById("wed_t1");
-            var wed_t2 = document.getElementById("wed_t2");
-            var wed_t3 = document.getElementById("wed_t3");
-            var wed_t4 = document.getElementById("wed_t4");
-
-            var thu_t1 = document.getElementById("thu_t1");
-            var thu_t2 = document.getElementById("thu_t2");
-            var thu_t3 = document.getElementById("thu_t3");
-            var thu_t4 = document.getElementById("thu_t4");
-
-            var fri_t1 = document.getElementById("fri_t1");
-            var fri_t2 = document.getElementById("fri_t2");
-            var fri_t3 = document.getElementById("fri_t3");
-            var fri_t4 = document.getElementById("fri_t4");
-
-            var sat_t1 = document.getElementById("sat_t1");
-            var sat_t2 = document.getElementById("sat_t2");
-            var sat_t3 = document.getElementById("sat_t3");
-            var sat_t4 = document.getElementById("sat_t4");
-
-            var windowWidth = window.innerWidth;
-
-            if (windowWidth < 1310) {
-                sun_t1.innerHTML = "E.D";
-                sun_t1.style.width = "30px";
-                sun_t2.innerHTML = "E.I";
-                sun_t2.style.width = "30px";
-                sun_t3.innerHTML = "P.C";
-                sun_t3.style.width = "30px";
-                sun_t4.innerHTML = "M.D";
-                sun_t4.style.width = "30px";
-
-                mon_t1.innerHTML = "E.D";
-                mon_t1.style.width = "30px";
-                mon_t2.innerHTML = "E.I";
-                mon_t2.style.width = "30px";
-                mon_t3.innerHTML = "P.C";
-                mon_t3.style.width = "30px";
-                mon_t4.innerHTML = "M.D";
-                mon_t4.style.width = "30px";
-
-                tue_t1.innerHTML = "E.D";
-                tue_t1.style.width = "30px";
-                tue_t2.innerHTML = "E.I";
-                tue_t2.style.width = "30px";
-                tue_t3.innerHTML = "P.C";
-                tue_t3.style.width = "30px";
-                tue_t4.innerHTML = "M.D";
-                tue_t4.style.width = "30px";
-
-                wed_t1.innerHTML = "E.D";
-                wed_t1.style.width = "30px";
-                wed_t2.innerHTML = "E.I";
-                wed_t2.style.width = "30px";
-                wed_t3.innerHTML = "P.C";
-                wed_t3.style.width = "30px";
-                wed_t4.innerHTML = "M.D";
-                wed_t4.style.width = "30px";
-
-                thu_t1.innerHTML = "E.D";
-                thu_t1.style.width = "30px";
-                thu_t2.innerHTML = "E.I";
-                thu_t2.style.width = "30px";
-                thu_t3.innerHTML = "P.C";
-                thu_t3.style.width = "30px";
-                thu_t4.innerHTML = "M.D";
-                thu_t4.style.width = "30px";
-
-                fri_t1.innerHTML = "E.D";
-                fri_t1.style.width = "30px";
-                fri_t2.innerHTML = "E.I";
-                fri_t2.style.width = "30px";
-                fri_t3.innerHTML = "P.C";
-                fri_t3.style.width = "30px";
-                fri_t4.innerHTML = "M.D";
-                fri_t4.style.width = "30px";
-
-                sat_t1.innerHTML = "E.D";
-                sat_t1.style.width = "30px";
-                sat_t2.innerHTML = "E.I";
-                sat_t2.style.width = "30px";
-                sat_t3.innerHTML = "P.C";
-                sat_t3.style.width = "30px";
-                sat_t4.innerHTML = "M.D";
-                sat_t4.style.width = "30px";
-
-
-            } else {
-                sun_t1.innerHTML = "Excercise Duration";
-                sun_t1.style.width = "145px";
-                sun_t2.innerHTML = "Excercise Intensity";
-                sun_t2.style.width = "145px";
-                sun_t3.innerHTML = "Physical Condition";
-                sun_t3.style.width = "145px";
-                sun_t4.innerHTML = "Mood of the Day";
-                sun_t4.style.width = "145px";
-
-                mon_t1.innerHTML = "Excercise Duration";
-                mon_t1.style.width = "145px";
-                mon_t2.innerHTML = "Excercise Intensity";
-                mon_t2.style.width = "145px";
-                mon_t3.innerHTML = "Physical Condition";
-                mon_t3.style.width = "145px";
-                mon_t4.innerHTML = "Mood of the Day";
-                mon_t4.style.width = "145px";
-
-                tue_t1.innerHTML = "Excercise Duration";
-                tue_t1.style.width = "145px";
-                tue_t2.innerHTML = "Excercise Intensity";
-                tue_t2.style.width = "145px";
-                tue_t3.innerHTML = "Physical Condition";
-                tue_t3.style.width = "145px";
-                tue_t4.innerHTML = "Mood of the Day";
-                tue_t4.style.width = "145px";
-
-                wed_t1.innerHTML = "Excercise Duration";
-                wed_t1.style.width = "145px";
-                wed_t2.innerHTML = "Excercise Intensity";
-                wed_t2.style.width = "145px";
-                wed_t3.innerHTML = "Physical Condition";
-                wed_t3.style.width = "145px";
-                wed_t4.innerHTML = "Mood of the Day";
-                wed_t4.style.width = "145px";
-
-                thu_t1.innerHTML = "Excercise Duration";
-                thu_t1.style.width = "145px";
-                thu_t2.innerHTML = "Excercise Intensity";
-                thu_t2.style.width = "145px";
-                thu_t3.innerHTML = "Physical Condition";
-                thu_t3.style.width = "145px";
-                thu_t4.innerHTML = "Mood of the Day";
-                thu_t4.style.width = "145px";
-
-                fri_t1.innerHTML = "Excercise Duration";
-                fri_t1.style.width = "145px";
-                fri_t2.innerHTML = "Excercise Intensity";
-                fri_t2.style.width = "145px";
-                fri_t3.innerHTML = "Physical Condition";
-                fri_t3.style.width = "145px";
-                fri_t4.innerHTML = "Mood of the Day";
-                fri_t4.style.width = "145px";
-
-                sat_t1.innerHTML = "Excercise Duration";
-                sat_t1.style.width = "145px";
-                sat_t2.innerHTML = "Excercise Intensity";
-                sat_t2.style.width = "145px";
-                sat_t3.innerHTML = "Physical Condition";
-                sat_t3.style.width = "145px";
-                sat_t4.innerHTML = "Mood of the Day";
-                sat_t4.style.width = "145px";
-            }
-        }
-        */
 
         dateList = [['240602','240603','240604','240605','240606','240607','240608'],
                     ['240609','240610','240611','240612','240613','240614','240615'],
@@ -881,276 +721,62 @@
                     ['240721','240722','240723','240724','240725','240726','240727'],
                     ['240728','240729','240730','240731','240801','240802','240803']]
 
-        ED=2
-        EI=2
-        PC=2
-        MD=2
         DAY=0
-
-        //update with DB
-        function updateDiary(week_num){
-            
-            
-            fetch('/getData')
-            .then(response => response.json())
-            .then(data => {
-                
-                userData = JSON.parse(data)[userindex]
-            
-            })
-            .catch(error => console.error('Error fetching data:', error));
-
-
-            emoList = ['<i class="fas fa-tired"></i>',
-                       '<i class="fas fa-frown"></i>',
-                       '<i class="fas fa-meh"></i>',
-                       '<i class="fas fa-smile"></i>',
-                       '<i class="fas fa-laugh-beam"></i>']
-
-            weekdata = dateList[week_num]
-            
-            
-            //Sunday 
-            if(userData[weekdata[0]]!=null){
-                $('#ca_sun').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[0]]
-                var stringArray = inputString.split('\\n');
-
-                $('#sun_cmm').text(stringArray[0]);
-                $('#sun_sch').text(stringArray[1]);
-
-                
-                $('#ca_sun_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_sun').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_sun_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //Monday 
-            if(userData[weekdata[1]]!=null){
-                $('#ca_mon').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[1]]
-                var stringArray = inputString.split('\\n');
-
-                $('#mon_cmm').text(stringArray[0]);
-                $('#mon_sch').text(stringArray[1]);
-
-                
-                $('#ca_mon_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_mon').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_mon_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //Tueday 
-            if(userData[weekdata[2]]!=null){
-                
-                $('#ca_tue').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[2]]
-                var stringArray = inputString.split('\\n');
-
-                $('#tue_cmm').text(stringArray[0]);
-                $('#tue_sch').text(stringArray[1]);
-
-                
-                $('#ca_tue_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_tue').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_tue_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //wedday 
-            if(userData[weekdata[3]]!=null){
-                $('#ca_wed').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[3]]
-                var stringArray = inputString.split('\\n');
-                
-                $('#wed_cmm').text(stringArray[0]);
-                $('#wed_sch').text(stringArray[1]);
-
-                
-                $('#ca_wed_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_wed').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_wed_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //Thuday 
-            if(userData[weekdata[4]]!=null){
-                $('#ca_thu').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[4]]
-                var stringArray = inputString.split('\\n');
-
-                $('#thu_cmm').text(stringArray[0]);
-                $('#thu_sch').text(stringArray[1]);
-
-                
-                $('#ca_thu_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_thu').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_thu_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //friday 
-            if(userData[weekdata[5]]!=null){
-                $('#ca_fri').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[5]]
-                var stringArray = inputString.split('\\n');
-
-                $('#fri_cmm').text(stringArray[0]);
-                $('#fri_sch').text(stringArray[1]);
-
-                
-                $('#ca_fri_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_fri').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_fri_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
-            //Satday 
-            if(userData[weekdata[6]]!=null){
-                $('#ca_sat').css({
-                    'background-color': '#79D96A75',
-                    'border': '#79D96A solid',                    
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-
-                var inputString = userData[weekdata[6]]
-                var stringArray = inputString.split('\\n');
-
-                $('#sat_cmm').text(stringArray[0]);
-                $('#sat_sch').text(stringArray[1]);
-
-                
-                $('#ca_sat_abbr').css({
-                    'visibility': 'visible'
-                });
-            }
-            else{
-                $('#ca_sat').css({
-                    'background-color': 'rgba(128, 128, 128, 0.7)',
-                    'border': '#79D96A75 solid',
-                    'border-width': '5px 0px 0px 0px',
-                    'border-bottom-left-radius': '20px',
-                    'border-bottom-right-radius': '20px'
-                });
-                $('#ca_sat_abbr').css({
-                    'visibility': 'hidden'
-                });
-            }
-            
         
-        } 
+
+        function updateDiary(week_num) {
+            const weekData = dateList[week_num];
+
+            fetch('/getData')
+                .then(response => response.json())
+                .then(data => {
+                    userData = JSON.parse(data)[userindex];
+
+                    updateDay('ca_sun', weekData[0], userData);
+                    updateDay('ca_mon', weekData[1], userData);
+                    updateDay('ca_tue', weekData[2], userData);
+                    updateDay('ca_wed', weekData[3], userData);
+                    updateDay('ca_thu', weekData[4], userData);
+                    updateDay('ca_fri', weekData[5], userData);
+                    updateDay('ca_sat', weekData[6], userData);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+                
+
+        function updateDay(dayId, date, userData) {
+            if (userData[date] != null) {
+                $('#' + dayId).css({
+                    'background-color': '#79D96A75',
+                    'border': '#79D96A solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+
+                var inputString = userData[date];
+                var stringArray = inputString.split('\\n');
+
+                $('#' + dayId + '_cmm').text(stringArray[0]);
+                $('#' + dayId + '_sch').text(stringArray[1]);
+
+                $('#' + dayId + '_abbr').css({
+                    'visibility': 'visible'
+                });
+            } else {
+                $('#' + dayId).css({
+                    'background-color': 'rgba(128, 128, 128, 0.7)',
+                    'border': '#79D96A75 solid',
+                    'border-width': '5px 0px 0px 0px',
+                    'border-bottom-left-radius': '20px',
+                    'border-bottom-right-radius': '20px'
+                });
+                $('#' + dayId + '_abbr').css({
+                    'visibility': 'hidden'
+                });
+            }
+        }
+        
        
         //DB insertion 
         function insertUserDiary(week_num,Newdate){
@@ -1167,10 +793,10 @@
                 data: { userindex: userindex, date: date, contents: contents },
                 contentType: 'application/x-www-form-urlencoded', 
                 success: function(response) {
-                    //console.log('서버 응답:', response);
+                    console.log('서버 응답:', response);
                 },
                 error: function(error) {
-                    //console.error('에러 발생:', error);
+                    console.error('에러 발생:', error);
                 }
             });
             
