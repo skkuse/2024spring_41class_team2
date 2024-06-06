@@ -197,46 +197,36 @@
                     <div id="pi2">
                         <div class="pi-container">
                             <div id="profile_picture_container">
-                                <img src="assets/co_img2.png" alt="Person" id="profile_img">
+                                <img src="assets/bronze.png" alt="Tier Image" id="profile_img">
                             </div>
                             <div id="account_info_container">
-                                <div id="person_name">사람 이름</div>
-                                <div id="tier_badge">티어/뱃지</div>
+                                <div id="person_name"></div>
+                                <!-- TODO: we have to get tier info from db or calculate the tier -->
+                                <div id="tier_badge"></div> 
                             </div>
                         </div>
                     </div>
-                    <div id="pi3" class="info_box">
-                        <div>
-                            <input type="text" id="job" placeholder="직업">
+                    <div class="pi-container-2">
+                        <div id="pi3" class="info_box">
+                            <div id="job">JOB</div>
+                            <div id="age">AGE</div>
+                            <div id="gender">GENDER</div>
                         </div>
-                        <div>
-                            <input type="text" id="age" placeholder="나이">
+                        <div id="pi4" class="info_box">
+                            <div>
+                                <input type="text" id="job2" placeholder="Write your JOB">
+                            </div>
+                            <div>
+                                <input type="text" id="age2" placeholder="Write your AGE">
+                            </div>
+                            <div>
+                                <input type="text" id="gender2" placeholder="Write your GENDER">
+                            </div>
+                            <button id="submitBtn_now" class="submitBtn">Submit</button>
                         </div>
-                        <div>
-                            <input type="text" id="gender" placeholder="성별">
-                        </div>
-                        <button id="submitBtn_now" class="submitBtn">Submit</button>
                     </div>
-                    <!-- <div class="pi-container" id="pi2">
-                        <div id="pi2_now" class="info_box">
-                            <div id="pi2_now_t1" class="pi2_info_text">Your Health Status</div>
-                            <img src="assets\pi_img1.png" alt="now">
-                            <div id="pi2_now_1" class="pi_text">
-                                <input type="text" id="now_weight" placeholder="Enter your current body weight (kg)">
-                                <input type="text" id="now_muscle" placeholder="Enter your current muscle amount (kg)">
-                                <button id="submitBtn_now" class="submitBtn">Submit</button>
-                            </div>
-                        </div>
-                        <div id="pi2_target" class="info_box">
-                            <div id="pi2_target_t1" class="pi2_info_text">Your Target Status</div>
-                            <img src="assets\pi_img2.png" alt="target">
-                            <div id="pi2_target_1" class="pi_text">
-                                <input type="text" id="target_weight" placeholder="Enter your target body weight (kg)">
-                                <input type="text" id="target_muscle" placeholder="Enter your target muscle amount (kg)">
-                                <button id="submitBtn_target" class="submitBtn">Submit</button>
-                            </div>
-                        </div>
-                    </div> -->
+                    
+                    
 
                 </div>
 
@@ -881,6 +871,9 @@
 
         $("#nav1_2").text(user)
         //console.log(userindex)
+        $("#person_name").text(user)
+        // TODO: get the tier info from db
+
 
         //handle emo section
         function checkWindowSize() {
@@ -2202,24 +2195,24 @@
 
             $('#submitBtn_now').click(function() {
                 // Get the values from the text inputs
-                var value1 = $('#job').val();
-                var value2 = $('#age').val();
-                var value3 = $('#gender').val();
+                var value1 = $('#job2').val();
+                var value2 = $('#age2').val();
+                var value3 = $('#gender2').val();
 
                 // Log the values to the console
                 console.log('Input 1:', value1);
                 console.log('Input 2:', value2);
                 console.log('Input 3:', value3);
 
-                // Update the placeholders with the entered values
-                $('#job').attr('placeholder', value1);
-                $('#age').attr('placeholder', value2);
-                $('#gender').attr('placeholder', value3);
+                // Update the text with the entered values
+                $('#job').text(value1);
+                $('#age').text(value2);
+                $('#gender').text(value3);
 
                 // Clear the text inputs
-                $('#job').val('');
-                $('#age').val('');
-                $('#gender').val('');
+                $('#job2').val('');
+                $('#age2').val('');
+                $('#gender2').val('');
 
                 insertNow(value1, value2,value3)
                 
