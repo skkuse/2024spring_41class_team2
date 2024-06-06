@@ -24,7 +24,7 @@ module.exports = router;
 
 router.get('/', function(req, res, next) {
 
-  //get users, users_data
+  //get users, users_data, code_data
   connection.query('SELECT * FROM users_data', (queryErr, results) => {
     if (queryErr) {
       console.error('Error executing query:', queryErr);
@@ -40,8 +40,19 @@ router.get('/', function(req, res, next) {
       }
   
       const users = JSON.stringify(results);
-      
-      res.render('main.html',{users_data:users_data,users:users});
+
+
+      connection.query('SELECT * FROM code_data', (queryErr, results) => {
+        if (queryErr) {
+          console.error('Error executing query:', queryErr);
+          return;
+        }
+    
+        const code_data = JSON.stringify(results);
+        
+        res.render('main.html',{code_data:code_data,users_data:users_data,users:users});
+  
+      });
 
     });
 
@@ -50,10 +61,3 @@ router.get('/', function(req, res, next) {
   
 });
 
-// var parent = document.getElementById('ov2_2_t2_a');
-
-// var donut = document.getElementsByClassName("donut");
-//   donut.addEventListener('mouseover',(event)=>{
-//     parent.innerHTML += '<div style=""></div>';
-// }
-// );
