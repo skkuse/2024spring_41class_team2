@@ -71,6 +71,22 @@ router.get('/getPData', function(req, res, next) {
 });
 
 
+router.get('/getcodeData', function(req, res, next) {
+  connection.query('SELECT * FROM code_data', (queryErr, results) => {
+    if (queryErr) {
+      console.error('Error executing query:', queryErr);
+      return;
+    }
+  
+  const resultsString = JSON.stringify(results);
+
+  res.json(resultsString);
+  //connection.end()
+  });
+  
+});
+
+
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 

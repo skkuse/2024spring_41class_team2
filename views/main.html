@@ -828,14 +828,14 @@
                 <div id="st_wpr">
                     <!-- statistic contents -->
                     <div id="st1">
-                        <div id="st1_t1">Statistics of all users</div>
+                        <div id="st1_t1">Statistics of BeGreen!</div>
                         <div id="st1_t2">Get valuable insights based on your green commitments and user activities.</div>
                     </div>
                     <div id="st2">
-                        <div id="st1_t1">Exercise Statistics</div>
-                        <div style="display:flex; width:800px; height:500px;">
+                        <div id="st1_t1">BeGreen Statistics</div>
+                        <div style="display:flex; height:500px;">
                             <canvas id="chart1" style="flex-grow: 5; width:400px; height:500px;"></canvas>
-                            <canvas id="chart2" style="flex-grow: 5; width:400px; height:500px; margin-left:150px"></canvas>
+                            <canvas id="chart2" style="flex-grow: 5; width:400px; height:500px; margin-left:min(100px,3vw)"></canvas>
                         </div>
                     </div>
                     
@@ -924,7 +924,7 @@
         var users_data = {{ users_data | safe }};
         var users = {{ users | safe }};
         
-        
+        console.log(code_data)
         var userindex=0;
         
     
@@ -1572,7 +1572,7 @@
         }
 
        //update stat
-       function updateStat(week_num,STAT){
+       function updateStat(week_num){
             var usr;
             fetch('/getData')
             .then(response => response.json())
@@ -1632,20 +1632,20 @@
         window.onload = checkWindowSize;
         window.onresize = checkWindowSize;
 
- //input_code
- document.getElementById('file').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file && (file.type === "text/plain" || file.name.endsWith(".java"))) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    editor.setValue(e.target.result);
-                    updateCodeMirrorStyle();
-                };
-                reader.readAsText(file);
-            } else {
-                alert("Please upload a valid .java or .txt file.");
-            }
-        });
+        //input_code
+        document.getElementById('file').addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file && (file.type === "text/plain" || file.name.endsWith(".java"))) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            editor.setValue(e.target.result);
+                            updateCodeMirrorStyle();
+                        };
+                        reader.readAsText(file);
+                    } else {
+                        alert("Please upload a valid .java or .txt file.");
+                    }
+                });
 
         // CodeMirror 인스턴스 생성
         var editor = CodeMirror.fromTextArea(document.getElementById('IC_textarea'), {
@@ -2781,7 +2781,7 @@
                 $("#btn_co").css("background-color",'');
                 $("#btn_pi").css("background-color",'');
 
-                //updateStat(2,STAT)
+                // updateStat(week)
             });
             $("#btn_co").click(function() {
                 $("#ov_wpr").css("display", "none");
@@ -2840,8 +2840,6 @@
             $(title_elements[randomIndex]).show();
             $(elements[randomIndex]).show();
 
-
-            //NOTE : code below must be changed into INPUT CODE section!!
 
             // Workout scripts
             // function updateVisibility() {
@@ -2921,7 +2919,7 @@
             
             // exampledata
             var usrDataList = [
-                '3\n4',
+                '3\n4.4',
                 '4\n5',
                 '2\n5',
                 '3\n4',
@@ -2933,27 +2931,28 @@
             var ptnDataList = [
                 '3\n4',
                 '4\n5',
-                '2\n5',
-                '3\n4',
+                '2.7\n3',
+                '1.9\n1.1',
             ];
 
             // from datapoint to dataset
             var datasets = [];
             for (var i = 0; i < 2; i++) {
                 datasets.push(usrDataList.map(function(data) {
-                    return parseInt(data.split('\n')[i], 10);
+                    return parseFloat(data.split('\n')[i], 10);
                 }));
             }
             var datasets2 = [];
             for (var i = 0; i < 2; i++) {
                 datasets2.push(ptnDataList.map(function(data) {
-                    return parseInt(data.split('\n')[i], 10);
+                    return parseFloat(data.split('\n')[i], 10);
                 }));
             }
             var labelList = [
                 'You',
                 'Entire Users'
             ]
+            console.log(datasets)
             // Make Chart
             // for (var j = 0; j < datasets.length; j++) {
             STAT = new Chart($('#chart1'), {
@@ -2963,8 +2962,8 @@
                     datasets: [{
                         label: labelList[0],
                         data: datasets[0],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: '#79D96A33',
+                        borderColor: '#79D96A',
                         borderWidth: 1
                     },
                     {
@@ -3017,8 +3016,8 @@
                     datasets: [{
                         label: labelList[0],
                         data: datasets2[0],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: '#79D96A33',
+                        borderColor: '#79D96A',
                         borderWidth: 1
                     },
                     {
@@ -3033,8 +3032,14 @@
                 options: {
                     scales: {
                         r: {
-                            grid:{
-                                color:'rgba(255,255,255,0.2)'
+                            min: 0,              
+                            max: 5,             
+                            ticks: {
+                                stepSize: 1,     // 레이블 간격 설정
+                                maxTicksLimit: 6 // 레이블 갯수 고정 (0, 1, 2, 3, 4, 5)
+                            },
+                            grid: {
+                                color: 'rgba(255,255,255,0.2)'
                             }
                         }
                     },
@@ -3049,7 +3054,7 @@
                                 color:'rgba(255,255,255)'
                             },title: {
                                 display: true,
-                                text: 'Commitments Per Patterns',
+                                text: 'Commitments Per Green Patterns',
                                 color: 'rgba(255, 255, 255)',
                                 font:{
                                     size: 20
