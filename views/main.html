@@ -1552,41 +1552,8 @@
             
         }
 
-        //Insertion Now
-        function insertNow(curjob, curage, curgender){
-            $.ajax({
-                type: 'POST',  
-                url: '/insertnow',  
-                data: { userindex: userindex, curjob: curjob, curage: curage, curgender: curgender},
-                contentType: 'application/x-www-form-urlencoded', 
-                success: function(response) {
-                    console.log('서버 응답:', response);
-                },
-                error: function(error) {
-                    console.error('에러 발생:', error);
-                }
-            });
-        }
-        
-        //Insertion Tar
-        function insertTar(tarweight, tarmus){
-            $.ajax({
-                type: 'POST',  
-                url: '/inserttar',  
-                data: { userindex: userindex, tarweight: tarweight, tarmus: tarmus },
-                contentType: 'application/x-www-form-urlencoded', 
-                success: function(response) {
-                    console.log('서버 응답:', response);
-                },
-                error: function(error) {
-                    console.error('에러 발생:', error);
-                }
-            });
-        }
-
         //update stat
         function update_stat(week_num){
-            week_num=0
             fetch('/getcodeData')
             .then(response => response.json())
             .then(data => {
@@ -1623,7 +1590,7 @@
 
             STAT.data.datasets[0].data = dateCounts_user_
             STAT.data.datasets[1].data = dateCounts_
-                
+            console.log(dateCounts_,dateCounts_user_)
 
             STAT.update()
 
@@ -2330,11 +2297,7 @@
             after_mem = after_code_mem
 
 
-            //return {inputCode, originData, refactoredCode, refactorData, dpf, nif, dpo, dbo, ust};
             console.log(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem)
-            
-
-            
 
             insertCode(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem)
             
@@ -2358,10 +2321,11 @@
                     console.error('에러 발생:', error);
                 }
             });
+            update_stat(week)
         }
         
         //demo day = 0614
-        week = 1
+        week = 0
 
         $(document).ready(function() {
 
@@ -2809,6 +2773,8 @@
                 $("#btn_pi").css("background-color",'');
             });
             $("#btn_st").click(function() {
+
+                update_stat(week)
                 $("#ov_wpr").css("display", "none");
                 $("#ca_wpr").css("display", "none");
                 $("#ic_wpr").css("display", "none");
@@ -2822,7 +2788,7 @@
                 $("#btn_co").css("background-color",'');
                 $("#btn_pi").css("background-color",'');
 
-                // updateStat(week)
+                
             });
             $("#btn_co").click(function() {
                 $("#ov_wpr").css("display", "none");

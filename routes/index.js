@@ -205,3 +205,45 @@ router.post('/suggestion', (req, res) => {
   
 
 });
+
+router.post('/insertcode', (req, res) => {
+  const getIdQuery = 'SELECT MAX(id) AS maxId FROM code_data'
+  
+  
+  connection.query(getIdQuery, (error, results, fields) => {
+    if (error) throw error;
+
+    const id = results[0].maxId + 1;
+    const user_id = parseInt(req.body.user_id) + 1; 
+    const pattern_num = req.body.pattern_num;
+    const before_code = req.body.before_code; 
+    const before_code_time = req.body.before_code_time; 
+    const before_code_cpu = req.body.before_code_cpu; 
+    const before_code_mem = req.body.before_code_mem; 
+    const after_code = req.body.after_code; 
+    const after_code_time = req.body.after_code_time; 
+    const after_code_cpu = req.body.after_code_cpu; 
+    const after_code_mem = req.body.after_code_mem; 
+    const created_at = new Date();
+
+
+    const dataToInsert = { id: id, user_id: user_id, pattern_num: pattern_num, before_code: before_code, before_code_time: before_code_time, before_code_cpu: before_code_cpu, before_code_mem: before_code_mem, after_code: after_code, after_code_time: after_code_time, after_code_cpu: after_code_cpu, after_code_mem: after_code_mem, created_at: created_at };
+    const user_query = 'INSERT INTO code_data SET ?';
+    
+    connection.query(user_query, dataToInsert, (error, results, fields) => {
+        if (error) throw error;
+        console.log('success');
+        
+    });
+
+    
+
+
+
+    res.send('success');
+
+    });
+
+  
+
+});
