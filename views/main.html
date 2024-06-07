@@ -91,7 +91,7 @@
 
                                 <div id="ov2_2_t2_wpr" class="ov_content_wpr">
                                     <div id="ov2_2_t2_a" class="ov_content">
-                                        <!-- Target Weight -->
+                                        <!-- CO2 -->
                                         <div class="ov_donut" id="over_donut">
                                             <div class="donut" id="ov_donut_2">
                                                 <div class='wave -three' id="ov_wave_2"></div>
@@ -108,7 +108,7 @@
                                         </div>
                                         
                                         <!-- <span class="tooltiptext">Tooltip text</span> -->
-                                        <div id="weight" style="font-size: 155%; font-weight:bold">1 % decreased!</div>
+                                        <div id="co2" style="font-size: 155%; font-weight:bold">1 % decreased!</div>
                                     </div>
                                     <!-- <div id="ov2_2_t2_b" class="ov_content">Skeletal Muscle Mass
                                         <div class="donut" id="ov_donut_3"> 
@@ -936,7 +936,7 @@
                 userindex=i
             }
         }
-        
+
         userData = users_data[userindex]
 
         $("#nav1_2").text(user)
@@ -1457,20 +1457,20 @@
 
         }
 
-        //update donut chart
-        function updateProgress(week_num){
+        //update chart
+        function update_chart1(week_num){
             fetch('/getData')
             .then(response => response.json())
             .then(data => {
-                
                 userData = JSON.parse(data)[userindex]
-            
             })
             .catch(error => console.error('Error fetching data:', error));
-
+            console.log(userData)
             weekdata = dateList[week_num]
+            
             var cnt = 0
             for(i=0;i<7;i++){
+                console.log(userData[weekdata[i]])
                 if(userData[weekdata[i]]!=null){
                     cnt+=1;
                 }
@@ -1496,47 +1496,60 @@
             return cnt
         }
 
-        //update target tracking
-        function updateProgress2(week_num){
+        //update chart
+        function update_chart2(week_num){
             var usr;
-            fetch('/getPData')
+            fetch('/getcodeData')
             .then(response => response.json())
             .then(data => {
-                
-                userData = JSON.parse(data)[userindex]
-                // TODO: get the CO2 reduction from db
-                $('#weight').text(String(userData['curweight'] - userData['tarweight']) + 'kg decreased') 
-                // $('#muscle').text(String(usr['tarmus'] - usr['curmus']) + 'kg left!') 
-                
-            
+                code_data = JSON.parse(data)
+
             })
             .catch(error => console.error('Error fetching data:', error));
-            // var style = `<style>
-            //     #ov_wave_2 {
-            //         top: ${70 - donut1_progress}%;
-            //     }
-            // </style>`;
-            // $('head').append(style);  
-            // weekdata = dateList[week_num]
-            // var cnt = 0
-            // for(i=0;i<7;i++){
-            //     if(userData[weekdata[i]]!=null){
-            //         cnt+=1;
-            //     }
-            // }
-            // $('#ov2_1_t2_a').text(cnt)
-            // donut1_progress = cnt*130/7; // Your progress value
-            // // Create a dynamic style tag and append to the head
-            // TODO:
-            
-            // var style = `<style>
-            //     #ov_wave_2 {
-            //         top: ${70 - donut1_progress}%;
-            //     }
-            // </style>`;
-            // $('head').append(style);
+            console.log(code_data)
 
-            return cnt
+            weekdata = dateList[week_num]
+
+            const countByUserId = code_data.reduce((acc, item) => {
+                acc[item.user_id] = (acc[item.user_id] || 0) + 1;
+                return acc;
+            }, {});
+
+            const time = code_data.reduce((acc, item) => {
+                const userId = item.user_id;
+                const createdAtDate = item.created_at.split(' ')[0].replace(/-/g, '').slice(2); 
+                
+                const beforeCE = parseFloat(calc_CE(item.before_code_time,item.before_code_mem)) 
+                const afterCE = parseFloat(calc_CE(item.after_code_time,item.after_code_mem)) 
+                // console.log(beforeCE,afterCE)
+
+                if(weekdata.includes(createdAtDate)){
+                    if (!acc[userId]) {
+                        acc[userId] = 0;
+                    }
+                    
+                    acc[userId] += (afterCE-beforeCE);
+                }
+
+                return acc;
+            }, {});
+
+            const resultArray = Object.keys(countByUserId).map(userId => ({
+                user_id: Number(userId),
+                count: countByUserId[userId]
+            }));
+
+            var res = 0;
+            
+            if(time[userindex+1]){
+                res = parseFloat(time[userindex+1]).toFixed(2)
+            }
+
+            // TODO: get the CO2 reduction from db CHECK : (user_index = userindex+1)
+            $('#co2').text(String(res) + 'kg decreased') 
+                
+            
+            
         }
 
         //Insertion Now
@@ -1571,63 +1584,91 @@
             });
         }
 
-       //update stat
-       function updateStat(week_num){
-            var usr;
-            fetch('/getData')
+        //update stat
+        function update_stat(week_num){
+            week_num=0
+            fetch('/getcodeData')
             .then(response => response.json())
             .then(data => {
-                
-                usr = JSON.parse(data)[userindex]
-                weekdata = dateList[week_num]
-                
-                usrDataList=[]
-                for(i=0;i<7;i++){
-                    if(usr[weekdata[i]]!=null){
-                        //console.log(usr[weekdata[i]])
-                        usrDataList.push(usr[weekdata[i]])
-                    }
-                    else{
-                        usrDataList.push('-1\\n-1\\n-1\\n-1\\nGood\\nGood')
-                    }
-                    
-                }
-                
-                //console.log(usrDataList)
-
-                 // from datapoint to dataset
-                var datasets = [];
-                for (var i = 0; i < 4; i++) {
-                    datasets.push(usrDataList.map(function(data) {
-                        return parseInt(data.split('\\n')[i], 10)+1;
-                    }));
-                }
-                //console.log(datasets)
-                var labelList = [
-                    'Exercise Duration',
-                    'Exercise Intensity',
-                    'Physical Condition',
-                    'Mood of the day'
-                ]
-
-                for(i=0;i<4;i++){
-                    STAT.data.datasets[i].data = datasets[i]
-                }
-                
-               
-            
-                STAT.update()
-            
+                code_data = JSON.parse(data)
 
             })
-            
             .catch(error => console.error('Error fetching data:', error));
-              
+            weekdata = dateList[week_num]
+            targetUserId = userindex+1
+            const filteredData = code_data.filter(item => item.user_id === targetUserId);
+            const dateCounts = code_data.reduce((acc, item) => {
+                const date = item.created_at.split(' ')[0].replace(/-/g, '').slice(2); // '240606' 형식으로 변환
+                if (weekdata.includes(date)) {
+                    if (!acc[date]) {
+                        acc[date] = 0;
+                    }
+                    acc[date] += 1;
+                }
+                return acc;
+            }, {});
+            const dateCounts_user = filteredData.reduce((acc, item) => {
+                const date = item.created_at.split(' ')[0].replace(/-/g, '').slice(2); // '240606' 형식으로 변환
+                if (weekdata.includes(date)) {
+                    if (!acc[date]) {
+                        acc[date] = 0;
+                    }
+                    acc[date] += 1;
+                }
+                return acc;
+            }, {});
 
-            return STAT
+            const dateCounts_ = weekdata.map(date => dateCounts[date] / users.length || 0);
+            const dateCounts_user_ = weekdata.map(date => dateCounts_user[date] || 0);
+
+            STAT.data.datasets[0].data = dateCounts_user_
+            STAT.data.datasets[1].data = dateCounts_
+                
+
+            STAT.update()
+
+            // 패턴별 적용 횟수 계산
+            const patternCounts = [0, 0, 0, 0];
+            const patternCounts_user = [0, 0, 0, 0];
+
+            code_data.forEach(item => {
+                for (let i = 0; i < 4; i++) {
+                    if (item.pattern_num[i] === '1') {
+                        patternCounts[i] += 1 / users.length;
+                    }
+                }
+            });  
+
+            filteredData.forEach(item => {
+                for (let i = 0; i < 4; i++) {
+                    if (item.pattern_num[i] === '1') {
+                        patternCounts_user[i] += 1;
+                    }
+                }
+            });  
+
+            console.log(patternCounts_user,patternCounts)
+
+            const maxVal1 = Math.max(...patternCounts);
+            const maxVal2 = Math.max(...patternCounts_user);
+            maxVal = maxVal2
+            if(maxVal1>maxVal2){
+                maxVal = maxVal1
+            }
+            
+            function normalize(arr) {
+                return arr.map(val => (maxVal === 0 ? 0 : (val / maxVal) * 5));
+            }
+
+            const normalizedPatternCounts = normalize(patternCounts);
+            const normalizedPatternCounts_user = normalize(patternCounts_user);
+
+            console.log(normalizedPatternCounts_user, normalizedPatternCounts);
+
+            STAT2.data.datasets[0].data = normalizedPatternCounts_user;
+            STAT2.data.datasets[1].data = normalizedPatternCounts;
+
         }
-
-
 
         window.onload = checkWindowSize;
         window.onresize = checkWindowSize;
@@ -2325,8 +2366,8 @@
         $(document).ready(function() {
 
             //Initialization
-            cnt = updateProgress(week)
-            updateProgress2(week)
+            update_chart1(week)
+            update_chart2(week)
             updateDiary(0)
         
 
@@ -2736,8 +2777,8 @@
                 $("#btn_co").css("background-color",'');
                 $("#btn_pi").css("background-color",'');
 
-                cnt = updateProgress(week)
-                updateProgress2(week)
+                update_chart1(week)
+                update_chart2(week)
             });
             $("#btn_cal").click(function() {
                 $("#ov_wpr").css("display", "none");
@@ -2812,21 +2853,21 @@
                 $("#btn_pi").css("background-color",'#79D96A35');
             });
 
-        
+            
 
-            // let donutAnimation = startDonutAnimation();
-            var donut1_progress = cnt*100/7; // Your progress value
-            // Create a dynamic style tag and append to the head
-            TODO:
-            /*
-            var style = `<style>
-                #ov_donut_1:before {
-                    background: conic-gradient(#79D96AA5 0% ${donut1_progress}%, white ${donut1_progress}% 100%);
-                }
-            </style>`;
+            // // let donutAnimation = startDonutAnimation();
+            // var donut1_progress = cnt*100/7; // Your progress value
+            // // Create a dynamic style tag and append to the head
+            // TODO:
+            // /*
+            // var style = `<style>
+            //     #ov_donut_1:before {
+            //         background: conic-gradient(#79D96AA5 0% ${donut1_progress}%, white ${donut1_progress}% 100%);
+            //     }
+            // </style>`;
 
-            $('head').append(style);
-            */
+            // $('head').append(style);
+            // */
 
             $('.ov3_stat').hide();
             $('#ov3_1_t1').hide();
@@ -2952,9 +2993,9 @@
                 'You',
                 'Entire Users'
             ]
-            console.log(datasets)
+
             // Make Chart
-            // for (var j = 0; j < datasets.length; j++) {
+            // console.log(datasets)
             STAT = new Chart($('#chart1'), {
                 type: 'line',
                 data: {
@@ -3070,7 +3111,7 @@
                 }
             });
             
-            //updateStat(2,STAT)
+            update_stat(week,STAT,STAT2)
 
             //contact part
 

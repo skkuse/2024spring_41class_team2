@@ -55,20 +55,6 @@ router.get('/getData', function(req, res, next) {
 });
 
 
-router.get('/getPData', function(req, res, next) {
-  connection.query('SELECT * FROM users', (queryErr, results) => {
-    if (queryErr) {
-      console.error('Error executing query:', queryErr);
-      return;
-    }
-  
-  const resultsString = JSON.stringify(results);
-  
-  res.json(resultsString);
-  //connection.end()
-  });
-  
-});
 
 
 router.get('/getcodeData', function(req, res, next) {
