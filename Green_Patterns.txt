@@ -1,0 +1,14 @@
+1. 중복된 함수 호출 (Duplicate Function Call Pattern)
+    arr.size()와 같이 반복적으로 호출되는 함수를 변수에 저장한다.
+    이를 통해 불필요하게 호출되는 함수의 횟수를 줄여 메모리 사용량과 실행시간을 줄인다.
+2. 다중 If문 사용 (Nested If Pattern)
+    다중 If문은 &&를 통해서 하나의 If문으로 나타낼 수 있다.
+    이를 통해 컴파일러가 If문을 최적화하는 과정에서 메모리 사용량과 실행시간을 줄인다.
+3. 중복된 객체 선언 (Duplicate Object Decelaration Pattern)
+    for문 내에서 객체를 불필요하게 반복적으로 선언하는 패턴을 for문밖에서 객체를 선언한 뒤 객체의 함수만 반복해서 사용한다.
+    불필요한 반복적인 객체의 선언을 줄임으로써 메모리 사용량과 객체 선언으로 발생하는 실행시간을 줄인다.
+4. 긴 If Else If문 사용(Switch Pattern)
+    If Else If를 6번 이상 사용하는 경우에 Switch를 사용해준다.
+    컴파일러의 최적화 과정에서 발생하는 메모리 사용량과 실행시간을 줄인다.
+Extra. 디버깅용 출력 (Debugging Stdout Pattern)
+    디버깅용 출력문을 주석 처리한다.
