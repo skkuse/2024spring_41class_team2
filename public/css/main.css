@@ -489,7 +489,7 @@
     min-height: max(150px, 25vh);
     border-radius: 30px;
     padding: 20px;
-    margin: 20px;
+    margin: 20px 0px 20px 20px;
     background-color: #79D96A7f;
     display: flex;
     flex-direction: column;
@@ -554,7 +554,7 @@
     border-radius: 30px;
     padding: 20px;
     margin: 0px 0px 0px 20px;
-    background-image: linear-gradient(to right, #faa937aa,rgba(0, 0, 0, 0.95)),url('/assets/wo_img2.jpg');
+    background-image: linear-gradient(to right, #79D96Aaa,rgba(0, 0, 0, 0.95)),url('/assets/wo_img2.jpg');
     background-size: cover;
     overflow: hidden;
     background-position: center;
@@ -879,7 +879,7 @@
     border-bottom-right-radius: 20px;
 }
 #ca_detail_caremi_t1{
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top: 30px;
     margin-bottom: 3px;
     color: white;
@@ -1099,6 +1099,25 @@
 }
 
 
+#ca_res_before form .CodeMirror {
+    height: 200px !important;
+    width: calc(100% - 60px) !important;
+}
+
+
+#ca_res_after form .CodeMirror {
+    height: 200px !important;
+    width: calc(100% - 60px) !important;
+}
+
+#ca_res_before_CE, #ca_res_after_CE{
+    color: white;
+    font-size: 19px;
+    font-family: "Raleway";
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 10px;
+}
 
 
 /* statistics */

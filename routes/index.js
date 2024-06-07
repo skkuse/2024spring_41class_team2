@@ -119,8 +119,8 @@ router.post('/', (req, res) => {
 
 });
 
-router.post('/main', (req, res) => {
-  const userindex = req.body.userindex; 
+router.post('/cal', (req, res) => {
+  const userindex = req.body.userindex + 1; 
   const date = req.body.date; 
   const contents = req.body.contents; 
 
