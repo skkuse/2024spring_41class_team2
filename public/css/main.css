@@ -456,13 +456,6 @@
     /* border: 3px solid white; */
 }
 
-#profile_img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    /* border: 3px solid white; */
-}
-
 #account_info_container {
     display: flex;
     flex: 6;
@@ -471,6 +464,14 @@
     padding: 20px;
     color: white;
     font-size: 1.2em;
+}
+
+#container1 {
+    margin-right: 100px;
+    border-style:none solid none none;
+    border-right-color:white;
+    border-right-width:3px;
+    padding: 0px 50px 0px 0px;
 }
 
 #person_name {
