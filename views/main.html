@@ -765,13 +765,13 @@
                     </div>
                     <div id="co2">
                         <div id="co2_t1" class="personal_stat">
-                            <img src="/assets/co_img_man.png" alt="Jinho Park">
+                            <img src="/assets/co_img2.png" alt="Jinho Park">
                             <br> Jinho Park <br>jinho142857@gmail.com
                             <br> Suwon, Korea
                             <div class="co2_bio"></div>
                         </div>
                         <div id="co2_t2" class="personal_stat">
-                            <img src="/assets/co_img_man.png" alt="Jihwan Kim">
+                            <img src="/assets/co_img3.png" alt="Jihwan Kim">
                             <br> Jihwan Kim<br>navvh3@gmail.com
                             <br> Suwon, Korea
                             <div class="co2_bio"></div>
@@ -835,7 +835,7 @@
         //console.log(userindex)
         $("#person_name").text(user)
         // TODO: get the tier info from db
-        $("#tier_badge").text("Bronze")
+        // $("#tier_badge").text("Bronze")
 
         // Initially hide the pi-container-2
         $('.pi-container-2').hide();
@@ -965,6 +965,46 @@
                     ['240728','240729','240730','240731','240801','240802','240803']]
 
         DAY=0
+
+        function updateTier() {
+            fetch('/getcodeData')
+            .then(response => response.json())
+            .then(data => {
+                code_data = JSON.parse(data)
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+            userCodeCount = 0;
+            for (i = 0; i < code_data.length; i++) {
+                if (code_data[i]['user_id'] == userindex + 1) {
+                    userCodeCount++;
+                }
+            }
+
+            if (userCodeCount < 10) {
+                $('#tier_badge').text('Bronze');
+                $('#tier_badge').css('color', '#b87f0d');
+                $('#profile_img').attr('src', '/assets/bronze.png');
+            } else if (userCodeCount < 20) {
+                $('#tier_badge').text('Silver');
+                $('#tier_badge').css('color', '#D3D3D3');
+                $('#profile_img').attr('src', '/assets/silver.png');
+            } else if (userCodeCount < 30) {
+                $('#tier_badge').text('Gold');
+                $('#tier_badge').css('color', '#FFD700');
+                $('#profile_img').attr('src', '/assets/gold.png');
+            } else{
+                $('#tier_badge').text('Platinum');
+                $('#tier_badge').css('color', '#dadfe6');
+                $('#profile_img').attr('src', '/assets/platinum.png');
+            }
+                
+        }
+
+        updateTier();
+
+
 
         function updateDiary(week_num) {
             fetch('/getcodeData')
@@ -2000,6 +2040,8 @@
             });
             update_stat(week)
             updateDiary(week)
+            // update tier
+            updateTier()
         }
         
         //demo day = 0614
@@ -2011,6 +2053,7 @@
             update_chart1(week)
             update_chart2(week)
             updateDiary(week)
+            updateTier()
         
 
             //Input code
@@ -2074,6 +2117,7 @@
 
             //Calendar part
             updateDiary(week)
+            // updateTier()
 
 
             $('#ca_sun_t1, #ca_mon_t1, #ca_tue_t1, #ca_wed_t1, #ca_thu_t1, #ca_fri_t1, #ca_sat_t1').click(function () {
