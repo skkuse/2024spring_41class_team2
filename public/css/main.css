@@ -456,10 +456,17 @@
     /* border: 3px solid white; */
 }
 
+#profile_img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    /* border: 3px solid white; */
+}
+
 #account_info_container {
     display: flex;
     flex: 6;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     padding: 20px;
     color: white;
@@ -468,12 +475,13 @@
 
 #person_name {
     margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 2.2em;
     font-weight: bold;
 }
 
 #tier_badge {
     /* border: 2px solid white; */
+    font-size: 1.5em;
     padding: 10px 0px;
     border-radius: 5px;
 }
@@ -530,7 +538,7 @@
     border: 3px solid #79D96A !important;
 }
 .submitBtn {
-    margin-top: 5%;
+    margin-top: 13%;
     padding: 10px 20px;
     border: none;
     background-color: white;
