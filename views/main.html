@@ -325,7 +325,7 @@
                             <div style="display: flex;">
                                 <div id="ca_mo" style="color: white">&nbsp;June</div>
                                 <div id="ca_yr" style="color: #79D96A">&nbsp;2024</div>
-                                <div id="ca_we" style="color: white">&nbsp;1st</div>
+                                <div id="ca_we" style="color: white">&nbsp;2nd</div>
                             </div>
                             <div id="ca_arrows" style="display: flex;">
                                 <button id="prev_w"><i class="fas fa-chevron-left"></i></button>
@@ -338,7 +338,7 @@
 
                         <div id="ca_detail_caremi">
                             <div id="ca_detail_caremi_t1">
-                                Sun 06. 2 
+                                Sun 06. 9 
                             </div>
 
                             <div id="ca_res_before">
@@ -368,7 +368,7 @@
                         <div id="ca_detail_wr">
 
                             <div id="ca_detail_t1">
-                                Sun 06. 2 
+                                Sun 06. 9 
                             </div>
 
                             <div id="detail_TC">
@@ -400,7 +400,7 @@
                         <!-- abstract -->
                         <div id="ca_sun">
                             <div id="ca_sun_t1">
-                                Sun 06. 2 
+                                Sun 06. 9 
                             </div>
                             <!-- if data exists -->
                             <div id="ca_sun_abbr">
@@ -449,7 +449,7 @@
 
                         <div id="ca_mon">
                             <div id="ca_mon_t1">
-                                Mon 06. 3
+                                Mon 06. 10
                             </div>
                             <div id="ca_mon_abbr">
 
@@ -496,7 +496,7 @@
 
                         <div id="ca_tue">
                             <div id="ca_tue_t1">
-                                Tue 06. 4
+                                Tue 06. 11
                             </div>
                             <div id="ca_tue_abbr">
 
@@ -543,7 +543,7 @@
 
                         <div id="ca_wed">
                             <div id="ca_wed_t1">
-                                Wed 06. 5
+                                Wed 06. 12
                             </div>
                             <div id="ca_wed_abbr">
 
@@ -590,7 +590,7 @@
 
                         <div id="ca_thu">
                             <div id="ca_thu_t1">
-                                Thu 06. 6
+                                Thu 06. 13
                             </div>
                             <div id="ca_thu_abbr">
 
@@ -637,7 +637,7 @@
 
                         <div id="ca_fri">
                             <div id="ca_fri_t1">
-                                Fri 06. 7
+                                Fri 06. 14
                             </div>
                             <div id="ca_fri_abbr">
 
@@ -684,7 +684,7 @@
 
                         <div id="ca_sat">
                             <div id="ca_sat_t1">
-                                Sat 06. 8
+                                Sat 06. 15
                             </div>
                             <div id="ca_sat_abbr">
 
@@ -856,6 +856,16 @@
 
         // Initially hide the pi-container-2
         $('.pi-container-2').hide();
+
+        if (users[userindex]['job'] != null) {
+            $('#job').text('JOB: ' + users[userindex]['job']);
+        }
+        if (users[userindex]['age'] != null) {
+            $('#age').text('AGE: ' + users[userindex]['age']);
+        }
+        if (users[userindex]['gender'] != null) {
+            $('#gender').text('GENDER: ' + users[userindex]['gender']);
+        }
 
         function checkWindowSize() {
             var sun_t1 = document.getElementById("sun_t1");
@@ -1061,8 +1071,18 @@
                 var inputString = userData[date];
                 var stringArray = inputString.split('\\n');
 
-                $('#' + dayId + '_cmm').text(stringArray[0]);
-                $('#' + dayId + '_sch').text(stringArray[1]);
+                if (stringArray[0].length > 20) {
+                    $('#' + dayId + '_cmm').text(stringArray[0].slice(0, 16) + '...');
+                }
+                else {
+                    $('#' + dayId + '_cmm').text(stringArray[0]);
+                }
+                if (stringArray[1].length > 20) {
+                    $('#' + dayId + '_sch').text(stringArray[1].slice(0, 16) + '...');
+                }
+                else {
+                    $('#' + dayId + '_sch').text(stringArray[1]);
+                }
 
                 $('#ca_' + dayId + '_abbr').css({
                     'visibility': 'visible'
@@ -2020,14 +2040,14 @@
         }
         
         //demo day = 0614
-        week = 0
+        week = 1
 
         $(document).ready(function() {
 
             //Initialization
+            updateDiary(week)
             update_chart1(week)
             update_chart2(week)
-            updateDiary(week)
         
 
             //Input code
@@ -2720,8 +2740,8 @@
 
             //we made Dec 2nd ~ Feb 1st (9weeks, 63days)
             var canClickPrevNext = 1
-            var week_num = 0
-            var Newdate = new Date('2024-06-01');
+            var week_num = 1
+            var Newdate = new Date('2024-06-08');
 
             var Dateinfo = [['June','2024','1st'],
                             ['June','2024','2nd'],
@@ -3221,16 +3241,28 @@
                 console.log('Input 3:', value3);
 
                 // Update the text with the entered values
-                $('#job').text(value1);
-                $('#age').text(value2);
-                $('#gender').text(value3);
+                $('#job').text('JOB: ' + value1);
+                $('#age').text('AGE: ' + value2);
+                $('#gender').text('GENDER: ' + value3);
+                $.ajax({
+                    type: 'POST',  
+                    url: '/info',  
+                    data: { userindex: userindex, job: value1, age: value2, gender: value3 },
+                    contentType: 'application/x-www-form-urlencoded', 
+                    success: function(response) {
+                        //console.log('서버 응답:', response);
+                    },
+                    error: function(error) {
+                        //console.error('에러 발생:', error);
+                    }
+                });
 
                 // Clear the text inputs
                 $('#job2').val('');
                 $('#age2').val('');
                 $('input[name="gender2"]').prop('checked', false);
 
-                insertNow(value1, value2,value3)
+                //insertNow(value1, value2,value3)
                 
             });
 

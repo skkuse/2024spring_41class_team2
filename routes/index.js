@@ -247,3 +247,23 @@ router.post('/insertcode', (req, res) => {
   
 
 });
+
+router.post('/info', (req, res) => {
+  const userindex = req.body.userindex; 
+  const job = req.body.job; 
+  const age = req.body.age;
+  const gender = req.body.gender; 
+
+  const UpdateQuery = 'UPDATE users SET job = ?, age = ?, gender = ? WHERE id = ?';
+  const queryParams = [job, age, gender, userindex];
+
+  connection.query(UpdateQuery, queryParams, (error, results, fields) => {
+    if (error) {
+      return;
+    }
+
+    console.log('success');
+    res.send('success');
+  });
+});
+
