@@ -4,6 +4,9 @@ CREATE TABLE `users` (
   `email` text DEFAULT NULL,
   `password` text DEFAULT NULL,
   `suggestions` text DEFAULT NULL,
+  `job` text DEFAULT NULL,
+  `age` text DEFAULT NULL,
+  `gender` text DEFAULT NULL,
   `created_at` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

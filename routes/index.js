@@ -54,6 +54,20 @@ router.get('/getData', function(req, res, next) {
   
 });
 
+router.get('/getInfo', function(req, res, next) {
+  connection.query('SELECT * FROM users', (queryErr, results) => {
+    if (queryErr) {
+      console.error('Error executing query:', queryErr);
+      return;
+    }
+  
+  const resultsString = JSON.stringify(results);
+
+  res.json(resultsString);
+  //connection.end()
+  });
+  
+});
 
 
 
@@ -141,49 +155,6 @@ router.post('/cal', (req, res) => {
 
 });
 
-router.post('/insertnow', (req, res) => {
-  const userindex = req.body.userindex; 
-  const curweight = req.body.curweight; 
-  const curmus = req.body.curmus; 
-
-  const UpdateQuery = 'UPDATE users SET curweight = ?, curmus = ? WHERE id = ?';
-  const queryParams = [curweight, curmus, userindex];
-
-  connection.query(UpdateQuery, queryParams, (error, results, fields) => {
-    if (error) {
-      
-      return;
-    }
-
-    console.log('success');
-    res.send('success');
-  });
-
-  
-
-});
-
-router.post('/inserttar', (req, res) => {
-  const userindex = req.body.userindex; 
-  const tarweight = req.body.tarweight; 
-  const tarmus = req.body.tarmus; 
-
-  const UpdateQuery = 'UPDATE users SET tarweight = ?, tarmus = ? WHERE id = ?';
-  const queryParams = [tarweight, tarmus, userindex];
-
-  connection.query(UpdateQuery, queryParams, (error, results, fields) => {
-    if (error) {
-      
-      return;
-    }
-
-    console.log('success');
-    res.send('success');
-  });
-
-  
-
-});
 
 router.post('/suggestion', (req, res) => {
   const userindex = req.body.userindex; 
@@ -247,3 +218,24 @@ router.post('/insertcode', (req, res) => {
   
 
 });
+
+router.post('/info', (req, res) => {
+  const userindex = parseInt(req.body.userindex) + 1; 
+  const job = req.body.job; 
+  const age = req.body.age;
+  const gender = req.body.gender; 
+
+  const UpdateQuery = 'UPDATE users SET job = ?, age = ?, gender = ? WHERE id = ?';
+  const queryParams = [job, age, gender, userindex];
+
+  console.log(job, age, gender, userindex)
+  connection.query(UpdateQuery, queryParams, (error, results, fields) => {
+    if (error) {
+      return;
+    }
+
+    console.log('success');
+    res.send('success');
+  });
+});
+
