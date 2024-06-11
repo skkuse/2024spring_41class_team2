@@ -269,8 +269,8 @@ def read_file(file_path):
         return file.read()
 
 # Buggy.java와 After.java 파일 경로
-buggy_file_path = './buggy.java'
-fixed_file_path = './fixed.java'
+buggy_file_path = './Buggy.java'
+fixed_file_path = './Fixed.java'
 
 # 파일 내용 읽기
 buggy_code = read_file(buggy_file_path)

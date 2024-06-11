@@ -3,13 +3,12 @@ import java.util.Random;
 
 public class Buggy {
     public static void main(String[] args) {
-        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<String> arr = new ArrayList<>(10000);
         for(int i = 0; i < arr.size(); i++) {
             Random k = new Random();
             int num = k.nextInt(10);
             System.out.println(num);
         }
-
         
         int m = 1;
         int res = 0;
