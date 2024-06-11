@@ -598,6 +598,8 @@
     color: white;
     text-align: left;
 }
+
+
 .ic2_title_2{
     height: 40px;
     padding: 0px;
@@ -853,7 +855,43 @@
     height: 190%;
 }
 
+#ic_res_patterns {
+    background-color: #79D96A35; /* Semi-transparent green */
+    border-radius: 10px;
+    padding: 5px;
+    /* margin: 20px; */
+    color: white;
+    height: 190px !important;
+    margin-top: 15px;
+    margin-left: 20px;
+}
 
+#resulted_pattern {
+    font-size: 17px;
+    font-family: "Raleway";
+    font-weight: bold;
+    margin-left: 20px;
+    /* margin-top: 10px; */
+}
+
+#ic_res_after_pattern {
+    margin-left: 20px;
+    margin-top: 3px;
+}
+
+.pattern-title {
+    font-size: 17px;
+    font-family: "Raleway";
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.pattern-description {
+    font-size: 14px;
+    font-family: "Raleway";
+    /* margin-top: 5px; */
+    /* margin-bottom: 15px; */
+}
 
 
 /* calendar */

@@ -254,6 +254,7 @@
                         </div>
                         <div id="ic2">
                             <div id="ic2_0" class="ic2_title_1">Input your own java code!</div>
+
                             <div id="ic2_1" class="ic2_title_2" style="display: flex; flex-direction: row;">
                                 <div>
                                     Upload your code ( .txt or .java ): 
@@ -317,6 +318,25 @@
                                 Download
                             </button>
                         </div>
+
+                        <!-- Add Patterns -->
+                        <div id="ic_res_patterns">
+                            <div id="ic_res_pattern" class="ic2_title_pattern">
+                                <p id="resulted_pattern">resulted_pattern:</p>
+                            </div>
+                            <div id="ic_res_after_pattern">
+                                <p id="p1" class="pattern-title">P1. Duplicate Function Call Pattern</p>
+                                <p id="p1_s" class="pattern-description">Store functions that are repeatedly called, such as arr.size(), in a variable.</p>
+                                <p id="p2" class="pattern-title">P2. Nested If Pattern</p>
+                                <p id="p2_s" class="pattern-description">Multiple if statements can be combined into a single if statement using &&.</p>
+                                <p id="p3" class="pattern-title">P3. Duplicate Object Declaration Pattern</p>
+                                <p id="p3_s" class="pattern-description">Instead of repeatedly declaring an object inside a for loop, declare the object outside the loop and use its functions repeatedly.</p>
+                                <p id="p4" class="pattern-title">P4. Switch Pattern</p>
+                                <p id="p4_s" class="pattern-description">When using if-else if statements six or more times, switch to a switch statement.</p>
+                            </div>
+                        </div>
+                        
+
                     </div>
 
                 </div>
@@ -750,6 +770,21 @@
                             <canvas id="chart1" style="flex-grow: 5; width:400px; height:500px;"></canvas>
                             <canvas id="chart2" style="flex-grow: 5; width:400px; height:500px; margin-left:min(100px,3vw)"></canvas>
                         </div>
+                        <div style="display:flex; height:300px;">
+                            <div id="empty_patterns" style="flex-grow: 5; width:400px; height:300px;">
+                            </div>
+                            <div id="patterns" style="flex-grow: 5; margin-top: 20px; max-width: 500px;">
+                                <p style="color: white">P1. Duplicate Function Call Pattern</p>
+                                <!-- <p style="color: white">Store functions that are repeatedly called, such as arr.size(), in a variable.</p> -->
+                                <p style="color: white">P2. Nested If Pattern</p>
+                                <!-- <p style="color: white">Multiple if statements can be combined into a single if statement using &&.</p> -->
+                                <p style="color: white">P3. Duplicate Object Declaration Pattern</p>
+                                <!-- <p style="color: white">Instead of repeatedly declaring an object inside a for loop, declare the object outside the loop and use its functions repeatedly. </p> -->
+                                <p style="color: white">P4. Switch Pattern</p>
+                                <!-- <p style="color: white">When using if-else if statements six or more times, switch to a switch statement.</p> -->
+                            </div>
+                        </div>
+            
                     </div>
                     
                 </div>
@@ -1903,7 +1938,7 @@
                 method: 'POST', // HTTP 메서드
                 headers: {
                     'Content-Type' :'application/json',
-                    'x-rapidapi-key' : '388de00a88msh38d910d235013bfp1631b9jsn288db47d86d4',
+                    'x-rapidapi-key' : '397b183935mshe1a46aff9dce3bep1e5a00jsnd604c87d2da4',
                     'x-rapidapi-host' : 'online-code-compiler.p.rapidapi.com',
                 },
                 body: JSON.stringify(data) // 데이터를 JSON 문자열로 변환하여 요청 본문에 포함
@@ -1935,6 +1970,9 @@
         
         before_CE = ""
         after_CE = ""
+
+        // pattern num
+        pattern_num = ""
 
         async function isvalid() {
             // return true
@@ -1991,7 +2029,8 @@
             // console.log("============================");
 
             //we use 4 patterns -> 0000 ~ 1111
-            var pattern_num = {dpf, nif, dpo, ust}
+            // var pattern_num = {dpf, nif, dpo, ust}
+            pattern_num = {dpf,nif,dpo,ust}
             var temp = ""
             if(dpf){
                 temp+="1"
@@ -2041,6 +2080,22 @@
             return true
 
         }
+
+         // Function to update the resulted patterns
+         function updatePatterns(pattern_num) {
+            const patterns = ["P1", "P2", "P3", "P4"];
+            let detectedPatterns = [];
+
+            for (let i = 0; i < pattern_num.length; i++) {
+                if (pattern_num[i] === '1') {
+                    detectedPatterns.push(patterns[i]);
+                }
+            }
+
+            // Updating the HTML content
+            const resultElement = document.getElementById('resulted_pattern');
+            resultElement.innerHTML = 'Detected Pattern: ' + detectedPatterns.join(', ');
+        }
         //Insert code 
         
         function insertCode(pattern_num,before_code,before_code_time,before_code_cpu,before_code_mem,after_code,after_code_time,after_code_cpu,after_code_mem){
@@ -2084,7 +2139,7 @@
                                 $('#ic_res').fadeIn(400);
                                 set_before()
                                 set_after()
-
+                                updatePatterns(pattern_num);
                                 
                             });
 
