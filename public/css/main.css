@@ -861,7 +861,7 @@
     padding: 5px;
     /* margin: 20px; */
     color: white;
-    height: 190px !important;
+    height: 180px !important;
     margin-top: 15px;
     margin-left: 20px;
 }
@@ -880,14 +880,14 @@
 }
 
 .pattern-title {
-    font-size: 17px;
+    font-size: 15px;
     font-family: "Raleway";
     font-weight: bold;
     margin-top: 3px;
 }
 
 .pattern-description {
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Raleway";
     /* margin-top: 5px; */
     /* margin-bottom: 15px; */
@@ -897,6 +897,7 @@
 /* calendar */
 #ca{
     margin: 0px 0px 0px 20px;
+    height: 1000px;
 }
 #ca_banner{
     display: flex;
@@ -1285,3 +1286,7 @@ canvas {
     width: 30%;
     height: 30%;
 }
+
+#FB_textarea::placeholder{
+    color: #bcc0b9;
+    }
