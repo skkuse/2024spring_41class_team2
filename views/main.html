@@ -349,7 +349,7 @@
                             <div style="display: flex;">
                                 <div id="ca_mo" style="color: white">&nbsp;June</div>
                                 <div id="ca_yr" style="color: #79D96A">&nbsp;2024</div>
-                                <div id="ca_we" style="color: white">&nbsp;2nd</div>
+                                <div id="ca_we" style="color: white">&nbsp;4th</div>
                             </div>
                             <div id="ca_arrows" style="display: flex;">
                                 <button id="prev_w"><i class="fas fa-chevron-left"></i></button>
@@ -424,7 +424,7 @@
                         <!-- abstract -->
                         <div id="ca_sun">
                             <div id="ca_sun_t1">
-                                Sun 06. 9 
+                                Sun 06. 23
                             </div>
                             <!-- if data exists -->
                             <div id="ca_sun_abbr">
@@ -473,7 +473,7 @@
 
                         <div id="ca_mon">
                             <div id="ca_mon_t1">
-                                Mon 06. 10
+                                Mon 06. 24
                             </div>
                             <div id="ca_mon_abbr">
 
@@ -520,7 +520,7 @@
 
                         <div id="ca_tue">
                             <div id="ca_tue_t1">
-                                Tue 06. 11
+                                Tue 06. 25
                             </div>
                             <div id="ca_tue_abbr">
 
@@ -567,7 +567,7 @@
 
                         <div id="ca_wed">
                             <div id="ca_wed_t1">
-                                Wed 06. 12
+                                Wed 06. 26
                             </div>
                             <div id="ca_wed_abbr">
 
@@ -614,7 +614,7 @@
 
                         <div id="ca_thu">
                             <div id="ca_thu_t1">
-                                Thu 06. 13
+                                Thu 06. 27
                             </div>
                             <div id="ca_thu_abbr">
 
@@ -661,7 +661,7 @@
 
                         <div id="ca_fri">
                             <div id="ca_fri_t1">
-                                Fri 06. 14
+                                Fri 06. 28
                             </div>
                             <div id="ca_fri_abbr">
 
@@ -708,7 +708,7 @@
 
                         <div id="ca_sat">
                             <div id="ca_sat_t1">
-                                Sat 06. 15
+                                Sat 06. 29
                             </div>
                             <div id="ca_sat_abbr">
 
@@ -1036,7 +1036,9 @@
 
         updateTier();
 
-        function updateDiary(week_num) {
+        function updateDiary(week) {
+
+            console.log(55555, week)
             fetch('/getcodeData')
             .then(response => response.json())
             .then(data => {
@@ -1054,7 +1056,7 @@
             console.log(usersCode);
 
 
-            const weekData = dateList[week_num];
+            const weekData = dateList[week];
             console.log(weekData);
 
             fetch('/getData')
@@ -1139,7 +1141,7 @@
 
         
         //DB insertion 
-        function insertUserCalendar(week_num,Newdate){
+        function insertUserCalendar(week,Newdate){
             console.log($('#TC_textarea').val(),$('#SC_textarea').val())
 
             date=String(Newdate.getYear()).slice(1,3) + (String(parseInt(Newdate.getMonth())+1).length==1?'0':'') + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
@@ -1163,7 +1165,7 @@
         }
 
         //update chart
-        function update_chart1(week_num){
+        function update_chart1(week){
             fetch('/getData')
             .then(response => response.json())
             .then(data => {
@@ -1171,7 +1173,7 @@
             })
             .catch(error => console.error('Error fetching data:', error));
             // console.log(userData)
-            weekdata = dateList[week_num]
+            weekdata = dateList[week]
             
             
 
@@ -1182,7 +1184,7 @@
 
             })
             .catch(error => console.error('Error fetching data:', error));
-            weekdata = dateList[week_num]
+            weekdata = dateList[week]
             targetUserId = userindex+1
             const filteredData = code_data.filter(item => item.user_id === targetUserId);
             const dateCounts_user = filteredData.reduce((acc, item) => {
@@ -1230,7 +1232,7 @@
         }
 
         //update chart
-        function update_chart2(week_num){
+        function update_chart2(week){
             var usr;
             fetch('/getcodeData')
             .then(response => response.json())
@@ -1241,7 +1243,7 @@
             .catch(error => console.error('Error fetching data:', error));
             // console.log(code_data)
 
-            weekdata = dateList[week_num]
+            weekdata = dateList[week]
 
             const countByUserId = code_data.reduce((acc, item) => {
                 acc[item.user_id] = (acc[item.user_id] || 0) + 1;
@@ -1286,7 +1288,7 @@
         }
 
         //update stat
-        function update_stat(week_num){
+        function update_stat(week){
             fetch('/getcodeData')
             .then(response => response.json())
             .then(data => {
@@ -1294,7 +1296,7 @@
 
             })
             .catch(error => console.error('Error fetching data:', error));
-            weekdata = dateList[week_num]
+            weekdata = dateList[week]
             targetUserId = userindex+1
             const filteredData = code_data.filter(item => item.user_id === targetUserId);
             const dateCounts = code_data.reduce((acc, item) => {
@@ -2114,8 +2116,8 @@
             updateDiary(week)
         }
         
-        //demo day = 0614
-        week = 1
+        //demo day = 0624
+        week = 3
 
         $(document).ready(function() {
 
@@ -2205,8 +2207,8 @@
             });
             $('#ca_sun_t1').click(function () {
                 DAY = 0
-                $('#ca_detail_caremi_t1').text('Sun ' + dateList[week_num][0].slice(2,4)+'. '+(parseInt(dateList[week_num][0][4])?dateList[week_num][0].slice(4,6):dateList[week_num][0].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][0].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Sun ' + dateList[week][0].slice(2,4)+'. '+(parseInt(dateList[week][0][4])?dateList[week][0].slice(4,6):dateList[week][0].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][0].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2284,8 +2286,8 @@
             });
             $('#ca_mon_t1').click(function () {
                 DAY = 1
-                $('#ca_detail_caremi_t1').text('Mon ' + dateList[week_num][1].slice(2,4)+'. '+(parseInt(dateList[week_num][1][4])?dateList[week_num][1].slice(4,6):dateList[week_num][1].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][1].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Mon ' + dateList[week][1].slice(2,4)+'. '+(parseInt(dateList[week][1][4])?dateList[week][1].slice(4,6):dateList[week][1].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][1].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2363,8 +2365,8 @@
             });
             $('#ca_tue_t1').click(function () {
                 DAY = 2
-                $('#ca_detail_caremi_t1').text('Tue ' + dateList[week_num][2].slice(2,4)+'. '+(parseInt(dateList[week_num][2][4])?dateList[week_num][2].slice(4,6):dateList[week_num][2].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][2].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Tue ' + dateList[week][2].slice(2,4)+'. '+(parseInt(dateList[week][2][4])?dateList[week][2].slice(4,6):dateList[week][2].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][2].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2442,8 +2444,8 @@
             });
             $('#ca_wed_t1').click(function () {
                 DAY = 3
-                $('#ca_detail_caremi_t1').text('Wed ' + dateList[week_num][3].slice(2,4)+'. '+(parseInt(dateList[week_num][3][4])?dateList[week_num][3].slice(4,6):dateList[week_num][3].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][3].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Wed ' + dateList[week][3].slice(2,4)+'. '+(parseInt(dateList[week][3][4])?dateList[week][3].slice(4,6):dateList[week][3].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][3].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2521,8 +2523,8 @@
             });
             $('#ca_thu_t1').click(function () {
                 DAY = 4
-                $('#ca_detail_caremi_t1').text('Thu ' + dateList[week_num][4].slice(2,4)+'. '+(parseInt(dateList[week_num][4][4])?dateList[week_num][4].slice(4,6):dateList[week_num][4].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][4].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Thu ' + dateList[week][4].slice(2,4)+'. '+(parseInt(dateList[week][4][4])?dateList[week][4].slice(4,6):dateList[week][4].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][4].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2600,8 +2602,8 @@
             });
             $('#ca_fri_t1').click(function () {
                 DAY = 5
-                $('#ca_detail_caremi_t1').text('Fri ' + dateList[week_num][5].slice(2,4)+'. '+(parseInt(dateList[week_num][5][4])?dateList[week_num][5].slice(4,6):dateList[week_num][5].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][5].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Fri ' + dateList[week][5].slice(2,4)+'. '+(parseInt(dateList[week][5][4])?dateList[week][5].slice(4,6):dateList[week][5].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][5].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2679,8 +2681,8 @@
             });
             $('#ca_sat_t1').click(function () {
                 DAY = 6
-                $('#ca_detail_caremi_t1').text('Sat ' + dateList[week_num][6].slice(2,4)+'. '+(parseInt(dateList[week_num][6][4])?dateList[week_num][6].slice(4,6):dateList[week_num][6].slice(5,6)));
-                date = String(dateList[week_num][6].slice(2, 4) + dateList[week_num][6].slice(4,6));
+                $('#ca_detail_caremi_t1').text('Sat ' + dateList[week][6].slice(2,4)+'. '+(parseInt(dateList[week][6][4])?dateList[week][6].slice(4,6):dateList[week][6].slice(5,6)));
+                date = String(dateList[week][6].slice(2, 4) + dateList[week][6].slice(4,6));
                 //console.log(date);
                 usersCode = new Array();
                 for (i = 0; i < code_data.length; i++) {
@@ -2750,31 +2752,31 @@
 
             $('#sun_edit').click(function () {
                 DAY = 0
-                $('#ca_detail_t1').text('Sun ' + dateList[week_num][0].slice(2,4)+'. '+(parseInt(dateList[week_num][0][4])?dateList[week_num][0].slice(4,6):dateList[week_num][0].slice(5,6)));
+                $('#ca_detail_t1').text('Sun ' + dateList[week][0].slice(2,4)+'. '+(parseInt(dateList[week][0][4])?dateList[week][0].slice(4,6):dateList[week][0].slice(5,6)));
             });
             $('#mon_edit').click(function () {
                 DAY = 1
-                $('#ca_detail_t1').text('Mon ' + dateList[week_num][1].slice(2,4)+'. '+(parseInt(dateList[week_num][1][4])?dateList[week_num][1].slice(4,6):dateList[week_num][1].slice(5,6)));
+                $('#ca_detail_t1').text('Mon ' + dateList[week][1].slice(2,4)+'. '+(parseInt(dateList[week][1][4])?dateList[week][1].slice(4,6):dateList[week][1].slice(5,6)));
             });
             $('#tue_edit').click(function () {
                 DAY = 2
-                $('#ca_detail_t1').text('Tue ' + dateList[week_num][2].slice(2,4)+'. '+(parseInt(dateList[week_num][2][4])?dateList[week_num][2].slice(4,6):dateList[week_num][2].slice(5,6)));
+                $('#ca_detail_t1').text('Tue ' + dateList[week][2].slice(2,4)+'. '+(parseInt(dateList[week][2][4])?dateList[week][2].slice(4,6):dateList[week][2].slice(5,6)));
             });
             $('#wed_edit').click(function () {
                 DAY = 3
-                $('#ca_detail_t1').text('Wed ' + dateList[week_num][3].slice(2,4)+'. '+(parseInt(dateList[week_num][3][4])?dateList[week_num][3].slice(4,6):dateList[week_num][3].slice(5,6)));
+                $('#ca_detail_t1').text('Wed ' + dateList[week][3].slice(2,4)+'. '+(parseInt(dateList[week][3][4])?dateList[week][3].slice(4,6):dateList[week][3].slice(5,6)));
             });
             $('#thu_edit').click(function () {
                 DAY = 4
-                $('#ca_detail_t1').text('Thu ' + dateList[week_num][4].slice(2,4)+'. '+(parseInt(dateList[week_num][4][4])?dateList[week_num][4].slice(4,6):dateList[week_num][4].slice(5,6)));
+                $('#ca_detail_t1').text('Thu ' + dateList[week][4].slice(2,4)+'. '+(parseInt(dateList[week][4][4])?dateList[week][4].slice(4,6):dateList[week][4].slice(5,6)));
             });
             $('#fri_edit').click(function () {
                 DAY = 5
-                $('#ca_detail_t1').text('Fri ' + dateList[week_num][5].slice(2,4)+'. '+(parseInt(dateList[week_num][5][4])?dateList[week_num][5].slice(4,6):dateList[week_num][5].slice(5,6)));
+                $('#ca_detail_t1').text('Fri ' + dateList[week][5].slice(2,4)+'. '+(parseInt(dateList[week][5][4])?dateList[week][5].slice(4,6):dateList[week][5].slice(5,6)));
             });
             $('#sat_edit').click(function () {
                 DAY = 6
-                $('#ca_detail_t1').text('Sat ' + dateList[week_num][6].slice(2,4)+'. '+(parseInt(dateList[week_num][6][4])?dateList[week_num][6].slice(4,6):dateList[week_num][6].slice(5,6)));
+                $('#ca_detail_t1').text('Sat ' + dateList[week][6].slice(2,4)+'. '+(parseInt(dateList[week][6][4])?dateList[week][6].slice(4,6):dateList[week][6].slice(5,6)));
             });
 
             $('#detail_caremi_cancel').click(function () {
@@ -2799,26 +2801,25 @@
 
                 //DB insertion
                 var day = $('#ca_detail_t1').text()
-                insertUserCalendar(week_num, Newdate)
+                insertUserCalendar(week, Newdate)
 
                 canClickPrevNext = 1
                 
                 setTimeout(function() {
-                    updateDiary(week_num)
+                    updateDiary(week)
                 }, 300)
 
                 
                 $('#ca_detail_wr').fadeOut(400, function(){
-                    updateDiary(week_num)
+                    updateDiary(week)
                     $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(400);
                 });
             });
 
 
-            //we made Dec 2nd ~ Feb 1st (9weeks, 63days)
             var canClickPrevNext = 1
-            var week_num = 1
-            var Newdate = new Date('2024-06-08');
+
+            var Newdate = new Date('2024-06-22');
 
             var Dateinfo = [['June','2024','1st'],
                             ['June','2024','2nd'],
@@ -2834,7 +2835,7 @@
                 if(!canClickPrevNext){
                     return
                 }
-                if(week_num == 0){
+                if(week == 0){
                     return
                 }
 
@@ -2850,17 +2851,17 @@
                     $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
                 });
 
-                week_num -= 1;
+                week -= 1;
 
-                $('#ca_mo').html('&nbsp;'+Dateinfo[week_num][0]);
-                $('#ca_yr').html('&nbsp;'+Dateinfo[week_num][1]);
-                $('#ca_we').html('&nbsp;'+Dateinfo[week_num][2]);
+                $('#ca_mo').html('&nbsp;'+Dateinfo[week][0]);
+                $('#ca_yr').html('&nbsp;'+Dateinfo[week][1]);
+                $('#ca_we').html('&nbsp;'+Dateinfo[week][2]);
 
                 
                 Newdate.setDate(Newdate.getDate() - 7);
                 
                 
-                updateDiary(week_num)
+                updateDiary(week)
                 
 
             });
@@ -2869,7 +2870,7 @@
                 if(!canClickPrevNext){
                     return
                 }
-                if(week_num == 8){
+                if(week == 8){
                     return
                 }
                 var days_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -2884,16 +2885,17 @@
                     $('#ca_sun, #ca_mon, #ca_tue, #ca_wed, #ca_thu, #ca_fri, #ca_sat').fadeIn(1);
                 });
 
-                week_num += 1;
-
-                $('#ca_mo').html('&nbsp;'+Dateinfo[week_num][0]);
-                $('#ca_yr').html('&nbsp;'+Dateinfo[week_num][1]);
-                $('#ca_we').html('&nbsp;'+Dateinfo[week_num][2]);
+                week += 1;
+                console.log(week)
+                $('#ca_mo').html('&nbsp;'+Dateinfo[week][0]);
+                $('#ca_yr').html('&nbsp;'+Dateinfo[week][1]);
+                $('#ca_we').html('&nbsp;'+Dateinfo[week][2]);
 
               
                 Newdate.setDate(Newdate.getDate() + 7);
 
-                updateDiary(week_num)
+                updateDiary(week)
+
                 
                 
             });
