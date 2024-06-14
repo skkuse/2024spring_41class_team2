@@ -1142,11 +1142,10 @@
         function insertUserCalendar(week_num,Newdate){
             console.log($('#TC_textarea').val(),$('#SC_textarea').val())
 
-            date=String(Newdate.getYear()).slice(1,3) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
+            date=String(Newdate.getYear()).slice(1,3) + (String(parseInt(Newdate.getMonth())+1).length==1?'0':'') + String(parseInt(Newdate.getMonth())+1) + (String(parseInt(Newdate.getDate())+DAY+1).length==1?'0':'') + String(parseInt(Newdate.getDate())+DAY+1)
 
             
             contents = String($('#TC_textarea').val()+'\\n'+$('#SC_textarea').val())
-            console.log(date,String(Newdate.getDate()))
             $.ajax({
                 type: 'POST',  
                 url: '/cal',  
