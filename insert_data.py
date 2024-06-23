@@ -283,8 +283,8 @@ def generate_pattern_num():
 # 랜덤 데이터 생성
 code_data = []
 id_counter = 1
-start_date = datetime(2024, 6, 9)
-end_date = datetime(2024, 6, 15)
+start_date = datetime(2024, 6, 23)
+end_date = datetime(2024, 6, 29)
 for user_id in range(1, 11):  # user_id 1부터 10까지
     for _ in range(10):  # 각 user_id에 대해 10개의 레코드 생성
         id = id_counter

@@ -62,7 +62,7 @@
                 <div id="ov_wpr">
                     <!-- overview contents -->
                     <div id="ov1">
-                        <div id="ov1_t1">Welcome to Fixed!</div>
+                        <div id="ov1_t1">Welcome to BEGREEN!</div>
                         Embrace eco-friendly practices to protect our environment!
                     </div>
                     <div id="ov2">
@@ -1185,6 +1185,7 @@
             })
             .catch(error => console.error('Error fetching data:', error));
             weekdata = dateList[week]
+
             targetUserId = userindex+1
             const filteredData = code_data.filter(item => item.user_id === targetUserId);
             const dateCounts_user = filteredData.reduce((acc, item) => {
@@ -1249,7 +1250,7 @@
                 acc[item.user_id] = (acc[item.user_id] || 0) + 1;
                 return acc;
             }, {});
-
+            
             const time = code_data.reduce((acc, item) => {
                 const userId = item.user_id;
                 const createdAtDate = item.created_at.split(' ')[0].replace(/-/g, '').slice(2); 
